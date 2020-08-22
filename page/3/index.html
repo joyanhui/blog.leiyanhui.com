@@ -146,6 +146,68 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/ubuntu-clash.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/ubuntu-clash.html/" class="post-title-link" itemprop="url">ubuntu下安装某c工具用来v上网</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:45:07" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1、创建一个目录</p>
+<p>cd ~<br>下载 <a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">https://github.com/Dreamacro/clash/releases</a><br>解压<br>右键点击 clash-linux，选择属性，权限处勾选允许以程序执行<br>重命名为 clash<br>2、下载某配置文件<br>wget -O config.yml<br><a target="_blank" rel="noopener" href="https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info">https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info</a><br>移动到<br>/.config/clash$</p>
+<p>3、运行<br>~/clash</p>
+<p>4、配置 直接打开 <a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a> 即可查看gui配置</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/typecho_AllsitePasswd_Plugin.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -780,78 +842,6 @@ msg(&#39;登陆成功&#39;,&#39;OK&#39;,&#39;&lt;p&gt;登陆成功&lt;/p&gt;&lt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/online-update-hosts.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/online-update-hosts.html/" class="post-title-link" itemprop="url">在线hosts文件,Mac和win下通用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Mac下要修改/etc/hosts权限</p>
-<pre><code>下载地址 https://github.com/oldj/SwitchHosts
-
-点击桌面上方的“前往”-&gt;“前往文件夹”（或者快捷键 Shift+Command+G）  输入 /private 按回车，进入 etc 文件夹下面，修改名为 hosts 文件的权限， everyone（或者当前登录用户） 的“读与写”，修改完成之后，你就可以直接在 hosts 文件上点右键，通过“文本编辑”打开并编辑该文件了。或者用SwitchHosts修改</code></pre>
-<p>添加自定义hosts配置，或者用在线hosts列表<br><img src="http://leiyanhui.com/_Resource/uploads/FormWordpress/2017/02/SwitchHosts-.png">(花括号).alignnone<br>.size-full .wp-image-117 width=”1187” height=”755”(花括号)<br>也可以不下载自己修改hosts文件</p>
-<p>网友提供的一个经常更新的hosts列表</p>
-<pre><code>https://github.com/racaljk/hosts
-在线hosts：https://raw.githubusercontent.com/racaljk/hosts/master/hosts
-
-https://coding.net/u/scaffrey/p/hosts/git
-在线hosts：https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts</code></pre>
-<p>另外一个经常更新的hosts不过博主把文件放到了百度网盘(已经关闭删除不再更新)，不能直接在SwitchHosts调用远程hosts</p>
-<pre><code>http://htcui点com/4938.html</code></pre>
-<p>更新后，https可以访问大多数网站。 现在已经不行了，还是科学 靠谱</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -921,7 +911,7 @@ https://coding.net/u/scaffrey/p/hosts/git
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
