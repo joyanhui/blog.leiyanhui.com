@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/change-title-prompt-text/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/change-title-prompt-text/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/" class="post-title-link" itemprop="url">在小米路由器上搭建ftp并允许公网访问</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:54:42 / Modified: 00:54:56" itemprop="dateCreated datePublished" datetime="2020-08-22T00:54:42+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:27:05" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -184,47 +184,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">在wordpress的自定义模型更改标题输入框提示文字</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2017-02-06T14:29:00+08:00<br><a href="../c/wordpress">Wordpress-typecho</a></p>
-<p>在functions.inc.php或者functions.php增加</p>
-<pre>
-/**
- * 更改标题输入框提示文字
- */
-function change_default_title( $title ){
-    $screen = get_current_screen();
-
-    if( 'blood' == $screen-&gt;post_type ) {
-        $title = '输入证书编号：日月年230502父02母002号01性2';
-    }
-
-    return $title;
-}
-add_filter( 'enter_title_here', 'change_default_title' );
-</pre>
-
-<p>注：你可以  post 为其他文章类型，比如，页面为 page。如果你还有其他自定义文章类型，比如 book，也是可以的<br>灵活地使用 IF 语句进行判断，可以给不同的文章类型设定不同的提示文字，比如：</p>
-<pre>
-    if( 'post' == $screen-&gt;post_type ) {
-        $title = '输入文章标题';
-    } elseif ('page' == $screen-&gt;post_type) {
-        $title = '输入页面标题';
-    } elseif ('book' == $screen-&gt;post_type) {
-        $title = '输入书籍标题';
-    }
-</pre>
-
-<p>none <a href="../firefoxtaskbaktowico/index.html" title="火狐浏览器任务栏两个图标的解决方法">火狐浏览器任务栏两个图标的解决方法</a><a href="../php-pdo-sqlite-class/index.html" title="一个php操作sqlite的类">一个php操作sqlite的类</a></p>
+          <p>米路由器搭建ftp的好处，windows下mac下都能流程访问（小米的mac客户端速度很渣的）。然后还可以内网穿透后，作为备份空间使用。<br>首先要开启ssh，具体看官网说明\</p>
+<pre><code>#下载mipsle 版本
+https://github.com/fatedier/frp/releases</code></pre>
 
       
     </div>
@@ -244,7 +206,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centosfirewall/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wp-code-highlight.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -258,7 +220,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/centosfirewall/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wp-code-highlight.html/" class="post-title-link" itemprop="url">wordpress代码高亮插件</a>
         </h2>
 
         <div class="post-meta">
@@ -269,7 +231,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:54:08 / Modified: 00:54:23" itemprop="dateCreated datePublished" datetime="2020-08-22T00:54:08+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:27:28" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -283,25 +245,12 @@ add_filter( 'enter_title_here', 'change_default_title' );
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">centos7默认防火墙firewall配置</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2019-12-02T16:40:00+08:00<br><a href="../c/vps-vpn-linux">VPS/VPN/GFW/Linux</a></p>
-<p>centos7不再使用iptable  默认改用firewall 更简单了一点<br>临时<br>firewall-cmd –zone=public –add-port=22/tcp </p>
-<p>永久/重启后有效<br>firewall-cmd –zone=public –add-port=22/tcp –permanent<br>firewall-cmd –zone=public –add-port=443/tcp –permanent<br>firewall-cmd –zone=public –add-port=9980/tcp –permanent<br>firewall-cmd –zone=public –add-port=9981/tcp –permanent<br>firewall-cmd –zone=public –add-port=3306/tcp –permanent</p>
-<p>删除</p>
-<p>firewall-cmd –zone=public –remove-port=39000-40000/tcp –permanent<br>firewall-cmd –zone=public –remove-port=3322/tcp –permanent<br>firewall-cmd –zone=public –remove-port=8888/tcp –permanent<br>firewall-cmd –zone=public –remove-port=20/tcp –permanent<br>firewall-cmd –zone=public –remove-port=21/tcp –permanent<br>firewall-cmd –zone=public –remove-port=80/tcp –permanent</p>
-<p>firewall-cmd –list-ports #端口列表<br>systemctl start firewalld.service  #启动firewall<br>firewall-cmd –reload #重启firewall<br>systemctl stop firewalld.service #停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动<br>systemctl enable firewalld.service #开机启动</p>
-<p>firewall-cmd –state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</p>
-<p>none <a href="../myvps/index.html" title="自用linux vps 快速恢复和搭建">自用linux vps 快速恢复和搭建</a><a href="../Router-ftps/index.html" title="高恪路由器配置安装frp方法，服务端，最后改为ssh">高恪路由器配置安装frp方法，服务端，最后改为ssh</a></p>
+          <p>WP Code Highlight 好用，并且在编辑器提供一个按钮</p>
+<p>后台可以设置几种颜色风格</p>
+<p>效果颜色</p>
+<pre><code>&lt;?php
+echo &quot;hello world&quot;;
+?&gt;</code></pre>
 
       
     </div>
@@ -321,7 +270,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/CentOS7-7-Minimal/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -335,7 +284,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/CentOS7-7-Minimal/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/" class="post-title-link" itemprop="url">wordpress自定义模型插件的使用</a>
         </h2>
 
         <div class="post-meta">
@@ -346,7 +295,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:52:39 / Modified: 00:53:44" itemprop="dateCreated datePublished" datetime="2020-08-22T00:52:39+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -360,23 +309,95 @@ add_filter( 'enter_title_here', 'change_default_title' );
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">cento7最小化安装记录 附带宝塔安装</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <p>Advanced Custom Fields Plugin for WordPress<br>免费版版本功能很强大，收费版本可能提供一些成品的模型<br>启用插件后，后台菜单多出字段项目</p>
+<p>在模板的functions.php增加一行</p>
+<pre><code>/引用自定义模型*/
+require_once(&#39;functions.ini.blood.php&#39;);</code></pre>
+<p>functions.ini.模型.php 代码</p>
+<pre><code>&lt;?php
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
 
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
+/*
+name: 多模型的表单名字.
+singular_name: 单模型的表单名字.
+add_new:添加模型的时候显示的文字.
+add_new_item: 创建新文章的时候头部的显示部分.
+edit: 编辑文章的时候显示的文字.
+edit_item: 编辑新文章的时候头部的显示部分.
+new_item: 在后台常用菜单管理头部显示的文字.
+view: 就是在列表处用来查看文章的文字.
+view_item: 编辑文章的时候在上面显示的文字.
+search_items: 在列表上面的搜索按钮显示的文字.
+not_found: 后台列表没有数据的时候默认显示的文字.
+not_found_in_trash:在垃圾文章中没有文章的时候显示的文字.
+parent: 在模型中多父级标签显示文字
 
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2020-03-10T18:27:00+08:00<br><a href="../c/vps-vpn-linux">VPS/VPN/GFW/Linux</a></p>
-<p>选择minimal镜像 ，选择目前最普及的centos7，不选8<br><a target="_blank" rel="noopener" href="http://mirrors.huaweicloud.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso">http://mirrors.huaweicloud.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a><br>下载后安装，记录过程<br>在pd中安装的默认使用64g硬盘2核心1.5G内存，未修改<br>启动后，选择安装有提示网络错误，设置允许网络、确定网络正常使用整个虚拟硬盘。设置root密码。<br>大概10分钟左右，重启登录完成，测试ping正常。占用空间1.69G左右。</p>
-<p>安装宝塔，参考bt.cn</p>
-<p><a target="_blank" rel="noopener" href="http://10.x.x.x/">http://10.x.x.x</a>:8888 访问宝塔</p>
-<p>收工</p>
-<p>none <a href="../mac-lamp/index.html" title="macos下LAMP、LNMP php环境搭建">macos下LAMP、LNMP php环境搭建</a><a href="../mbp-macos-catalina/index.html" title="MacBook Pro 2011 升级安装 macOS catalina 10.15.3 记录">MacBook Pro 2011 升级安装 macOS catalina 10.15.3 记录</a></p>
+*/
+
+add_action( &#39;init&#39;, &#39;create_my_post_types&#39; );
+
+function create_my_post_types() (花括号)
+    register_post_type( &#39;blood&#39;, 
+        array(
+            &#39;labels&#39; =&gt; array(
+                &#39;name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;singular_name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;add_new&#39; =&gt; __( &#39;录入档案&#39; ),
+                &#39;add_new_item&#39; =&gt; __( &#39;录入新的血统档案&#39; ),
+                &#39;edit&#39; =&gt; __( &#39;修改&#39; ),
+                &#39;edit_item&#39; =&gt; __( &#39;编辑 血统档案&#39; ),
+                &#39;new_item&#39; =&gt; __( &#39;添加 血统档案&#39; ),
+                &#39;view&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;view_item&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;search_items&#39; =&gt; __( &#39;搜索&#39; ),
+                &#39;not_found&#39; =&gt; __( &#39;没找到匹配的血统档案&#39; ),
+                &#39;not_found_in_trash&#39; =&gt; __( &#39;垃圾文章中没找到血统档案相应的文章&#39; ),
+                &#39;parent&#39; =&gt; __( &#39;血统档案 的父级名&#39; ),
+                &#39;description&#39; =&gt; __( &#39;这是一个正在完善中的血统档案模型&#39; ),
+                &#39;hierarchical&#39; =&gt; true,
+                            &#39;exclude_from_search&#39; =&gt; true,
+
+
+            ),
+
+            &#39;public&#39; =&gt; true,
+            &#39;exclude_from_search&#39; =&gt; true,
+            &#39;hierarchical&#39; =&gt; true,
+
+
+            /*
+            支持
+支持参数允许你定义当编辑或创建新文章时在屏幕上显示的元区块及其它字段的类型。默认是标题和编辑器。有几种可用的选项：
+
+标题（title）：创建文章标题的文本输入字段。
+编辑器（editor）：用于写入的内容输入框。
+评论（comments）：可以打开或关闭评论。
+引用（trackbacks）：可以打开或关闭引用和广播。
+修正（revisions）：允许修正你的文章。
+作者（author）：显示选择框以改变文章作者。
+摘录（excerpt）：用于写入自定义摘录的文本区域。
+缩略图（thumbnail）：缩略图（3.0中的特色图片）上传框。
+自定义字段（custom-fields）：自定义字段输入区域。
+分页属性（page-attributes）：用于分页的属性框。这对于层级文章模型是重要的，由此你可以选择父级文章。
+
+            &#39;supports&#39; =&gt; array( &#39;title&#39;, &#39;editor&#39;, &#39;comments&#39;, &#39;custom-fields&#39;, &#39;thumbnail&#39; ),
+        &#39;rewrite&#39; =&gt; array( &#39;slug&#39; =&gt; &#39;blood&#39;, &#39;with_front&#39; =&gt; true ),
+*/            
+            &#39;supports&#39; =&gt; array(  &#39;title&#39;,&#39;thumbnail&#39; ),
+
+
+        )
+    );
+(花括号)
+
+
+
+function searchAll( $query ) (花括号) 
+if ( $query-&gt;is_search ) (花括号) $query-&gt;set( &#39;post_type&#39;, array( &#39;post&#39;,&#39;blood&#39; )); (花括号) 
+return $query; 
+(花括号) 
+add_filter( &#39;the_search_query&#39;, &#39;searchAll&#39; );
+?&gt;</code></pre>
 
       
     </div>
@@ -396,7 +417,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centos-ftpserver/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpressadminmenushowuserip.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -410,7 +431,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/centos-ftpserver/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpressadminmenushowuserip.html/" class="post-title-link" itemprop="url">wordpress后台菜单显示访客IP的办法</a>
         </h2>
 
         <div class="post-meta">
@@ -421,7 +442,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:52:07 / Modified: 00:52:22" itemprop="dateCreated datePublished" datetime="2020-08-22T00:52:07+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -435,32 +456,22 @@ add_filter( 'enter_title_here', 'change_default_title' );
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">centos下安装ftpserver</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2017-08-18T17:52:00+08:00<br><a href="../c/vps-vpn-linux">VPS/VPN/GFW/Linux</a></p>
-<p>sftp速度实在是悲催，还是装个ftp&lt;!–more–&gt;</p>
-<pre>
-yum -y install vsftpd
-chkconfig vsftpd on
-</pre>
-
-<p>vi /etc/vsftpd/vsftpd.conf</p>
-<h1 id="chroot-list-enable-YES"><a href="#chroot-list-enable-YES" class="headerlink" title="chroot_list_enable=YES"></a>chroot_list_enable=YES</h1><h1 id="default-follows"><a href="#default-follows" class="headerlink" title="(default follows)"></a>(default follows)</h1><h1 id="chroot-list-file-etc-vsftpd-chroot-list"><a href="#chroot-list-file-etc-vsftpd-chroot-list" class="headerlink" title="chroot_list_file=/etc/vsftpd.chroot_list"></a>chroot_list_file=/etc/vsftpd.chroot_list</h1><p>改为<br>chroot_list_enable=YES</p>
-<h1 id="default-follows-1"><a href="#default-follows-1" class="headerlink" title="(default follows)"></a>(default follows)</h1><p>chroot_list_file=/etc/vsftpd/chroot_list</p>
-<p>useradd -d /home/wwwroot/ftpuser -g ftp -s /sbin/nologin ftpuser</p>
-<p>passwd ftpuser</p>
-<p>vi /etc/vsftpd/chroot_list</p>
-<p>service vsftpd restart</p>
-<p>none <a href="../vultr-vps-win2003-x64-wnmp-ssr-frp/index.html" title="vultr的vps免费安装win2003_x64，并搭建wnml+ssr+frp+锐速+ftp">vultr的vps免费安装win2003_x64，并搭建wnml+ssr+frp+锐速+ftp</a><a href="../xiaomi-ruler-ftp-frp/index.html" title="在小米路由器上搭建ftp并允许公网访问">在小米路由器上搭建ftp并允许公网访问</a></p>
+          <p>开发过程中为了方便<br>本地环境和服务器环境一致，使用了SwitchHosts来切换管理hosts文件。为了方便调试的是区分开，在后台菜单增加ip显示，这样本地访问显示127.0.01</p>
+<p>新建一个插件代码如下</p>
+<pre><code>&lt;?php
+/*
+Plugin Name: 修改后台菜单显示
+Description: 可以删除后台菜单，可以添加自定义显示内容
+Author: leiyanhui
+*/
+function diy_admin_menu()
+(花括号)
+   // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position ); 
+   $menu_title=&#39;您的IP：&#39;.$_SERVER[&quot;REMOTE_ADDR&quot;];
+    add_menu_page(&#39;自定义菜单标题&#39;,$menu_title, &#39;administrator&#39;, &#39;#url&#39;,&#39;&#39;,&#39;&#39;, 1);    
+(花括号)
+add_action(&#39;admin_menu&#39;, &#39;diy_admin_menu&#39;);
+?&gt;</code></pre>
 
       
     </div>
@@ -480,7 +491,7 @@ chkconfig vsftpd on
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centos-add-harddisk/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-no-edit-functions-php.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -494,7 +505,7 @@ chkconfig vsftpd on
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/centos-add-harddisk/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpress-no-edit-functions-php.html/" class="post-title-link" itemprop="url">wordpresswordpress避免改动functions.php的插件自定义模型插件的使用</a>
         </h2>
 
         <div class="post-meta">
@@ -505,7 +516,7 @@ chkconfig vsftpd on
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:51:03 / Modified: 00:51:24" itemprop="dateCreated datePublished" datetime="2020-08-22T00:51:03+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:28:39" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -519,41 +530,20 @@ chkconfig vsftpd on
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">centos挂载硬盘</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <p>如何防止主题升级后functions.php被覆盖。</p>
+<p>一下代码保存到htdocswp-contentplugins自定义一个目录文件名.php<br>后台启动插件，在模板目录下新建一个文件functions.inc.php。自定义代码写到这里就好</p>
+<pre><code>&lt;?php
+/*
+Plugin Name: 调用模板目录的functions.inc.php文件
+Description: 一直调用themes的functions.inc.php文件
+Author: leiyanhui
+*/
+//代码也可以直接写到这里，不用写到模板目录
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
+@include( get_stylesheet_directory().&#39;/functions.inc.php&#39;);
 
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
 
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2017-08-17T00:41:00+08:00<br><a href="../c/vps-vpn-linux">VPS/VPN/GFW/Linux</a></p>
-<p>1 查看硬盘</p>
-<pre>
-fdisk -l
-</pre>
-
-<p>/dev/sda  就是需要挂载的硬盘了</p>
-<pre>
-fdisk /dev/sda
-</pre>
-
-<p>依次输入  n p 1 p w 创建一个分区<br>fdisk -l 再次查看，看到sda1<br> <pre><br>mkfs.ext4 /dev/sda1 #格式化<br></pre></p>
-<p>挂载</p>
-<pre>
-mkdir /data
-mount /dev/sda1 /data
-</pre>
-
-<p>开机启动挂载</p>
-<pre>
-echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
-</pre>
-
-<p>none <a href="../minivps-cenos-nginx-php-ssr-frp/index.html" title="在一个超小的vps上搭建nginx+php + ssr+ frp内网穿透的并共存。">在一个超小的vps上搭建nginx+php + ssr+ frp内网穿透的并共存。</a><a href="../onpage-html-css-404/index.html" title="单文件纯html css写的一个404/502页面">单文件纯html css写的一个404/502页面</a></p>
+?&gt;</code></pre>
 
       
     </div>
@@ -573,7 +563,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/bat-rename/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-network-uploadfilesetting.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -587,7 +577,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/bat-rename/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpress-network-uploadfilesetting.html/" class="post-title-link" itemprop="url">wordpress站群中上传文件设置</a>
         </h2>
 
         <div class="post-meta">
@@ -598,7 +588,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:43:16 / Modified: 00:43:29" itemprop="dateCreated datePublished" datetime="2020-08-22T00:43:16+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:29:06" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -612,27 +602,10 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">批处理替换文件名</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <p>是在网络节点中设置的，独立的站点不能自行设置</p>
+<p>/wp-admin/network/settings.php</p>
+<p>末了有关于上传文件类型和大小的设置</p>
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2017-08-04T13:12:00+08:00<br><a href="../c/win-soft">Windows和软件</a></p>
-<p>可用在模块复用的情况下。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/bat-rename/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -651,7 +624,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/aliyun-vps/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-google-gravatar.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -665,7 +638,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/aliyun-vps/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpress-google-gravatar.html/" class="post-title-link" itemprop="url">wordpress加快前台打开速度，替换google字体和Gravatar头像</a>
         </h2>
 
         <div class="post-meta">
@@ -676,7 +649,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:42:23 / Modified: 00:42:52" itemprop="dateCreated datePublished" datetime="2020-08-22T00:42:23+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:29:31" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -690,27 +663,13 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">阿里云香港机房大量被墙</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <p>找到一个好用的插件WP Acceleration for China<br>安装后，设置为网络启动，然后在 设置 wp加速<br>菜单设置。也可以编辑插件更改加速服务器</p>
+<p>插件下载<br>WordPress官方插件目录：<a target="_blank" rel="noopener" href="https://wordpress.org/plugins/wp-acceleration-for-china/">https://wordpress.org/plugins/wp-acceleration-for-china/</a></p>
+<p>Github地址： <a target="_blank" rel="noopener" href="https://github.com/Lomu/wp-acceleration-for-china">https://github.com/Lomu/wp-acceleration-for-china</a></p>
+<p>直接下载：<br><a target="_blank" rel="noopener" href="https://downloads.wordpress.org/plugin/wp-acceleration-for-china.zip">https://downloads.wordpress.org/plugin/wp-acceleration-for-china.zip</a></p>
+<p>后续说明<br>WP Acceleration for<br>China插件可以替换HTML中输出的内容，但是如果资源是通过其他JS、CSS中引入的，那么很遗憾，这个替换不了哦~</p>
+<p>同时如果你发现还有其他因素导致在国内打开很慢，那么也可以告诉我，有解决方案的话会加入插件中。</p>
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2019-06-03T03:08:00+08:00<br><a href="../c/vps-vpn-linux">VPS/VPN/GFW/Linux</a></p>
-<p>悲剧的是，我才刚刚迁移过来 用了2天就被墙了。。。<br>重新开了一个 ping值高了1/4，不过总算可以用了</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/aliyun-vps/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -729,7 +688,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/aboutsameprogrammer/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -743,7 +702,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/typecho/aboutsameprogrammer/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/" class="post-title-link" itemprop="url">wordpress媒体文件分类和添加标签</a>
         </h2>
 
         <div class="post-meta">
@@ -754,7 +713,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-22 00:40:22 / Modified: 00:41:54" itemprop="dateCreated datePublished" datetime="2020-08-22T00:40:22+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -768,27 +727,14 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="index.html">游戏里面遇到的奇葩程序员</a></p>
-<div class="col-mb-12 col-8" id="main" role="main">
-    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+          <p>wordpress 媒体文件分类和标签</p>
+<pre><code>function lei_add_categories_tags_to_attachments() (花括号)
+   register_taxonomy_for_object_type( &#39;category&#39;, &#39;attachment&#39; );
+   register_taxonomy_for_object_type( &#39;post_tag&#39;, &#39;attachment&#39; );
+(花括号)
+add_action( &#39;init&#39; , &#39;lei_add_categories_tags_to_attachments&#39; );</code></pre>
+<p>但是在文字中插入的时候，还是不能按照分类检索，所以好像没啥卵用，只适合有特殊需求的人了。</p>
 
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><pre><code>    &lt;div class=&quot;post-content&quot; itemprop=&quot;articleBody&quot;&gt;
-
-    &lt;/div&gt;
-&lt;/article&gt;</code></pre>
-</div>
-
-<p>作者: </p>
-<p><a href="http://blog.leiyanhui.com/typecho/author/1/">http://blog.leiyanhui.com/typecho/author/1/</a><br>admin<br>2018-03-28T16:37:00+08:00<br><a href="../c/other">other</a></p>
-<p>最近玩了一个游戏，然后感觉有意思，就写了一个辅助（或者叫外挂？），卖了几个赚一点烟钱。这游戏里面好像“程序员”比较多，奇葩也多。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/aboutsameprogrammer/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -807,7 +753,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/window-airplay.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -821,7 +767,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2020/08/22/typecho/window-airplay.html/" class="post-title-link" itemprop="url">Win10LTSB长期支持版本安装应用商店</a>
         </h2>
 
         <div class="post-meta">
@@ -830,8 +776,9 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-22 00:05:38" itemprop="dateCreated datePublished" datetime="2020-08-22T00:05:38+08:00">2020-08-22</time>
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
             </span>
 
           
@@ -845,19 +792,103 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+          <p>LTSB版本默认没装edge也就忍了。但是没有应用商店，我还要玩一个小游戏。。。换系统肯定麻烦了。凑合一下，完美搞定。记录一下操作</p>
+<p>1、下载一个win10的镜像，只要64位的就可以了中文的就可以了，我下载了一个多版本。要用install.wim。</p>
+<p>2、C:\Program Files\WindowsApps <br>这个隐藏的文件夹，修改一下所有人权限为当前管理员用户。确定读写完全控制什么的</p>
+<p>3、用7zip或者其他工具打开install.wim把里面任意个分卷的\Program<br>Files\WindowsApps中的所有内容解压到C:\Program Files\WindowsApps</p>
+<p>解压完成后 把WindowsApps的所有者再改为 NT Service\TrustedInstaller<br>直接输入，搜不到这个用户的。然后修改后<br>不要点击最后一个确定，返回权限设置对话框后，先不要点确定（否则回到重新给权限），而是点击”添加”-选择主体，查找位置仍为本机，输入”All<br>Application Packages”。<br>确定然后保留默认的权限勾选。返回权限设置对话框，勾上”使用可从次对象的权限项目替换子对象的权限项目”，点确定。</p>
+<p>4、管理员权限打开Windows Powershell，运行</p>
+<p>::: (花括号)#code_Wq0(花括号)<br>Add-AppXPackage -Register &#39;C:\Program<br>Files\WindowsApps\*\AppXManifest.xml&#39; -DisableDevelopmentMode<br>:::</p>
+<p>运行后出现一堆错误，因为依赖包的问题，不用管。中间如果停止了<br>就点一下回车。然后运行一遍后 看看开始菜单有没有添加应用商店。<br>没有的话就再运行几次，第一次好像什么的也没装上，第二次装了几个应用但是没有商店，第三次就出来商店了，其实还可以再运行几次，一直到不出错所有的应用都安装。多运行几次<br>出来多装一个默认应用没什么坏处。</p>
+<p>5、卸载掉没什么的用的应用 比如天气 纸牌之类的。</p>
+<p>试试应用商店。</p>
+<p>记得使用应用商店 要打开Windows update服务</p>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+      
+    </div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win7lite.html/">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/win7lite.html/" class="post-title-link" itemprop="url">一个比较小巧的Win7. 可以正常使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 10:33:44" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>效果不好！ 已经更换俄大神版</p>
+<p>esd压缩包，看上去很小，解压后竟然有8G多（本打算做到vhd文件，做备用系统替代winpe的，太大了，而且好像不支持vhd启动，放弃了），可以用wim方法安装。</p>
+<pre><code>dism /apply-image /imagefile:D:YanHui下载W7_885_x64.esd /index:1 /applydir:x:\
+
+作者：http://twm000.blog.163.com/
+功能&amp;特点：
+母盘基于 Windows 7 SP1 Ultimate 旗舰版 32位/64位进行精简优化封装；
+只为纯净精简封装，未额外附加常用三方软件及常用软件运行库；
+默认集成 IE9 浏览器，支持升级至 IE11 最新版本；
+已集成系统安全更新补丁至 2015 年终，理论支持后续安全更新补丁安装；
+保留原版自带 .NET Framework 3.5.1 向下兼容，并支持升级安装更高版本；
+部署过程支持全盘搜索“万能驱动助理”调用“[Win7.x86、Win7.x64]WanDrv6.exe”主程序；
+哈希&amp;校验：
+文件名称：W7_678_x86.esd
+文件大小：678 MB (711961148 字节)
+修改时间：2015年12月25日
+MD5：CD154C42D2CBF69536525C945F662700
+SHA1：4E4BD4766D284EBC980C38216FA9301EEE5BBBBA
+
+文件名称：W7_885_x64.esd
+文件大小：885 MB (928125386 字节)
+修改时间：2016年01月03日
+MD5：6FF9034EE00245ACD5DCCF9E566E4221
+SHA1：A6F618028241B4519462AAEA369601B29E8EE32F
+
+下载の地址：
+ed2k://|file|W7_678_x86.esd|711961148|559234466DBD11AC6FF2B8D4BBFD7D36|h=LHBNF6YIPY42DGNDD5SIDE5VNMRHND4D|/
+ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BOR3HYA4BO4SSOZUQT7UQEA2HVZ|/</code></pre>
 
       
     </div>
@@ -875,6 +906,9 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -939,7 +973,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

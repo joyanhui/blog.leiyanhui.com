@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.leiyanhui.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Advanced Custom Fields Plugin for WordPress免费版版本功能很强大，收费版本可能提供一些成品的模型启用插件后，后台菜单多出字段项目 在模板的functions.php增加一行 &#x2F;引用自定义模型*&#x2F; require_once(&#39;functions.ini.blood.php&#39;); functions.ini.模型.php 代码 &lt;?php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wordpress自定义模型插件的使用">
+<meta property="og:url" content="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Advanced Custom Fields Plugin for WordPress免费版版本功能很强大，收费版本可能提供一些成品的模型启用插件后，后台菜单多出字段项目 在模板的functions.php增加一行 &#x2F;引用自定义模型*&#x2F; require_once(&#39;functions.ini.blood.php&#39;); functions.ini.模型.php 代码 &lt;?php">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-21T17:49:44.757Z">
+<meta property="article:modified_time" content="2020-08-22T03:07:02.781Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>wordpress自定义模型插件的使用 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          wordpress自定义模型插件的使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-22 01:49:44 / Modified: 11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Advanced Custom Fields Plugin for WordPress<br>免费版版本功能很强大，收费版本可能提供一些成品的模型<br>启用插件后，后台菜单多出字段项目</p>
+<p>在模板的functions.php增加一行</p>
+<pre><code>/引用自定义模型*/
+require_once(&#39;functions.ini.blood.php&#39;);</code></pre>
+<p>functions.ini.模型.php 代码</p>
+<pre><code>&lt;?php
+
+
+/*
+name: 多模型的表单名字.
+singular_name: 单模型的表单名字.
+add_new:添加模型的时候显示的文字.
+add_new_item: 创建新文章的时候头部的显示部分.
+edit: 编辑文章的时候显示的文字.
+edit_item: 编辑新文章的时候头部的显示部分.
+new_item: 在后台常用菜单管理头部显示的文字.
+view: 就是在列表处用来查看文章的文字.
+view_item: 编辑文章的时候在上面显示的文字.
+search_items: 在列表上面的搜索按钮显示的文字.
+not_found: 后台列表没有数据的时候默认显示的文字.
+not_found_in_trash:在垃圾文章中没有文章的时候显示的文字.
+parent: 在模型中多父级标签显示文字
+
+*/
+
+add_action( &#39;init&#39;, &#39;create_my_post_types&#39; );
+
+function create_my_post_types() (花括号)
+    register_post_type( &#39;blood&#39;, 
+        array(
+            &#39;labels&#39; =&gt; array(
+                &#39;name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;singular_name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;add_new&#39; =&gt; __( &#39;录入档案&#39; ),
+                &#39;add_new_item&#39; =&gt; __( &#39;录入新的血统档案&#39; ),
+                &#39;edit&#39; =&gt; __( &#39;修改&#39; ),
+                &#39;edit_item&#39; =&gt; __( &#39;编辑 血统档案&#39; ),
+                &#39;new_item&#39; =&gt; __( &#39;添加 血统档案&#39; ),
+                &#39;view&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;view_item&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;search_items&#39; =&gt; __( &#39;搜索&#39; ),
+                &#39;not_found&#39; =&gt; __( &#39;没找到匹配的血统档案&#39; ),
+                &#39;not_found_in_trash&#39; =&gt; __( &#39;垃圾文章中没找到血统档案相应的文章&#39; ),
+                &#39;parent&#39; =&gt; __( &#39;血统档案 的父级名&#39; ),
+                &#39;description&#39; =&gt; __( &#39;这是一个正在完善中的血统档案模型&#39; ),
+                &#39;hierarchical&#39; =&gt; true,
+                            &#39;exclude_from_search&#39; =&gt; true,
+
+
+            ),
+
+            &#39;public&#39; =&gt; true,
+            &#39;exclude_from_search&#39; =&gt; true,
+            &#39;hierarchical&#39; =&gt; true,
+
+
+            /*
+            支持
+支持参数允许你定义当编辑或创建新文章时在屏幕上显示的元区块及其它字段的类型。默认是标题和编辑器。有几种可用的选项：
+
+标题（title）：创建文章标题的文本输入字段。
+编辑器（editor）：用于写入的内容输入框。
+评论（comments）：可以打开或关闭评论。
+引用（trackbacks）：可以打开或关闭引用和广播。
+修正（revisions）：允许修正你的文章。
+作者（author）：显示选择框以改变文章作者。
+摘录（excerpt）：用于写入自定义摘录的文本区域。
+缩略图（thumbnail）：缩略图（3.0中的特色图片）上传框。
+自定义字段（custom-fields）：自定义字段输入区域。
+分页属性（page-attributes）：用于分页的属性框。这对于层级文章模型是重要的，由此你可以选择父级文章。
+
+            &#39;supports&#39; =&gt; array( &#39;title&#39;, &#39;editor&#39;, &#39;comments&#39;, &#39;custom-fields&#39;, &#39;thumbnail&#39; ),
+        &#39;rewrite&#39; =&gt; array( &#39;slug&#39; =&gt; &#39;blood&#39;, &#39;with_front&#39; =&gt; true ),
+*/            
+            &#39;supports&#39; =&gt; array(  &#39;title&#39;,&#39;thumbnail&#39; ),
+
+
+        )
+    );
+(花括号)
+
+
+
+function searchAll( $query ) (花括号) 
+if ( $query-&gt;is_search ) (花括号) $query-&gt;set( &#39;post_type&#39;, array( &#39;post&#39;,&#39;blood&#39; )); (花括号) 
+return $query; 
+(花括号) 
+add_filter( &#39;the_search_query&#39;, &#39;searchAll&#39; );
+?&gt;</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/22/typecho/wordpressadminmenushowuserip.html/" rel="prev" title="wordpress后台菜单显示访客IP的办法">
+      <i class="fa fa-chevron-left"></i> wordpress后台菜单显示访客IP的办法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/22/typecho/wp-code-highlight.html/" rel="next" title="wordpress代码高亮插件">
+      wordpress代码高亮插件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
