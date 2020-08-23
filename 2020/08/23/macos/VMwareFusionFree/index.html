@@ -20,19 +20,25 @@
     var CONFIG = {"hostname":"blog.leiyanhui.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="可以在路由器或者vps中运行，实现自动备份网站ftp文件。直接使用wget&lt;!--more--&gt; mkdir &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web cd &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web #删除10天之前的备份 find &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web -mtime +10 -name &quot;bak-fr">
+  <meta name="description" content="PD据说是mac下最好的win虚拟机软件 但是Linux是真的蛋疼，性格不清楚，但真的无法稳定使用，经常莫名其妙就打不开了。关闭重启也没反应。 先去下载 https:&#x2F;&#x2F;vmwarefusion.github.io貌似是技术预览版？反正总比PD靠谱实际下载地址是，贴迅雷https:&#x2F;&#x2F;download3.vmware.com&#x2F;software&#x2F;fusion&#x2F;file&#x2F;VMware-Fusion-e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux下自动同步备份ftp空间">
-<meta property="og:url" content="http://blog.leiyanhui.com/2020/08/22/typecho/linux-autobackup-from-ftpserver.html/index.html">
+<meta property="og:title" content="Macos下使用VMwareFusion12配置centos+宝塔">
+<meta property="og:url" content="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/index.html">
 <meta property="og:site_name" content="小类随手记">
-<meta property="og:description" content="可以在路由器或者vps中运行，实现自动备份网站ftp文件。直接使用wget&lt;!--more--&gt; mkdir &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web cd &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web #删除10天之前的备份 find &#x2F;home&#x2F;wwwroot&#x2F;from_aliyun_web -mtime +10 -name &quot;bak-fr">
+<meta property="og:description" content="PD据说是mac下最好的win虚拟机软件 但是Linux是真的蛋疼，性格不清楚，但真的无法稳定使用，经常莫名其妙就打不开了。关闭重启也没反应。 先去下载 https:&#x2F;&#x2F;vmwarefusion.github.io貌似是技术预览版？反正总比PD靠谱实际下载地址是，贴迅雷https:&#x2F;&#x2F;download3.vmware.com&#x2F;software&#x2F;fusion&#x2F;file&#x2F;VMware-Fusion-e">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-21T17:49:44.686Z">
-<meta property="article:modified_time" content="2020-08-22T03:07:02.782Z">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/459aa3b7f17821f01b9cb305825300f42">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/a7366a15cd7c48ee90cd9aa2a1880e042">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912">
+<meta property="article:published_time" content="2020-08-23T02:29:44.383Z">
+<meta property="article:modified_time" content="2020-08-23T03:10:00.446Z">
 <meta property="article:author" content="joyanhui@qq.com">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2">
 
-<link rel="canonical" href="http://blog.leiyanhui.com/2020/08/22/typecho/linux-autobackup-from-ftpserver.html/">
+<link rel="canonical" href="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/">
 
 
 <script id="page-configurations">
@@ -45,7 +51,7 @@
   };
 </script>
 
-  <title>linux下自动同步备份ftp空间 | 小类随手记</title>
+  <title>Macos下使用VMwareFusion12配置centos+宝塔 | 小类随手记</title>
   
 
 
@@ -151,7 +157,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/linux-autobackup-from-ftpserver.html/">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -164,7 +170,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          linux下自动同步备份ftp空间
+          Macos下使用VMwareFusion12配置centos+宝塔
         </h1>
 
         <div class="post-meta">
@@ -175,7 +181,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+              <time title="创建时间：2020-08-23 10:29:44 / 修改时间：11:10:00" itemprop="dateCreated datePublished" datetime="2020-08-23T10:29:44+08:00">2020-08-23</time>
             </span>
 
           
@@ -189,21 +195,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>可以在路由器或者vps中运行，实现自动备份网站ftp文件。<br>直接使用wget&lt;!--more--&gt;</p>
-<pre><code>mkdir /home/wwwroot/from_aliyun_web
-cd /home/wwwroot/from_aliyun_web
-#删除10天之前的备份
-find /home/wwwroot/from_aliyun_web -mtime +10 -name &quot;bak-from*&quot; -exec rm -rf (花括号)(花括号) ;
-rm -rm ./*.sql
-#下载
-wget -nH -m --ftp-user=  --ftp-password= ftp://.ftp.aliapp.com/htdocs/ 
-#打包
-tar -zcvf bak-from-aliyun-web-$(date +%Y%m%d-%H%M).tar.gz htdocs/
-#mysqldump 没装的话，需要yum install mysql
-mysqldump -P 3306 -h rm.mysql.rds.aliyuncs.com -u[root] -p[passwd] [table]&gt;/home/wwwroot/from_aliyun_web/mysql-.sql
-#打包
-tar -zcvf bak-aliyun-mysql-.sql-$(date +%Y%m%d-%H%M).tar.gz mysql-.sql</code></pre>
-<p>chmod +x /root/auto/ftp_get.sh<br>crontab -e<br>01 02 * /root/auto/ftp_get.sh</p>
+        <p>PD据说是mac下最好的win虚拟机软件</p>
+<p>但是Linux是真的蛋疼，性格不清楚，但真的无法稳定使用，经常莫名其妙就打不开了。关闭重启也没反应。</p>
+<p>先去下载 <a target="_blank" rel="noopener" href="https://vmwarefusion.github.io/">https://vmwarefusion.github.io</a><br>貌似是技术预览版？反正总比PD靠谱<br>实际下载地址是，贴迅雷<br><a target="_blank" rel="noopener" href="https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg">https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg</a><br>下载centos8.2.2004<br><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso">http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso</a></p>
+<p>还真是预览版 <img src="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2"></p>
+<p>无所谓了 先把PD的centos7删了，只留下俄大神win7</p>
+<p>按照提示安装VM。自带一个序列号？好吧继续下一步</p>
+<p>去掉快捷安装，引导固件 传统吧 efi还多一个分区麻烦</p>
+<p>最后一部分看一下 修改网络 桥接 自动检测 或者wifi</p>
+<p>硬盘10G吧 蓝牙 摄像头 麦克风 打印机什么用不到的移除  ok 启动</p>
+<p>提示打开了调试模式？ 先不管 安装先</p>
+<p>鼠标键盘 释放快捷键是 control+command了 </p>
+<p>centos从7 开始 就默认是图形化的界面了，虽然方便直观了但是启动安装器真的慢了很多</p>
+<p>英文美国键盘后<br><img src="https://icon.qiantucdn.com/20200823/459aa3b7f17821f01b9cb305825300f42"></p>
+<p>硬盘没配置，点一下<br><img src="https://icon.qiantucdn.com/20200823/a7366a15cd7c48ee90cd9aa2a1880e042"></p>
+<p>时区改下点上海附近<br>网络连接打开<br>SoftWare默认是Server 因为后面要装宝塔玩耍，所以这里改成mini算了<br>改完时区窗口错位了，还真是预览版。。。这。。。<br><img src="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12"></p>
+<p>记得是时区设置后面是网络 网络后面是 应该是加密安全什么的，然后就是退出和安装了。<br>用tab键 和Shit+tab键 然后enter瞎按<br>终于开始了<br><img src="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912"><br>新建一个用户 as上管理员<br>这次密码可以输入哈，密码输入1 提示密码太简单了。按两次Done确认就用这个</p>
+<p>等待中</p>
+<p>重启进入 安装ssh<br>启动ssh<br>配置ssh开机启动</p>
 
     </div>
 
@@ -219,13 +228,10 @@ tar -zcvf bak-aliyun-mysql-.sql-$(date +%Y%m%d-%H%M).tar.gz mysql-.sql</code></p
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/22/typecho/light-bbs.html/" rel="prev" title="几个轻量级论坛测试Flarum 、start-bbs、Xiuno ">
-      <i class="fa fa-chevron-left"></i> 几个轻量级论坛测试Flarum 、start-bbs、Xiuno 
+    <a href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/" rel="prev" title="百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）">
+      <i class="fa fa-chevron-left"></i> 百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/22/typecho/mac-dreamweaver-cc-2017-zhcn.html/" rel="next" title="Mac安装 Dreamweaver cc 2017">
-      Mac安装 Dreamweaver cc 2017 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
