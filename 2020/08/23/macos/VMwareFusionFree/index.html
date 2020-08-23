@@ -32,8 +32,9 @@
 <meta property="og:image" content="https://icon.qiantucdn.com/20200823/a7366a15cd7c48ee90cd9aa2a1880e042">
 <meta property="og:image" content="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12">
 <meta property="og:image" content="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912">
+<meta property="og:image" content="https://icon.qiantucdn.com/20200823/3ddf669851e2a4ec12e04477606ff0612">
 <meta property="article:published_time" content="2020-08-23T02:29:44.383Z">
-<meta property="article:modified_time" content="2020-08-23T03:10:00.446Z">
+<meta property="article:modified_time" content="2020-08-23T04:50:53.011Z">
 <meta property="article:author" content="joyanhui@qq.com">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2">
@@ -181,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-23 10:29:44 / 修改时间：11:10:00" itemprop="dateCreated datePublished" datetime="2020-08-23T10:29:44+08:00">2020-08-23</time>
+              <time title="创建时间：2020-08-23 10:29:44 / 修改时间：12:50:53" itemprop="dateCreated datePublished" datetime="2020-08-23T10:29:44+08:00">2020-08-23</time>
             </span>
 
           
@@ -212,7 +213,16 @@
 <p>时区改下点上海附近<br>网络连接打开<br>SoftWare默认是Server 因为后面要装宝塔玩耍，所以这里改成mini算了<br>改完时区窗口错位了，还真是预览版。。。这。。。<br><img src="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12"></p>
 <p>记得是时区设置后面是网络 网络后面是 应该是加密安全什么的，然后就是退出和安装了。<br>用tab键 和Shit+tab键 然后enter瞎按<br>终于开始了<br><img src="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912"><br>新建一个用户 as上管理员<br>这次密码可以输入哈，密码输入1 提示密码太简单了。按两次Done确认就用这个</p>
 <p>等待中</p>
-<p>重启进入 安装ssh<br>启动ssh<br>配置ssh开机启动</p>
+<p>完成了，看不到重启按钮。。。继续tab大法</p>
+<p>重启进入 安装ssh，提示已经安装了<br>sudo yum install net-tools<br>ifconfig 看一下ip和mac地址 记住网卡名字也 ens33<br>路由器里面修改静态分批ip 到10.0.0.88<br><img src="https://icon.qiantucdn.com/20200823/3ddf669851e2a4ec12e04477606ff0612"></p>
+<p>重启一下centos网卡<br>nmcli d connect ens33 #ens33是上面ifconfig 看到的网卡名<br>ifconfig 看下新ip生效没<br>安装vmtools？好像自动安装了。。。神奇 怪不得鼠标可以自动移动出来</p>
+<p>没问题 先关闭虚拟主机 找一下前面提示的调试模式 打开虚拟机配置的 高级面板 找到故障排除 改成无</p>
+<p>还有分辨率也太高了。 改成拉伸</p>
+<p>配置成VM打开自动启动</p>
+<p>mac shell输入</p>
+<p>ssh <a href="mailto:&#121;&#x61;&#x6e;&#x68;&#117;&#x69;&#64;&#49;&#48;&#x2e;&#x30;&#46;&#48;&#46;&#x38;&#56;">&#121;&#x61;&#x6e;&#x68;&#117;&#x69;&#64;&#49;&#48;&#x2e;&#x30;&#46;&#48;&#46;&#x38;&#56;</a> 登录</p>
+<p>安装宝塔<br>’‘’<br>sudo passwd root #要先启动用root 不然宝塔不给装<br>su -<br> yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="http://download.bt.cn/install/install_6.0.sh">http://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh<br>‘’‘<br>进入宝塔面板装nginx mysql php mysql就不装了 用mac自己的就行<br>不知道为啥一定要编译安装，我明明选了极速 安装完后 内存改到256M cpu单核 就本地测试用 nginx+php  256M足够了mysql用 mac本机的<br><a href="/2020/08/23/macos/installmysql/">macos安装mysql</a></p>
+<p>慢慢跑吧，再去装一个俄大神精简的win7体验下和pd的差距 如果好用就抛弃pd<br>事实证明还不错 感觉不到差距 就是融合Unity模式 没办法从mac直接点出来win的开始菜单，有点不习惯 打开任务栏 替代一下了</p>
 
     </div>
 
@@ -231,7 +241,10 @@
     <a href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/" rel="prev" title="百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）">
       <i class="fa fa-chevron-left"></i> 百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/23/macos/installmysql/" rel="next" title="MacOs catlina安装mysql">
+      MacOs catlina安装mysql <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -303,7 +316,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

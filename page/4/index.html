@@ -146,6 +146,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-pdo-sqlite-class.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/php-pdo-sqlite-class.html/" class="post-title-link" itemprop="url">一个php操作sqlite的类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:03:01" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>已经删除，重写了一个 以后有时间放出来</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onpage-html-css-404.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -881,71 +940,6 @@ chmod +x bbr.sh</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/mysql-ser1TO2.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/mysql-ser1TO2.html/" class="post-title-link" itemprop="url">双服务器计划任务备份，数据库热备份，文件定时同步。</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:45:49" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先安装sshpass为了scp文件同步的密码保存成<br>ssh-keygen -t rsa <br>Cd ~<br>scp -P 21142 .ssh/id_rsa.pub<br>root@lt.serv2.com:/root/.ssh/authorized_keys<br>输入一次 密码发密钥过去<br>scp -P 21142 -r /data/wwwroot/ root@lt.serv2.com:/data/<br>测试同步，不再需要密码<br>计划任务 ok了<br>当然用rsync更好，不过因为文件很少，就一点php文件，懒得折腾了。</p>
-<p>本打算做mysql双机互备，但是没时间去测试</p>
-<p>所以，先简单一点 主&gt;从定时推送吧</p>
-<p>mysqldump --host=h1 -uroot -proot --databases db1 |mysql --host=h2<br>-uroot -proot db2</p>
-<p>例子</p>
-<p>/usr/bin/mysqldump --host=127.0.0.1 -udate2 -pm124567777 -P3306<br>--databases date2|mysql --host=mysql.serv2.com -udate2-pm124567777<br>-P9981 date2</p>
-<p>MySQL 修改下 max_allowed_packet 不然会出错<br>mysql -uroot -p -P3306 -h127.0.0.1<br>SQL&gt; set global max_allowed_packet=67108864;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1015,7 +1009,7 @@ chmod +x bbr.sh</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

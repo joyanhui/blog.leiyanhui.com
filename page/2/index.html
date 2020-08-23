@@ -146,6 +146,71 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/" class="post-title-link" itemprop="url">wordpress媒体文件分类和添加标签</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>wordpress 媒体文件分类和标签</p>
+<pre><code>function lei_add_categories_tags_to_attachments() (花括号)
+   register_taxonomy_for_object_type( &#39;category&#39;, &#39;attachment&#39; );
+   register_taxonomy_for_object_type( &#39;post_tag&#39;, &#39;attachment&#39; );
+(花括号)
+add_action( &#39;init&#39; , &#39;lei_add_categories_tags_to_attachments&#39; );</code></pre>
+<p>但是在文字中插入的时候，还是不能按照分类检索，所以好像没啥卵用，只适合有特殊需求的人了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/window-airplay.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,103 +874,6 @@ mysql&gt; set password for root@localhost = password(&#39;新密码&#39;);</code
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/vps-move.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/vps-move.html/" class="post-title-link" itemprop="url">自用vps迁移</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:36:15" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>vps越来越慢，只好换了一家。记录一下迁移</p>
-<p>1、<a target="_blank" rel="noopener" href="http://leiyanhui.com/reset-centos-vps/">检查和设置vps环境<br>清理无用软件</a></p>
-<pre><code>yum install screen 
-screen -S lnmp</code></pre>
-<p>2、搭建 四四日\</p>
-<pre><code>https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh
-chacha20的安装会出错，主要是一个lib的插件，手动安装，然后再用脚本覆盖安装一次就可以 了</code></pre>
-<p>mv 1803898290.txt ssr.sh</p>
-<pre><code>chmod +x ssr.sh &amp;&amp; bash ssr.sh
-
-#因为这库是基于C语言的，所以我们先去安装GCC
-yum -y groupinstall &quot;Development Tools&quot;
-#下载最新稳定版本
-wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
-#解压
-tar xf LATEST.tar.gz &amp;&amp; cd libsodium-stable
-#编译
-./configure &amp;&amp; make -j4 &amp;&amp; make install
-echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf
-ldconfig</code></pre>
-<p>wget -N --no-check-certificate<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh</a> &amp;&amp;<br>chmod +x ss-go.sh &amp;&amp; bash ss-go.sh</p>
-<p>wget --no-check-certificate -O shadowsocks-all.sh<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</a><br>chmod +x shadowsocks-all.sh<br>./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</p>
-<p>3、 BBR 加速部署</p>
-<p>yum -y install wget<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/_Resource/uploads/2019/02/2746226282.txt">bbr.sh.txt</a><br>mv 2746226282.txt bbr.sh</p>
-<pre><code>    wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
-    chmod +x bbr.sh
-./bbr.sh</code></pre>
-<p>4、安装LNP</p>
-<pre><code>wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; LNMP_Auto=&quot;y&quot; DBSelect=&quot;0&quot; PHPSelect=&quot;5&quot; SelectMalloc=&quot;1&quot; ./install.sh lnmp</code></pre>
-<p>5、迁移文件<br>6、覆盖nginx php配置文件、设置 /home/wwwroot/ 子目录权限<br>/usr/local/nginx/conf<br>/usr/local/php/etc/</p>
-<pre><code>chattr -i /home/wwwroot/*/.user.ini
-tar -xzvf www-wwwroot-***.tar.gz
-chown www:www -R  /home/wwwroot/*
-chattr +i /home/wwwroot/*/.user.ini
-chmod +x backup.sh</code></pre>
-<p>6、添加自动备份计划任务和定时重启<br>yum install lftp</p>
-<p>crontab -e</p>
-<pre><code>0 3 * * * /home/wwwroot/backup.sh
-59 23 * * * /sbin/reboot</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -975,7 +943,7 @@ chmod +x backup.sh</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

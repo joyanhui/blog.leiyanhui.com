@@ -146,6 +146,67 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/" class="post-title-link" itemprop="url">epp/EclipsePHP Studio导入dw项目和解决中文乱码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:54:55" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>新建一个项目，项目名称和原来的程序的文件夹名字一样，就可以看到原来的项目里面的所有文件了。</p>
+<p>中文乱码，解决方法</p>
+<p>右键项目：属性》资源》文本文件编码&gt;utf-8</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/dell-venue-11-pro.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -738,70 +799,6 @@ add_filter( 'enter_title_here', 'change_default_title' );
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centosfirewall/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/centosfirewall/" class="post-title-link" itemprop="url">centos7默认防火墙firewall配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:54:08 / 修改时间：10:57:11" itemprop="dateCreated datePublished" datetime="2020-08-22T00:54:08+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>centos7不再使用iptable  默认改用firewall 更简单了一点<br>临时<br>firewall-cmd –zone=public –add-port=22/tcp </p>
-<p>永久/重启后有效<br>firewall-cmd –zone=public –add-port=22/tcp –permanent<br>firewall-cmd –zone=public –add-port=443/tcp –permanent<br>firewall-cmd –zone=public –add-port=9980/tcp –permanent<br>firewall-cmd –zone=public –add-port=9981/tcp –permanent<br>firewall-cmd –zone=public –add-port=3306/tcp –permanent</p>
-<p>删除</p>
-<p>firewall-cmd –zone=public –remove-port=39000-40000/tcp –permanent<br>firewall-cmd –zone=public –remove-port=3322/tcp –permanent<br>firewall-cmd –zone=public –remove-port=8888/tcp –permanent<br>firewall-cmd –zone=public –remove-port=20/tcp –permanent<br>firewall-cmd –zone=public –remove-port=21/tcp –permanent<br>firewall-cmd –zone=public –remove-port=80/tcp –permanent</p>
-<p>firewall-cmd –list-ports #端口列表<br>systemctl start firewalld.service  #启动firewall<br>firewall-cmd –reload #重启firewall<br>systemctl stop firewalld.service #停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动<br>systemctl enable firewalld.service #开机启动</p>
-<p>firewall-cmd –state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -871,7 +868,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
