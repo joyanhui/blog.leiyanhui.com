@@ -146,6 +146,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/25/hexo/next_jsdelivr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/25/hexo/next_jsdelivr/" class="post-title-link" itemprop="url">hexo下next主题使用jsdeliver加速</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-25 15:36:51 / 修改时间：15:53:34" itemprop="dateCreated datePublished" datetime="2020-08-25T15:36:51+08:00">2020-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>jsdeliver 几乎是最好的github加速工具了哈</p>
+<p>打开 /themes/next-7.8.0/_config.yml</p>
+<p>搜索 //cdn.jsdelivr.net 把对应的空配置修改为顶部的地址就可以了</p>
+<p>最后的 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Assets</span><br><span class="line">css: css</span><br><span class="line">js: js</span><br><span class="line">images: images</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">修改为，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="Assets"><a href="#Assets" class="headerlink" title="Assets"></a>Assets</h1><p>css: //cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/css<br>js: //cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js<br>images: //cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images</p>
+<p>``` </p>
+<p>其中 joyanhui是我github用户名 blog.leiyanhui.com就是repositorie了</p>
+<p>hexo g -d 一次完毕</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/25/macos/docker_bt_lnmp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -883,67 +950,6 @@ Author: leiyanhui
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-network-uploadfilesetting.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wordpress-network-uploadfilesetting.html/" class="post-title-link" itemprop="url">wordpress站群中上传文件设置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:29:06" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>是在网络节点中设置的，独立的站点不能自行设置</p>
-<p>/wp-admin/network/settings.php</p>
-<p>末了有关于上传文件类型和大小的设置</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1013,7 +1019,7 @@ Author: leiyanhui
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

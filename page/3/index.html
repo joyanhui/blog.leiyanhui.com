@@ -146,6 +146,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/vultr-vps-win2003-x64-wnmp-ssr-frp.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/vultr-vps-win2003-x64-wnmp-ssr-frp.html/" class="post-title-link" itemprop="url">vultr的vps免费安装win2003_x64，并搭建wnml+ssr+frp+锐速+ftp]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vultr的windows授权 一个月要16美元的样子，用不起。<br>自己玩玩，所以装个盗版吧。 不被查出来问题不大。</p>
+<p>注册地址 <a target="_blank" rel="noopener" href="http://www.vultr.com/?ref=7202248"></a><a target="_blank" rel="noopener" href="http://www.vultr.com/">http://www.vultr.com/</a>\</p>
+<p>第一、上传ISO系统版本<br><a target="_blank" rel="noopener" href="https://my.vultr.com/iso/">https://my.vultr.com/iso/</a><br>找到一个能用的镜像</p>
+<pre><code>https://dl03.miefen.com/os/cn_win_srv_2003_r2_enterprise_with_sp2_vl_cd_merger_incl_virtio_X13-140502-homemade-by-Jetso.iso
+https://dl03.miefen.com/os/cn_win_srv_2003_r2_enterprise_x64_with_sp2_vl_cd_merger_incl_virtio_X13-140502-homemade-by-Jetso.iso</code></pre>
+<p>libQtShadowsocks 项目说From this version on, 32-bit Windows pre-built<br>binaries are no longer provided.<br>从v1.10.0以后不提供32位了。所以新建一个系统 选择64位镜像。</p>
+<p>启动后，点击vps后面的···<br>,查看控制台，鼠标不能用的样子，用键盘控制常规安装。<br>序列号输入</p>
+<pre><code>RYCR6-T7Y6M-2TVHK-C2YW3-7TYQ8</code></pre>
+<p>设定管理员密码 调整时间，进入自动安装网络。等待。</p>
+<p>进入桌面，鼠标不能用 。。。。。</p>
+<p>不过win键<br>是可以用的。按下win后可以光标定位到开始菜单，和返回桌面的。顺利打开远程桌面。<br>还剩余270M内存，能干很多事了。<br>安装phpstduy 不说了，太简单了。<br>值得注意的是，需要安装一个浏览器。 ie6 太低了，很多站点打不开。 百度 QQ<br>遨游 什么的随便选一个，装个winrar idm</p>
+<p>安装ssr</p>
+<pre><code>    https://github.com/shadowsocks/libQtShadowsocks/releases</code></pre>
+<p>配置</p>
+<pre><code>(花括号)  
+    &quot;server&quot;:&quot;0.0.0.0&quot;,  
+    &quot;server_port&quot;:8023,  
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,  
+    &quot;local_port&quot;:1080,  
+    &quot;password&quot;:&quot;wyvbboy&quot;,  
+    &quot;timeout&quot;:600,  
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,  
+    &quot;http_proxy&quot;: false,  
+    &quot;auth&quot;: false  
+(花括号)  </code></pre>
+<p>开机启动</p>
+<pre><code>Set ws = CreateObject(&quot;Wscript.Shell&quot;)  
+ws.run &quot;cmd /c shadowsocks.bat&quot;,vbhide  </code></pre>
+<p>安装加速器finalspeed</p>
+<pre><code>http://iytc.net/fs/fs_s.zip</code></pre>
+<p>frp\</p>
+<h1 id="下载win版本"><a href="#下载win版本" class="headerlink" title="下载win版本"></a>下载win版本</h1><p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a>\</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/vult-vps-install-mysql.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -760,81 +850,6 @@ Windows Registry Editor Version 5.00
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-sqlite.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/php-sqlite.html/" class="post-title-link" itemprop="url">一个php操作sqlite的相关代码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>比较好用的sqlite管理软件<br>SQLiteStudio。可以创建sqlite，但是不知道为什么多个sql语句一起执行的时候，有时候会有错误。&lt;!--more--&gt;</p>
-<p>1、设置sqlite文件</p>
-<pre><code>$sqlitepath=&quot;sqlite-20170210-101.db&quot;;</code></pre>
-<p>2、插入记录</p>
-<pre><code>$db = NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);
-$sql=&quot;INSERT INTO &#39;gustbook&#39; (&#39;card_id&#39;,&#39;order_id&#39;,&#39;title&#39;,&#39;content&#39;,&#39;admin_id&#39;,&#39;addtime&#39;) VALUES ( &quot;.$card_id.&quot;,&quot;.$order_id.&quot;,&#39;&quot;.$title.&quot;&#39;,&#39;&quot;.$content.&quot;&#39;,&#39;&quot;.$admin_id.&quot;&#39;,&quot;.time(). &quot;)&quot;;
-$result=$db-&gt;exec($sql);
-$result=NULL;</code></pre>
-<p>3、删除记录&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$sql=&quot;DELETE FROM &#39;gustbook&#39; where id = &quot;.$id.&quot; and<br>card_id=&quot;.$card_id;<br>$result=$db-&gt;exec($sql);<br>$result=NULL;<br>&lt;/pre&gt;<br>4、修改记录&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;exec(&quot;UPDATE <code>gustbook</code> SET<br><code>re</code>=&#39;$re&#39;,<code>exptime</code>=&#39;&quot;.time().&quot;&#39; where <code>id</code> =$id&quot;);<br>$result=NULL;<br>&lt;/pre&gt;<br>5、查询单条记录&lt;pre&gt;<br>$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;query(&quot;SELECT * FROM admin where<br>username=&#39;&quot;.$username.&quot;&#39; and passwd=&#39;&quot;.$passwd.&quot;&#39;&quot;);<br>$row = $result-&gt;fetch();<br>if ($row)(花括号)</p>
-<pre><code>$_SESSION[&#39;admin_id&#39;]=$row[&#39;id&#39;];
-$_SESSION[&#39;admin_username&#39;]=$row[&#39;username&#39;];
-msg(&#39;登陆成功&#39;,&#39;OK&#39;,&#39;&lt;p&gt;登陆成功&lt;/p&gt;&lt;p&gt;稍后进去管理后台&lt;/p&gt;&#39;,&#39;admin.php?ac=list&#39;,&#39;进入后台面板&#39;,&#39;6&#39;);</code></pre>
-<p>(花括号)<br>else(花括号)</p>
-<pre><code>msg(&#39;登陆失败&#39;,&#39;提示&#39;,&#39;&lt;p&gt;请检查您的输入有错误&lt;/p&gt;&lt;p&gt;用户名密码错误&lt;/p&gt;&#39;,&#39;admin.php?ac=login&#39;,&#39;重新登陆&#39;,&#39;6&#39;);</code></pre>
-<p>(花括号)<br>$result=NULL;<br>&lt;/pre&gt;<br>6、查询多个记录，并循环&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;query(&quot;SELECT * FROM &#39;gustbook&#39; where card_id =<br>&quot;.$_SESSION[&#39;card_id&#39;].&quot; order by id desc&quot;);<br>if ($result)(花括号)<br>while($row = $result-&gt;fetch())(花括号)</p>
-<pre><code>echo $row[&#39;title&#39;];</code></pre>
-<p>(花括号)<br>(花括号)<br>$result=NULL;<br>&lt;/pre&gt;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -904,7 +919,7 @@ msg(&#39;登陆成功&#39;,&#39;OK&#39;,&#39;&lt;p&gt;登陆成功&lt;/p&gt;&lt;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

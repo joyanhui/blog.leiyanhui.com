@@ -146,6 +146,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-sqlite.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/php-sqlite.html/" class="post-title-link" itemprop="url">一个php操作sqlite的相关代码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>比较好用的sqlite管理软件<br>SQLiteStudio。可以创建sqlite，但是不知道为什么多个sql语句一起执行的时候，有时候会有错误。&lt;!--more--&gt;</p>
+<p>1、设置sqlite文件</p>
+<pre><code>$sqlitepath=&quot;sqlite-20170210-101.db&quot;;</code></pre>
+<p>2、插入记录</p>
+<pre><code>$db = NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);
+$sql=&quot;INSERT INTO &#39;gustbook&#39; (&#39;card_id&#39;,&#39;order_id&#39;,&#39;title&#39;,&#39;content&#39;,&#39;admin_id&#39;,&#39;addtime&#39;) VALUES ( &quot;.$card_id.&quot;,&quot;.$order_id.&quot;,&#39;&quot;.$title.&quot;&#39;,&#39;&quot;.$content.&quot;&#39;,&#39;&quot;.$admin_id.&quot;&#39;,&quot;.time(). &quot;)&quot;;
+$result=$db-&gt;exec($sql);
+$result=NULL;</code></pre>
+<p>3、删除记录&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$sql=&quot;DELETE FROM &#39;gustbook&#39; where id = &quot;.$id.&quot; and<br>card_id=&quot;.$card_id;<br>$result=$db-&gt;exec($sql);<br>$result=NULL;<br>&lt;/pre&gt;<br>4、修改记录&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;exec(&quot;UPDATE <code>gustbook</code> SET<br><code>re</code>=&#39;$re&#39;,<code>exptime</code>=&#39;&quot;.time().&quot;&#39; where <code>id</code> =$id&quot;);<br>$result=NULL;<br>&lt;/pre&gt;<br>5、查询单条记录&lt;pre&gt;<br>$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;query(&quot;SELECT * FROM admin where<br>username=&#39;&quot;.$username.&quot;&#39; and passwd=&#39;&quot;.$passwd.&quot;&#39;&quot;);<br>$row = $result-&gt;fetch();<br>if ($row)(花括号)</p>
+<pre><code>$_SESSION[&#39;admin_id&#39;]=$row[&#39;id&#39;];
+$_SESSION[&#39;admin_username&#39;]=$row[&#39;username&#39;];
+msg(&#39;登陆成功&#39;,&#39;OK&#39;,&#39;&lt;p&gt;登陆成功&lt;/p&gt;&lt;p&gt;稍后进去管理后台&lt;/p&gt;&#39;,&#39;admin.php?ac=list&#39;,&#39;进入后台面板&#39;,&#39;6&#39;);</code></pre>
+<p>(花括号)<br>else(花括号)</p>
+<pre><code>msg(&#39;登陆失败&#39;,&#39;提示&#39;,&#39;&lt;p&gt;请检查您的输入有错误&lt;/p&gt;&lt;p&gt;用户名密码错误&lt;/p&gt;&#39;,&#39;admin.php?ac=login&#39;,&#39;重新登陆&#39;,&#39;6&#39;);</code></pre>
+<p>(花括号)<br>$result=NULL;<br>&lt;/pre&gt;<br>6、查询多个记录，并循环&lt;pre&gt;<br>$db=NULL;$db=new PDO(&#39;sqlite:&#39;.$sqlitepath);<br>$result=$db-&gt;query(&quot;SELECT * FROM &#39;gustbook&#39; where card_id =<br>&quot;.$_SESSION[&#39;card_id&#39;].&quot; order by id desc&quot;);<br>if ($result)(花括号)<br>while($row = $result-&gt;fetch())(花括号)</p>
+<pre><code>echo $row[&#39;title&#39;];</code></pre>
+<p>(花括号)<br>(花括号)<br>$result=NULL;<br>&lt;/pre&gt;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-reverse-proxy.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -871,72 +946,6 @@ fi</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/no-vpn.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/no-vpn.html/" class="post-title-link" itemprop="url">几个上网的资源</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:44:55" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>整理一下kx上网要用的东西\</p>
-<p>1、某宝的一个轻量级的vps或者ssr账户<a target="_blank" rel="noopener" href="http://leiyanhui.com/minivps-debian-ssr/">在vps上搭建ssr</a><br>2、ssr客户端：<br>iPhone免费客户端wingy 收费shadowrocket、surge<br>Android：&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-android/releases">https://github.com/shadowsocks/shadowsocks-android/releases</a><br>&lt;/pre&gt;<br>windows&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks-windows">https://github.com/shadowsocks/shadowsocks-windows</a><br>&lt;/pre&gt;<br>macos&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://github.com/shadowsocks/ShadowsocksX-NG">https://github.com/shadowsocks/ShadowsocksX-NG</a><br>&lt;/pre&gt;</p>
-<p>3、有人维护的gfwlist&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://github.com/gfwlist/gfwlist">https://github.com/gfwlist/gfwlist</a><br>&lt;/pre&gt;<br>4、自动更新hosts mac和Windows通用<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/online-update-hosts/">在线hosts文件,Mac和win下通用</a></p>
-<pre><code>https://github.com/oldj/SwitchHosts</code></pre>
-<p>5、有人维护的hosts&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://github.com/racaljk/hosts/blob/master/hosts">https://github.com/racaljk/hosts/blob/master/hosts</a><br>&lt;/pre&gt;备用&lt;pre&gt;<br><a target="_blank" rel="noopener" href="https://coding.net/u/scaffrey/p/hosts/git">https://coding.net/u/scaffrey/p/hosts/git</a><br>&lt;/pre&gt;</p>
-<p>好担心github.…</p>
-<p>备份个吧</p>
-<pre><code>链接: http://pan.baidu.com/s/1hsuxYVM 密码: tz9r</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1006,7 +1015,7 @@ fi</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

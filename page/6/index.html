@@ -146,6 +146,72 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/mbp-macos-catalina.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/mbp-macos-catalina.html/" class="post-title-link" itemprop="url">MacBook Pro 2011 升级安装 macOS catalina 10.15.3 记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:49:29" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>MacBook Pro (13-inch, Early 2011) 古董 办公 音视频加轻量编程<br>足够。但是最高升级10.13，羡慕catalina的暗夜模式。于是尝试升级。<br>网上搜索的教程要么千篇一律，要么无法复原操作继续进行下载，所以记录下备用</p>
+<p>自然是选择 大名鼎鼎的 macos catalina patcher。<br>1、准备工作 ，当然是先备份，用时间机器<br>先备份系统到移动硬盘。刚好有一个1T的机械硬盘 备份了一下。<br>升级前macos版本是10.13.3。<br>然后升级catalina一直出错，本想放弃。然后就升级了10.13.6暂用。后来结果成功了。<br>2、下载macos catalina patcher<br>官网 <a target="_blank" rel="noopener" href="http://dosdude1.com/catalina/">http://dosdude1.com/catalina/</a><br>更新记录 <a target="_blank" rel="noopener" href="http://dosdude1.com/catalina/changelog.html">http://dosdude1.com/catalina/changelog.html</a><br>我使用的版本1.3.0 - 12/11/2019<br>下载地址被墙了，找一个梯子下载吧。国内其他地址不知道是版本号问题<br>还是文件损坏导致莫名其妙的失败，浪费时间。<br>3、下载后运行<br>首次运行 会提示无法运行，这时候打开  &gt;系统偏好设置 安全和隐私 允许<br>macos catalina patcher 允许<br>注意：必须打开过一次，安全和隐私里面 才会有 macos catalina<br>patcher，不然看不到的哦。<br>4、选择下载，8.9g左右，等待下载<br>5、下载完成后<br>有提示说明之类的按照提示操作，拔掉移动硬盘，直接选本机安装。然后同意协议<br>等待重启，重启后需要比较长的时间，尤其是最后提示<br>1-2分钟的时候，实际需要10分钟左右。<br>6、不出意外的话，顺利安装完毕。完成基本设置后，在弹出的 patcher<br>updater里面升级一些新的驱动。再次重启。</p>
+<p>=========<br>还要进恢复模式 关闭一个安全设置，具体看macos catalina<br>patcher的提示，稍后有时间折腾我再看一下具体是什么设置。</p>
+<h1 id="不建议从别的地方下载系统镜像，以免有莫名其妙的问题，另外u盘或者移动硬盘方式安装虽然也支持，但是也出现过无法重启的青睐。也不建议。"><a href="#不建议从别的地方下载系统镜像，以免有莫名其妙的问题，另外u盘或者移动硬盘方式安装虽然也支持，但是也出现过无法重启的青睐。也不建议。" class="headerlink" title="不建议从别的地方下载系统镜像，以免有莫名其妙的问题，另外u盘或者移动硬盘方式安装虽然也支持，但是也出现过无法重启的青睐。也不建议。"></a>不建议从别的地方下载系统镜像，以免有莫名其妙的问题，另外u盘或者移动硬盘方式安装虽然也支持，但是也出现过无法重启的青睐。也不建议。</h1><p>使用感受：<br>没有别人说的发热 和电池衰减的问题。也没有感觉明显的卡顿，<br>wps 微信 输入噶 Safari vsc qq之类的都正常<br>很流畅。photoshop要重新装哈，破解的授权失效了。<br>可能是因为屏幕的原因，字体有一些发虚，回头再研究一下怎么调整 补到本文</p>
+<h1 id="不过使用时间还不长，无法准确判断。"><a href="#不过使用时间还不长，无法准确判断。" class="headerlink" title="不过使用时间还不长，无法准确判断。"></a>不过使用时间还不长，无法准确判断。</h1><p>字体发虚的问题<br>字体发虚好像是catalina真对Retina的屏幕的优化效果，但是在mbp2011上明显不可能<br>办法是启用四种字体的子像素抗锯齿模式</p>
+<p>defaults -currentHost write -globalDomain AppleFontSmoothing -int 1<br>defaults -currentHost write -globalDomain AppleFontSmoothing -int 2<br>defaults -currentHost write -globalDomain AppleFontSmoothing -int 3<br>defaults -currentHost write -globalDomain AppleFontSmoothing -int 0</p>
+<h1 id="注销后有效果，但是部分字体还会有点，继续研究中》。。"><a href="#注销后有效果，但是部分字体还会有点，继续研究中》。。" class="headerlink" title="注销后有效果，但是部分字体还会有点，继续研究中》。。"></a>注销后有效果，但是部分字体还会有点，继续研究中》。。</h1><p>强制打开 sidecar<br>运行后，在系统编号设置 里面 会有 随行<br>defaults write com.apple.sidecar.display AllowAllDevices -bool true;<br>defaults write com.apple.sidecar.display hasShownPref -bool true; open<br>/System/Library/PreferencePanes/Sidecar.prefPane</p>
+<p>然后重启。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/march-of-empires-helper.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -744,67 +810,6 @@ tar -zcvf bak-aliyun-mysql-.sql-$(date +%Y%m%d-%H%M).tar.gz mysql-.sql</code></p
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/fluida.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/fluida.html/" class="post-title-link" itemprop="url">fluida是一个企业类的强大主题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:54:23" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>网上也有汉化版本(不过汉化的不彻底，在主题设置页面基本上没有汉化)</p>
-<p>几乎是万能的，颜色图片 图标都可以自定义</p>
-<p>同时支持子主题</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -874,7 +879,7 @@ tar -zcvf bak-aliyun-mysql-.sql-$(date +%Y%m%d-%H%M).tar.gz mysql-.sql</code></p
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
