@@ -146,6 +146,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/firefoxtaskbaktowico.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/firefoxtaskbaktowico.html/" class="post-title-link" itemprop="url">火狐浏览器任务栏两个图标的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:54:40" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>绿色版的火狐浏览器经常出现固定到任务栏的时候 会出现两个图标。<br>有大神写的批处理文件，运行一下，重新固定就ok了。膜拜,有洁癖的同学赶紧的吧</p>
+<pre><code>@echo off
+title 解决火狐任务栏双图标——鱼刺
+mode con cols=50 lines=25
+color 0a
+:-------------------------------------
+REM --&gt; Check for permissions
+&gt;nul 2&gt;&amp;1 &quot;%SYSTEMROOT%system32cacls.exe&quot; &quot;%SYSTEMROOT%system32configsystem&quot;
+REM --&gt; If error flag set, we do not have admin.
+if &#39;%errorlevel%&#39; NEQ &#39;0&#39; (
+echo Requesting administrative privileges...
+goto UACPrompt
+) else ( goto gotAdmin )
+:UACPrompt
+echo Set UAC = CreateObject^(&quot;Shell.Application&quot;^) &gt; &quot;%temp%getadmin.vbs&quot;
+echo UAC.ShellExecute &quot;%~s0&quot;, &quot;&quot;, &quot;&quot;, &quot;runas&quot;, 1 &gt;&gt; &quot;%temp%getadmin.vbs&quot;
+&quot;%temp%getadmin.vbs&quot;
+exit /B
+:gotAdmin
+if exist &quot;%temp%getadmin.vbs&quot; ( del &quot;%temp%getadmin.vbs&quot; )
+pushd &quot;%CD%&quot;
+CD /D &quot;%~dp0&quot;
+:--------------------------------------
+goto MENU
+:menu
+cls
+echo.
+echo 解决火狐任务栏双图标——鱼刺
+echo =================================================
+echo.
+echo 执行操作成功后关闭浏览器重新固定到任务栏
+echo.
+echo 1，执行此操作
+echo.
+echo 2，还原操作
+echo.
+echo 3，退出
+echo.
+echo =================================================
+echo.
+echo 请输入选择项目的序号,按回车键确认：
+set /p ID=
+if &quot;%id%&quot;==&quot;1&quot; goto cmd1
+if &quot;%id%&quot;==&quot;2&quot; goto cmd2
+IF &quot;%id%&quot;==&quot;3&quot; exit
+PAUSE
+
+:cmd1
+echo 删除TaskBarIDs项，该项已备份在当前目录 bak.reg
+reg export HKLMSOFTWAREWow6432NodeMozillaFirefoxTaskBarIDs bak1.reg
+reg delete HKLMSOFTWAREWow6432NodeMozillaFirefoxTaskBarIDs /f
+reg export HKCUSOFTWAREMozillaFirefoxTaskBarIDs bak2.reg
+reg delete HKCUSOFTWAREMozillaFirefoxTaskBarIDs /f
+PAUSE
+goto MENU
+
+:cmd2
+echo 还原注册表
+reg import bak1.reg
+reg import bak2.reg
+PAUSE
+goto MENU</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -715,90 +835,6 @@ mount /dev/sda1 /data</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/change-title-prompt-text/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/change-title-prompt-text/" class="post-title-link" itemprop="url">在wordpress的自定义模型更改标题输入框提示文字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:54:42 / 修改时间：11:07:28" itemprop="dateCreated datePublished" datetime="2020-08-22T00:54:42+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在functions.inc.php或者functions.php增加</p>
-<pre>
-/**
- * 更改标题输入框提示文字
- */
-function change_default_title( $title )(花括号)
-    $screen = get_current_screen();
-
-    if( 'blood' == $screen-&gt;post_type ) (花括号)
-        $title = '输入证书编号：日月年230502父02母002号01性2';
-    (花括号)
-
-    return $title;
-(花括号)
-add_filter( 'enter_title_here', 'change_default_title' );
-</pre>
-
-<p>注：你可以  post 为其他文章类型，比如，页面为 page。如果你还有其他自定义文章类型，比如 book，也是可以的<br>灵活地使用 IF 语句进行判断，可以给不同的文章类型设定不同的提示文字，比如：</p>
-<pre>
-    if( 'post' == $screen-&gt;post_type ) (花括号)
-        $title = '输入文章标题';
-    (花括号) elseif ('page' == $screen-&gt;post_type) (花括号)
-        $title = '输入页面标题';
-    (花括号) elseif ('book' == $screen-&gt;post_type) (花括号)
-        $title = '输入书籍标题';
-    (花括号)
-</pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -868,7 +904,7 @@ add_filter( 'enter_title_here', 'change_default_title' );
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -146,6 +146,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-reverse-proxy.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/php-reverse-proxy.html/" class="post-title-link" itemprop="url">一个php反向代理程序（php-reverse-proxy）的必要性和需求</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>反向代理（Reverse Proxy）<br>就是接受用户的请求，然后发送给后端服务器，然后再把后端服务器的处理内容反馈给用户。目前用的毕竟多的是nginx吧，简单高效。但是多时候，我们并没有独立服务器用，可能是一个小小的php空间。<br>它能做的：用一个虚拟主机，完成代理访问。镜像一个网站。ip被封锁的时候，低成本应急开通访问地址。那么它应该有的功能。<br>之前用过7ghost 很久不更新了哦。各种不兼容和bug。<br>为为什么想要做这个？<br><br>首先是因为没有合适的程序用<br>前然后。多年前做站，自己辛苦写的代码和整理的数据。放在虚拟主机或者vps上，被人直接copy掉了。所以反向代理是最能解决这个问题的。<br>还还有就是虚拟的性能真的堪忧，简单的应用可以应付，复杂的数据使用，直接崩了，轻则打不开，重了被商家封掉。<br>这个程序也会被人拿走，数据也会，但是只是公开的静态页面而已。你网站被人wget<br>-m一下，不是也会被镜像掉。这个程序不是解决这个问题而存在的。不要本末倒置。<br>你可以用它镜像别人的站的公开内容。也可以用它来保护自己的站。随便吧。<br>如果你有外网ip，或者可以做内网穿透，没有80端口没关系，这都可以帮你反向代理出去。</p>
+<p>基于这个需求，催生了这个小项目。并且会开源共享出来。</p>
+<p>1/ 尽量避免依赖固定函数，应该依次 curl /file_get_contents<br>/fopen（allow_url_fopen）/Fsockopen<br>2/ 多域名模式 多站点模式 域名判断 和 l_siteid<br>2.1/ 基于域名可以访问，为了简单期间 附加域名应该重定向到主域名<br>2.2/ 基于l_siteid 可以访问<br>2.3/ 分组管理，一个主站下 可关联多个域名规则（外部url）<br>3/ 技术数据库和文件的缓存方式<br>3.1 基于文件的方式会导致大量碎片文件，好像得不偿失，sqlite分库</p>
+<pre><code>   3.1.1 sqlite分库 采用索引 加 分库，索引里面标注库名和id （md5的第一位0或者N位  /index/n-1/n-2/b.sqite）
+   3.1.2 索引库 用md5分,默认不分 index.sqlite，1位 index/a.sqlite 2位 index/a/b.sqlite
+   3.1.3 内容库 插入入之前先查询数据库大小和当前内容，限定单个数据的大小
+   3.1.3 更新缓存 可能会导致之前的数据库变大，所以更新缓存的时候 要删除之前的记录。</code></pre>
+<p>3.2 基于mysql（没有百万级别的数据，意义不大，暂时搁置）<br>3.3 基于oss/COS/upyun等储存（后期 可以试试oss和cos）<br>4/ 缓存的刷新机制<br>4.1 手动更新： url末尾加 &amp;lyh_update=key<br>自动更新。key是更新密钥，默认是1或者yes<br>4.2 自动更新机制：</p>
+<pre><code>    4.2.1 不同后缀更新时间不同：img css js 类，就是url规则设定，设定过期时间
+    4.2.2 设置url规则的更新时间，例如url包含 login、update、post、save等单独设置更新时间&lt;rar/flv之类的不索引&gt;
+    4.2.3 单个文件大于多少字节的不索引</code></pre>
+<p>5/ 限制缓存条数<br>5.1 按照访问次数排序 次数多的缓存，排名之外的，删除</p>
+<p>初始版本应该实现的功能<br>1、pdo.sqlite数据库<br>2、多域名 树形<br>3、兼容阿里云的弹性web PHP 5.2.17/ fsockopen<br>4、单一库功能，或者分库<br>目录结构<br>index.php<br>_core &lt;admin|system site.sqlite&gt;<br>_cache/(花括号)siteid(花括号)/&lt;index|content&gt;.&lt;num&gt;.sqlite</p>
+<p>数据库结构<br>----system 系统管理---<br>admin user（后台用户）<br>admin psw（后台密码）<br>sqlite_name单个sqlite文件大小<br>---site站点管理----<br>siteid(站点id)<br>name（站点名称/后台用）<br>domain（绑定域名）<br>url（代理地址）<br>replace_rule（html替换规则）<br>url_cache_rule(基于地址的缓存规则)<br>filesize_limt(过大的文件不缓存)<br>is_debug(调试模式)<br>----urlindex 地址索引管理----<br>url_id<br>url_hase（urlmd5码）<br>updatetime（保存时间戳）<br>count（pv次数）<br>----content----<br>url_id<br>url_content</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-pdo-sqlite-class.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -865,81 +937,6 @@ fi</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/myvps.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/myvps.html/" class="post-title-link" itemprop="url">自用linux vps 快速恢复和搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:53:44" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1、安装bbr</p>
-<pre><code>  wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
-chmod +x bbr.sh</code></pre>
-<p>./bbr.sh</p>
-<p>2、安装ssr<br>3.1 安装chacha20的库<br>yum -y groupinstall &quot;Development Tools&quot;<br>wget <a target="_blank" rel="noopener" href="https://download.libsodium.org/libsodium/releases/LATEST.tar.gz">https://download.libsodium.org/libsodium/releases/LATEST.tar.gz</a><br>tar xf LATEST.tar.gz &amp;&amp; cd libsodium-stable<br>./configure &amp;&amp; make -j4 &amp;&amp; make install<br>echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf<br>ldconfig<br>cd ~</p>
-<p>3/2 wget -c<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh</a><br>chmod +x ssr.sh &amp;&amp; bash ssr.sh</p>
-<p>4、添加防火墙端口</p>
-<p>1、 快速安装nginx 和 php-fpm 为了避免以后麻烦还是使用lnmp一键包<br>yum -y install screen<br>screen -S lnmp<br>wget <a target="_blank" rel="noopener" href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp;<br>tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; LNMP_Auto=&quot;y&quot; DBSelect=&quot;0&quot;<br>PHPSelect=&quot;5&quot; SelectMalloc=&quot;1&quot; ./install.sh lnmp<br>恢复备份数据</p>
-<p>/usr/local/nginx/conf/vhost</p>
-<p>wget -c<br><a href="ftp://ftpuser/*/@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-wwwroot-20190929.tar.gz/">ftp://ftpuser:\*\@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-wwwroot-20190929.tar.gz\</a><br><a href="ftp://ftpuser/*/@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-conf-20190929.tar.gz/">ftp://ftpuser:\*\@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-conf-20190929.tar.gz\</a><br><a href="ftp://ftpuser/*/@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-etc-20190929.tar.gz">ftp://ftpuser:\*\@ftpuser.ftp.aliapp.com/myfolder/back-for-vps/www-etc-20190929.tar.gz</a></p>
-<p>cd /home/wwwroot/<br>覆盖nginx php配置文件、设置 /home/wwwroot/ 子目录权限<br>/usr/local/nginx/conf<br>/usr/local/php/etc/</p>
-<pre><code>chattr -i /home/wwwroot/*/.user.ini</code></pre>
-<p>tar -xzvf www-wwwroot-<em>*</em>.tar.gz<br>chown www:www -R /home/wwwroot/*<br>chattr +i /home/wwwroot/*/.user.ini<br>chmod +x backup.sh</p>
-<p>yum install lftp</p>
-<p>crontab -e</p>
-<pre><code>0 3 * * * /home/wwwroot/backup.sh</code></pre>
-<p>59 23 * /sbin/reboot</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1009,7 +1006,7 @@ chmod +x bbr.sh</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
