@@ -171,7 +171,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-25 14:32:53 / 修改时间：15:28:42" itemprop="dateCreated datePublished" datetime="2020-08-25T14:32:53+08:00">2020-08-25</time>
+              <time title="创建时间：2020-08-25 14:32:53 / 修改时间：15:31:52" itemprop="dateCreated datePublished" datetime="2020-08-25T14:32:53+08:00">2020-08-25</time>
             </span>
 
           
@@ -193,21 +193,30 @@ https://www.docker.com/products/docker-desktop
 http://mirrors.aliyun.com/docker-toolbox/mac/docker-for-mac/
 </pre>
 <p>2、配置docker（此步骤非必须的）</p>
-<p>修改为国内镜像<br>阿里云是专用的速度还不错  打开阿里云登录，然后打开 容器镜像服务 镜像加速器 <a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a><br>可以获取到类似 的地址<br><a target="_blank" rel="noopener" href="https://to16q0o6.mirror.aliyuncs.com/">https://to16q0o6.mirror.aliyuncs.com</a></p>
-<p>其他还有<br><a target="_blank" rel="noopener" href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a><br><a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></p>
+<pre>
+修改为国内镜像  
+阿里云是专用的速度还不错  打开阿里云登录，然后打开 容器镜像服务 镜像加速器 https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+可以获取到类似 的地址
+https://to16q0o6.mirror.aliyuncs.com
+
+其他还有
+https://registry.docker-cn.com
+http://hub-mirror.c.163.com
+</pre>
 <p>打开docker 按照提示 输入mac系统密码 安装帮助程序 等待状态栏<br>状态栏点击 小鲸鱼 Preferences  或者点小齿轮 找到 Docker Engine 修改默认的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;debug&quot;: true,</span><br><span class="line">  &quot;experimental&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [</span><br><span class="line">    &quot;https:&#x2F;&#x2F;to16q0o6.mirror.aliyuncs.com&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;debug&quot;: true,</span><br><span class="line">  &quot;experimental&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>点 apply&amp;restart</p>
 <p>3、下载 pch18 制作的宝塔镜像<br>官网：<a target="_blank" rel="noopener" href="https://github.com/pch18-docker/baota">https://github.com/pch18-docker/baota</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pch18&#x2F;baota或pch18&#x2F;baota:latest等同 pch18&#x2F;baota:lnmp</span><br><span class="line">pch18&#x2F;baota:lnmp 为最新版本的官方纯净安装的基础上安装nginx,mysql,php</span><br><span class="line">pch18&#x2F;baota:lnp 为官方版本纯净安装的基础上安装nginx,php(不内置mysql,用于外置数据库的环境)</span><br><span class="line">pch18&#x2F;baota:lamp 为官方版本纯净安装的基础上安装apache,php</span><br><span class="line">pch18&#x2F;baota:lap 为官方版本纯净安装的基础上安装apache,php(不内置mysql,用于外置数据库的环境)</span><br><span class="line">pch18&#x2F;baota:clear 为官方版本纯净安装, 不默认安装nginx,mysql,php等程序</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pch18/baota或pch18/baota:latest等同 pch18/baota:lnmp</span><br><span class="line">pch18/baota:lnmp 为最新版本的官方纯净安装的基础上安装nginx,mysql,php</span><br><span class="line">pch18/baota:lnp 为官方版本纯净安装的基础上安装nginx,php(不内置mysql,用于外置数据库的环境)</span><br><span class="line">pch18/baota:lamp 为官方版本纯净安装的基础上安装apache,php</span><br><span class="line">pch18/baota:lap 为官方版本纯净安装的基础上安装apache,php(不内置mysql,用于外置数据库的环境)</span><br><span class="line">pch18/baota:clear 为官方版本纯净安装, 不默认安装nginx,mysql,php等程序</span><br></pre></td></tr></table></figure>
 <p>我这里选择clear 自己安装nginx和php  mysql 使用mac<br>打开mac 的shell 输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull pch18&#x2F;pch18&#x2F;baota:clear #下载</span><br><span class="line">docker images #查看镜像</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull pch18/pch18/baota:clear <span class="comment">#下载</span></span><br><span class="line">docker images <span class="comment">#查看镜像</span></span><br></pre></td></tr></table></figure>
 <p>clear镜像也有 569MB  有点蛋疼，不过考虑到centos本身欧200M 宝塔和何种依赖库加起来也不小。希望pch18会继续优化<br>4、启动镜像<br>我映射了两个端口进去 一是8099 到80 ，第二个是面板端口改为9981，其他端口不需要所以没有添加 其他端口自行决定 给了256M内存。<br>映射了当前mac用户的 文稿/wwwwroot进去用于保存网站php文件<br>在创建之前确定要自己要用的端口 和目录，创建后再修改好像只能重新做镜像挺麻烦的。<br>其他参考pch18的github说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -tid --name bt -p 8099:80 -p 9981:9981  --privileged&#x3D;true --shm-size&#x3D;256m --restart always -v ~&#x2F;Documents&#x2F;wwwroot:&#x2F;www&#x2F;wwwroot pch18&#x2F;baota:clear</span><br><span class="line">docker exec -it bt &#x2F;bin&#x2F;sh #进入容器</span><br><span class="line">echo &#39;9981&#39; &gt; &#x2F;www&#x2F;server&#x2F;panel&#x2F;data&#x2F;port.pl &amp;&amp; &#x2F;etc&#x2F;init.d&#x2F;bt restart #修改宝塔端口并重启</span><br><span class="line">exit #退回mac</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -tid --name bt -p 8099:80 -p 9981:9981  --privileged=<span class="literal">true</span> --shm-size=256m --restart always -v ~/Documents/wwwroot:/www/wwwroot pch18/baota:clear</span><br><span class="line">docker <span class="built_in">exec</span> -it bt /bin/sh <span class="comment">#进入容器</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;9981&#x27;</span> &gt; /www/server/panel/data/port.pl &amp;&amp; /etc/init.d/bt restart <span class="comment">#修改宝塔端口并重启</span></span><br><span class="line"><span class="built_in">exit</span> <span class="comment">#退回mac</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://ftp.bmp.ovh/imgs/2020/08/4b675ce9bdc3187b.png"><br>5、浏览器配置宝塔<br>Safari 打开 <a target="_blank" rel="noopener" href="http://127.0.0.1:9981/">http://127.0.0.1:9981/</a><br>初始账号 username<br>初始密码 password<br>登录后简单配置一下，修改用户密码等<br>6、重启docker测试一下数据还在不在<br>docker restart bt<br>一切正常，把面板更新到最新版！（2020年8月 宝塔7.2的phpmyadmin爆出重大安全漏洞 还是更新一下）<br>继续安装 所需的文件</p>
-<p>其他一些docker常用命令<br>docker ps #查看容器<br>docker images #查看本地镜像<br>docker restart bt #重启容器bt<br>docker stop bt  #关闭容器bt<br>docker kill  bt #不保存马上关闭容器bt<br>docker start bt #启动容器bt<br>docker rmi pch18/baota:clear #删除镜像  pch18/baota:clear<br>docker rm -fv bt #彻底删除容器bt</p>
+<p>其他一些docker常用命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="comment">#查看容器</span></span><br><span class="line">docker images <span class="comment">#查看本地镜像</span></span><br><span class="line">docker restart bt <span class="comment">#重启容器bt</span></span><br><span class="line">docker stop bt  <span class="comment">#关闭容器bt</span></span><br><span class="line">docker <span class="built_in">kill</span>  bt <span class="comment">#不保存马上关闭容器bt</span></span><br><span class="line">docker start bt <span class="comment">#启动容器bt</span></span><br><span class="line">docker rmi pch18/baota:clear <span class="comment">#删除镜像  pch18/baota:clear</span></span><br><span class="line">docker rm -fv bt <span class="comment">#彻底删除容器bt</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
