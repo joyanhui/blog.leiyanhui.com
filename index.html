@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
@@ -149,7 +149,7 @@
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/25/hexo/next_jsdelivr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -216,7 +216,7 @@
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/25/macos/docker_bt_lnmp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -238,7 +238,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-25 14:32:53 / 修改时间：15:31:52" itemprop="dateCreated datePublished" datetime="2020-08-25T14:32:53+08:00">2020-08-25</time>
+              <time title="创建时间：2020-08-25 14:32:53 / 修改时间：18:54:19" itemprop="dateCreated datePublished" datetime="2020-08-25T14:32:53+08:00">2020-08-25</time>
             </span>
 
           
@@ -283,7 +283,7 @@ http://hub-mirror.c.163.com
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -tid --name bt -p 8099:80 -p 9981:9981  --privileged=<span class="literal">true</span> --shm-size=256m --restart always -v ~/Documents/wwwroot:/www/wwwroot pch18/baota:clear</span><br><span class="line">docker <span class="built_in">exec</span> -it bt /bin/sh <span class="comment">#进入容器</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;9981&#x27;</span> &gt; /www/server/panel/data/port.pl &amp;&amp; /etc/init.d/bt restart <span class="comment">#修改宝塔端口并重启</span></span><br><span class="line"><span class="built_in">exit</span> <span class="comment">#退回mac</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://ftp.bmp.ovh/imgs/2020/08/4b675ce9bdc3187b.png"><br>5、浏览器配置宝塔<br>Safari 打开 <a target="_blank" rel="noopener" href="http://127.0.0.1:9981/">http://127.0.0.1:9981/</a><br>初始账号 username<br>初始密码 password<br>登录后简单配置一下，修改用户密码等<br>6、重启docker测试一下数据还在不在<br>docker restart bt<br>一切正常，把面板更新到最新版！（2020年8月 宝塔7.2的phpmyadmin爆出重大安全漏洞 还是更新一下）<br>继续安装 所需的文件</p>
 <p>其他一些docker常用命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="comment">#查看容器</span></span><br><span class="line">docker images <span class="comment">#查看本地镜像</span></span><br><span class="line">docker restart bt <span class="comment">#重启容器bt</span></span><br><span class="line">docker stop bt  <span class="comment">#关闭容器bt</span></span><br><span class="line">docker <span class="built_in">kill</span>  bt <span class="comment">#不保存马上关闭容器bt</span></span><br><span class="line">docker start bt <span class="comment">#启动容器bt</span></span><br><span class="line">docker rmi pch18/baota:clear <span class="comment">#删除镜像  pch18/baota:clear</span></span><br><span class="line">docker rm -fv bt <span class="comment">#彻底删除容器bt</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="comment">#查看容器</span></span><br><span class="line">docker images <span class="comment">#查看本地镜像</span></span><br><span class="line">docker restart bt <span class="comment">#重启容器bt</span></span><br><span class="line">docker stop bt  <span class="comment">#关闭容器bt</span></span><br><span class="line">docker <span class="built_in">kill</span>  bt <span class="comment">#不保存马上关闭容器bt</span></span><br><span class="line">docker start bt <span class="comment">#启动容器bt</span></span><br><span class="line">docker <span class="built_in">exec</span> -it bt /bin/sh <span class="comment">#进入容器sh</span></span><br><span class="line"></span><br><span class="line">docker rmi pch18/baota:clear <span class="comment">#删除镜像  pch18/baota:clear</span></span><br><span class="line">docker rm -fv bt <span class="comment">#彻底删除容器bt</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -306,7 +306,7 @@ http://hub-mirror.c.163.com
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/installmysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -378,7 +378,7 @@ http://hub-mirror.c.163.com
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -467,7 +467,7 @@ http://hub-mirror.c.163.com
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/momo7w/momo7w_install_ubuntu20.04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -539,7 +539,7 @@ http://hub-mirror.c.163.com
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -600,7 +600,7 @@ https://github.com/fatedier/frp/releases</code></pre>
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wp-code-highlight.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -664,7 +664,7 @@ echo &quot;hello world&quot;;
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -811,7 +811,7 @@ add_filter( &#39;the_search_query&#39;, &#39;searchAll&#39; );
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpressadminmenushowuserip.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -885,7 +885,7 @@ add_action(&#39;admin_menu&#39;, &#39;diy_admin_menu&#39;);
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-no-edit-functions-php.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="joyanhui@qq.com">
       <meta itemprop="description" content="">
     </span>
@@ -1074,15 +1074,15 @@ Author: leiyanhui
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/motion.js"></script>
-
-
-<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/schemes/pisces.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/next-boot.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
 
 
 
