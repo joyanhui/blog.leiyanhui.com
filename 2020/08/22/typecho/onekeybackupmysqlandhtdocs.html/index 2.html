@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.leiyanhui.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="重新写了一个一键热备份mysql和htdocs并用rar.exe固实压缩，程序比较简单不需要管理员权限，可以和计划任务配合使用。不解释，看代码和注释。如果有兴趣可以自行添加定期删除一个月之前的文件&#96;&#96; @ECHO OFF&amp;PUSHD %~DP0 &amp;TITLE 一键备份Mysql和指定目录mode con cols&#x3D;100 lines&#x3D;20color 2Fecho.echo.&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批处理和rar一键热备mysql和htdocs">
+<meta property="og:url" content="http://blog.leiyanhui.com/2020/08/22/typecho/onekeybackupmysqlandhtdocs.html/index.html">
+<meta property="og:site_name" content="小类随手记">
+<meta property="og:description" content="重新写了一个一键热备份mysql和htdocs并用rar.exe固实压缩，程序比较简单不需要管理员权限，可以和计划任务配合使用。不解释，看代码和注释。如果有兴趣可以自行添加定期删除一个月之前的文件&#96;&#96; @ECHO OFF&amp;PUSHD %~DP0 &amp;TITLE 一键备份Mysql和指定目录mode con cols&#x3D;100 lines&#x3D;20color 2Fecho.echo.&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-21T17:49:44.712Z">
+<meta property="article:modified_time" content="2020-08-22T02:42:20.198Z">
+<meta property="article:author" content="joyanhui@qq.com">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.leiyanhui.com/2020/08/22/typecho/onekeybackupmysqlandhtdocs.html/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>批处理和rar一键热备mysql和htdocs | 小类随手记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小类随手记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Just so so ...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onekeybackupmysqlandhtdocs.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          批处理和rar一键热备mysql和htdocs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:42:20" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>重新写了一个一键热备份mysql和htdocs并用rar.exe固实压缩，程序比较简单不需要管理员权限，可以和计划任务配合使用。不解释，看代码和注释。<br>如果有兴趣可以自行添加定期删除一个月之前的文件<br><br>``</p>
+<p>@ECHO OFF&amp;PUSHD %~DP0 &amp;TITLE 一键备份Mysql和指定目录<br>mode con cols=100 lines=20<br>color 2F<br>echo.<br>echo.==========================================================</p>
+<ol>
+<li>MYSQL和文件备份批处理</li>
+<li>需要修改本批处理的连接信息和目录信息<br>echo.==========================================================</li>
+</ol>
+<p>echo.<br>echo.<br>::=================================<br>:: 修改一下配置参数<br>::=================================<br>:: 设置备份目录<br>set backupdir=%cd%bakupfile<br>::set backupdir=%cd%<br>:: 设置临时文件名称<br>set /a date=%date:~0,4%%date:~5,2%%date:~8,2%<br>set /a time=%time:~0,2%%time:~3,2%%time:~6,2%<br>set fileTempName=%date%-%time%</p>
+<p>:: MYSQL的BIN目录<br>set mysqldump=D:phpStudyMySQLbin<br>:: rar目录<br>set rardir=D:GreenSoftSystemToolsWinRAR<br>:: 用户名<br>set username=root<br>:: 密码<br>set password=root<br>:: 数据库<br>set database=wordpress_xl<br>:: 需要备份的目录<br>set backfiles=D:YuFangWebSitewordpress.xl.comhtdocs<br>::=================================<br>:: 配置修改结束<br>::=================================</p>
+<p>echo.<br>echo.MYSQLDUMP路径：%mysqldump%mysqldump.exe<br>echo.<br>echo.备份文件：%backfiles%<br>echo.<br>echo.数据库：%database%<br>echo.<br>echo.备份路径：%backupdir%<br>echo.</p>
+<p>echo.<br>echo.正在执行备份操作...<br>%mysqldump%mysqldump -u%username% -p%password% %database% &gt;<br>%backupdir%%database%-%fileTempName%.sql<br>echo.<br>echo.<br>:: 压缩sql文件<br>%rardir%rar.exe a -r -s -ep1 -m5<br>%backupdir%%fileTempName%-mysql-%database%.rar<br>%backupdir%%database%-%fileTempName%.sql</p>
+<p>:: 删除临时sql文件<br>del /f /q %backupdir%%database%-%fileTempName%.sql</p>
+<p>:: 压缩需要备份的文件夹<br>%rardir%rar.exe a -r -s -ep1 -m5 -ms<br>%backupdir%%fileTempName%-htdocs.rar %backfiles%</p>
+<p>echo 【按任意键退出】<br>:: 计划任务模式请删除最后一行<br>pause&gt;nul exit\</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/22/typecho/onekeyback-lnmp.html/" rel="prev" title="基于国人lnmp一键安装包的一键备份">
+      <i class="fa fa-chevron-left"></i> 基于国人lnmp一键安装包的一键备份
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/22/typecho/onekeybakfile.html/" rel="next" title="随手写了一个批处理程序，一键备份指定目录文件">
+      随手写了一个批处理程序，一键备份指定目录文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">joyanhui@qq.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joyanhui@qq.com</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/utils.js"></script>
+
+<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/motion.js"></script>
+
+
+<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/schemes/pisces.js"></script>
+
+
+<script src="//cdn.jsdelivr.net/gh/joyanhui/blog.leiyanhui.com@latest/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
