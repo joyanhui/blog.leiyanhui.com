@@ -146,6 +146,267 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/chrome-add-crx.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/chrome-add-crx.html/" class="post-title-link" itemprop="url">小米路由器客户端chrome扩展不能安装的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:56:27" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原来因为一些恶意扩展影响，chrome禁止了安装第三方crx文件<br>解决方法&lt;!--more--&gt;</p>
+<p>打开 chrome://extensions/ 页面</p>
+<p>然后把crx文件拖动到这里就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centos-add-harddisk.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/centos-add-harddisk.html/" class="post-title-link" itemprop="url">centos挂载硬盘</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:58:41" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1 查看硬盘</p>
+<pre><code>fdisk -l</code></pre>
+<p>/dev/sda 就是需要挂载的硬盘了</p>
+<pre><code>fdisk /dev/sda</code></pre>
+<p>依次输入 n p 1 p w 创建一个分区<br>fdisk -l 再次查看，看到sda1</p>
+<pre><code>mkfs.ext4 /dev/sda1 #格式化</code></pre>
+<p>挂载</p>
+<pre><code>mkdir /data
+mount /dev/sda1 /data</code></pre>
+<p>开机启动挂载</p>
+<pre><code>echo &quot;/dev/sda1  /data  ext4    defaults        0 0&quot; &gt;&gt; /etc/fstab</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/Router-ftps.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/Router-ftps.html/" class="post-title-link" itemprop="url">高恪路由器配置安装frp方法，服务端，最后改为ssh</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:38:46" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>很幸福，鱼房的路由器有公网ip虽然不是固定的，总算可玩性高了很多。<br>网上大致看了一下说 高恪其实内置frp的 那么就找出来<br>看了一下是客户端，并没有frps。<br>自己电脑先下载 <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a><br>猜测是_mips版本了，下载回来一看10m，路由器总共就16m的flash<br>我了个去，放弃<br>研究ssh穿透中</p>
+<p>首先修改标准的liunux里面需要把<br>sshd_config里面GatewayPorts为yes不然路由器只能监听127.0.0.1<br>高恪是基于openwrt的没找到。。。。。暂时先用127.0.0.1了等回家刷一下路由</p>
+<p>在没有端口的和内网地址的电脑上运行<br>就是把路由器ddns.3322.org的7280映射到本地80<br>ssh -fCNR 7280:localhost:80 root@ddns.3322.org -p22<br>就是把本地80端口和有外网的7280端口绑定一起</p>
+<p>win下使用putty。设置 connection&gt;ssh&gt;Tunnels<br>填写<br>source 7280<br>Destination localhost:80<br>选择Remote 和 auto<br>进入Connection设置，Seconds between keeplives(0 to turn off)设置为30<br>防止掉线</p>
+<p>添加 add登录后 查看7280端口<br>netstat -an</p>
+<p>ssh换成autossh 据说更稳定，win下测试后再说</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/Notepad-p-p-Dracula.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/Notepad-p-p-Dracula.html/" class="post-title-link" itemprop="url">Notepad++美化皮肤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:43:46" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>用了那么多年，才知道，这货原来有皮肤。。。</p>
+</blockquote>
+<hr>
+<p>设置&gt;语言格式设置，里面好多皮肤</p>
+<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/2932063214.png" alt="1.png" title="1.png"></p>
+<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/4064978296.png" alt="2.png" title="2.png"></p>
+<p>找了一个<br><a target="_blank" rel="noopener" href="https://github.com/dracula/notepad-plus-plus">https://github.com/dracula/notepad-plus-plus</a><br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/dracula/notepad-plus-plus/master/Dracula.xml">https://raw.githubusercontent.com/dracula/notepad-plus-plus/master/Dracula.xml</a><br>（直接在导入&gt;主题 里面打开这个url就ok）</p>
+<p>Notepad++ 作者貌似有一点TD倾向，还是vsc吧已经卸载</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/Chrome-green.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -568,208 +829,10 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/bat-rename/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/bat-rename/" class="post-title-link" itemprop="url">批处理替换文件名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:43:16 / 修改时间：10:59:26" itemprop="dateCreated datePublished" datetime="2020-08-22T00:43:16+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>可用在模块复用的情况下。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/bat-rename/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/aliyun-vps/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/aliyun-vps/" class="post-title-link" itemprop="url">阿里云香港机房大量被墙</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:42:23 / 修改时间：10:59:46" itemprop="dateCreated datePublished" datetime="2020-08-22T00:42:23+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>悲剧的是，我才刚刚迁移过来 用了2天就被墙了。。。<br>重新开了一个 ping值高了1/4，不过总算可以用了</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/aliyun-vps/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/aboutsameprogrammer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/aboutsameprogrammer/" class="post-title-link" itemprop="url">游戏里面遇到的奇葩程序员</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:40:22 / 修改时间：11:00:08" itemprop="dateCreated datePublished" datetime="2020-08-22T00:40:22+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近玩了一个游戏，然后感觉有意思，就写了一个辅助（或者叫外挂？），卖了几个赚一点烟钱。这游戏里面好像“程序员”比较多，奇葩也多。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/typecho/aboutsameprogrammer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -835,7 +898,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

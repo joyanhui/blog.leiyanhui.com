@@ -146,6 +146,363 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wp-code-highlight.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wp-code-highlight.html/" class="post-title-link" itemprop="url">wordpress代码高亮插件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:27:28" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>WP Code Highlight 好用，并且在编辑器提供一个按钮</p>
+<p>后台可以设置几种颜色风格</p>
+<p>效果颜色</p>
+<pre><code>&lt;?php
+echo &quot;hello world&quot;;
+?&gt;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/" class="post-title-link" itemprop="url">wordpress自定义模型插件的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Advanced Custom Fields Plugin for WordPress<br>免费版版本功能很强大，收费版本可能提供一些成品的模型<br>启用插件后，后台菜单多出字段项目</p>
+<p>在模板的functions.php增加一行</p>
+<pre><code>/引用自定义模型*/
+require_once(&#39;functions.ini.blood.php&#39;);</code></pre>
+<p>functions.ini.模型.php 代码</p>
+<pre><code>&lt;?php
+
+
+/*
+name: 多模型的表单名字.
+singular_name: 单模型的表单名字.
+add_new:添加模型的时候显示的文字.
+add_new_item: 创建新文章的时候头部的显示部分.
+edit: 编辑文章的时候显示的文字.
+edit_item: 编辑新文章的时候头部的显示部分.
+new_item: 在后台常用菜单管理头部显示的文字.
+view: 就是在列表处用来查看文章的文字.
+view_item: 编辑文章的时候在上面显示的文字.
+search_items: 在列表上面的搜索按钮显示的文字.
+not_found: 后台列表没有数据的时候默认显示的文字.
+not_found_in_trash:在垃圾文章中没有文章的时候显示的文字.
+parent: 在模型中多父级标签显示文字
+
+*/
+
+add_action( &#39;init&#39;, &#39;create_my_post_types&#39; );
+
+function create_my_post_types() (花括号)
+    register_post_type( &#39;blood&#39;, 
+        array(
+            &#39;labels&#39; =&gt; array(
+                &#39;name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;singular_name&#39; =&gt; __( &#39;血统档案&#39; ),
+                &#39;add_new&#39; =&gt; __( &#39;录入档案&#39; ),
+                &#39;add_new_item&#39; =&gt; __( &#39;录入新的血统档案&#39; ),
+                &#39;edit&#39; =&gt; __( &#39;修改&#39; ),
+                &#39;edit_item&#39; =&gt; __( &#39;编辑 血统档案&#39; ),
+                &#39;new_item&#39; =&gt; __( &#39;添加 血统档案&#39; ),
+                &#39;view&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;view_item&#39; =&gt; __( &#39;查看 血统档案&#39; ),
+                &#39;search_items&#39; =&gt; __( &#39;搜索&#39; ),
+                &#39;not_found&#39; =&gt; __( &#39;没找到匹配的血统档案&#39; ),
+                &#39;not_found_in_trash&#39; =&gt; __( &#39;垃圾文章中没找到血统档案相应的文章&#39; ),
+                &#39;parent&#39; =&gt; __( &#39;血统档案 的父级名&#39; ),
+                &#39;description&#39; =&gt; __( &#39;这是一个正在完善中的血统档案模型&#39; ),
+                &#39;hierarchical&#39; =&gt; true,
+                            &#39;exclude_from_search&#39; =&gt; true,
+
+
+            ),
+
+            &#39;public&#39; =&gt; true,
+            &#39;exclude_from_search&#39; =&gt; true,
+            &#39;hierarchical&#39; =&gt; true,
+
+
+            /*
+            支持
+支持参数允许你定义当编辑或创建新文章时在屏幕上显示的元区块及其它字段的类型。默认是标题和编辑器。有几种可用的选项：
+
+标题（title）：创建文章标题的文本输入字段。
+编辑器（editor）：用于写入的内容输入框。
+评论（comments）：可以打开或关闭评论。
+引用（trackbacks）：可以打开或关闭引用和广播。
+修正（revisions）：允许修正你的文章。
+作者（author）：显示选择框以改变文章作者。
+摘录（excerpt）：用于写入自定义摘录的文本区域。
+缩略图（thumbnail）：缩略图（3.0中的特色图片）上传框。
+自定义字段（custom-fields）：自定义字段输入区域。
+分页属性（page-attributes）：用于分页的属性框。这对于层级文章模型是重要的，由此你可以选择父级文章。
+
+            &#39;supports&#39; =&gt; array( &#39;title&#39;, &#39;editor&#39;, &#39;comments&#39;, &#39;custom-fields&#39;, &#39;thumbnail&#39; ),
+        &#39;rewrite&#39; =&gt; array( &#39;slug&#39; =&gt; &#39;blood&#39;, &#39;with_front&#39; =&gt; true ),
+*/            
+            &#39;supports&#39; =&gt; array(  &#39;title&#39;,&#39;thumbnail&#39; ),
+
+
+        )
+    );
+(花括号)
+
+
+
+function searchAll( $query ) (花括号) 
+if ( $query-&gt;is_search ) (花括号) $query-&gt;set( &#39;post_type&#39;, array( &#39;post&#39;,&#39;blood&#39; )); (花括号) 
+return $query; 
+(花括号) 
+add_filter( &#39;the_search_query&#39;, &#39;searchAll&#39; );
+?&gt;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpressadminmenushowuserip.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wordpressadminmenushowuserip.html/" class="post-title-link" itemprop="url">wordpress后台菜单显示访客IP的办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>开发过程中为了方便<br>本地环境和服务器环境一致，使用了SwitchHosts来切换管理hosts文件。为了方便调试的是区分开，在后台菜单增加ip显示，这样本地访问显示127.0.01</p>
+<p>新建一个插件代码如下</p>
+<pre><code>&lt;?php
+/*
+Plugin Name: 修改后台菜单显示
+Description: 可以删除后台菜单，可以添加自定义显示内容
+Author: leiyanhui
+*/
+function diy_admin_menu()
+(花括号)
+   // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position ); 
+   $menu_title=&#39;您的IP：&#39;.$_SERVER[&quot;REMOTE_ADDR&quot;];
+    add_menu_page(&#39;自定义菜单标题&#39;,$menu_title, &#39;administrator&#39;, &#39;#url&#39;,&#39;&#39;,&#39;&#39;, 1);    
+(花括号)
+add_action(&#39;admin_menu&#39;, &#39;diy_admin_menu&#39;);
+?&gt;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-no-edit-functions-php.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wordpress-no-edit-functions-php.html/" class="post-title-link" itemprop="url">wordpresswordpress避免改动functions.php的插件自定义模型插件的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:28:39" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如何防止主题升级后functions.php被覆盖。</p>
+<p>一下代码保存到htdocswp-contentplugins自定义一个目录文件名.php<br>后台启动插件，在模板目录下新建一个文件functions.inc.php。自定义代码写到这里就好</p>
+<pre><code>&lt;?php
+/*
+Plugin Name: 调用模板目录的functions.inc.php文件
+Description: 一直调用themes的functions.inc.php文件
+Author: leiyanhui
+*/
+//代码也可以直接写到这里，不用写到模板目录
+
+@include( get_stylesheet_directory().&#39;/functions.inc.php&#39;);
+
+
+?&gt;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-network-uploadfilesetting.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -550,307 +907,10 @@ ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BO
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win10-to-ipad.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win10-to-ipad.html/" class="post-title-link" itemprop="url">把ipad作为电脑的扩展显示器使用（安卓平板iPhone也可以）-拒绝收费app拒绝广告app</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:32:31" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>上一篇文章说了<br>ipad和iPhone镜像到win10的办法<br>    这次说 怎么镜像或者扩展ipad做电脑的显示屏。</p>
-<p>不要付费买那些垃圾软件，还要拖一个usb线 还延迟。&lt;!--more--&gt;</p>
-<p>AppStore 搜一圈都几十块<br>几百块，还要托一根线，只支持mac，不支持win10。。。。。</p>
-<p>MirrorOp MirrorSender Duet Display 等一堆app<br>好不容找一个能用的发现只能复制屏幕，那还不如直接用teamviwer的局域网远程</p>
-<p>先把pc和ipad接入同一个路由器。这个不用多说。</p>
-<p>然后说扩展功能。我本来打算也用teamviewer的后来发现win10下找不到虚拟的显示屏，所以，就放弃了。</p>
-<p>然后找到了spacedesk这个软件，支持从win端扩展或者复制到全平台。win7-win10<br>可以投屏到 安卓 ios win等系统。最牛逼的是 支持html5<br>，也就是客户端只要有一个浏览器 就可以。 <br>而且可以无限制扩展N个屏幕，有几个客户端 就有几个屏幕。</p>
-<p>pc端下载：<a target="_blank" rel="noopener" href="https://www.spacedesk.net/">https://www.spacedesk.net/</a></p>
-<p>ipad应用商店直接搜：spacedesk</p>
-<p>都安装完成打开后，pc端 win+P 扩展显示 或者复制  完事了</p>
-<p>超级简单，一分钱不花速度嗷嗷的！！！</p>
-<p>ipad一根线都不用，拿到桌子上打开app就可以用,轻松续航8-10小时</p>
-<p>最后一个好玩的分享，打开浏览器新建N个标签 <br>然后打开speacdesk的html5客户端，你懂的。。。n个屏幕扩展。。。</p>
-<hr>
-<p>因为ipad的分辨率比较高，还是要设置一下屏幕缩放，不然拓展模式显示的字体确实很小</p>
-<p>2018-10-23更新发现一个bug，有时候频繁断开连接的情况下，ipad上显示的区域非全屏，不过重启一下电脑就ok了</p>
-<p>延迟确实存在，毕竟wifi通讯。不过，适应性一下啊 还是ok的<br>ios端也可以设置流畅度</p>
-<p>看视频的话最好降低一下画面质量。码字的时候<br>有时候也会有感觉延迟，也是降低一下质量解决。另外5Gwifi下体验会提升很多</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win10-2diskdisplayds-2taskbar.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win10-2diskdisplayds-2taskbar.html/" class="post-title-link" itemprop="url">把ipad作为电脑的扩展显示器使用（安卓平板iPhone也可以）-拒绝收费app拒绝广告app</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:32:49" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打开任务栏设置，在任务栏设置的多显示器设置里面 设置<br>将任务栏按钮显示在：打开了窗口的任务栏</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win-right-menu-get-admin2.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win-right-menu-get-admin2.html/" class="post-title-link" itemprop="url">windows下右键获取管理员权限</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:34:12" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>兼容vista-win10 WindowsServer等。xp下权限好像没啥问题，没用到过。<br>ICON这行可以修改，或者干脆删掉&lt;!--more--&gt;</p>
-<p>老版本<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/win-right-menu-get-admin/">win10/win8/win7右键获取管理员权限</a></p>
-<pre><code>Windows Registry Editor Version 5.00     
-[HKEY_CLASSES_ROOT*shellrunas]     
-@=&quot;获取管理员权限&quot;
-&quot;Icon&quot;=&quot;D:\GreenSoft\SystemTools\获取管理员权限\useradmin.ico&quot;     
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOT*shellrunascommand]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-[HKEY_CLASSES_ROOTexefileshellrunas2]     
-@=&quot;★获取管理员权限&quot;
-&quot;Icon&quot;=&quot;D:\GreenSoft\SystemTools\获取管理员权限\useradmin.ico&quot;     
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOTexefileshellrunas2command]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-[HKEY_CLASSES_ROOTDirectoryshellrunas]     
-@=&quot;获取管理员权限&quot; 
-&quot;Icon&quot;=&quot;D:\GreenSoft\SystemTools\获取管理员权限\useradmin.ico&quot;      
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOTDirectoryshellrunascommand]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; /r /d y &amp; icacls &quot;%1&quot; /grant administrators:F /t&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; /r /d y &amp; icacls &quot;%1&quot; /grant administrators:F /t&quot;  </code></pre>
-<p>删除&lt;pre&gt;<br>Windows Registry Editor Version 5.00<br>[-HKEY_CLASSES_ROOT*shellrunas]<br>[-HKEY_CLASSES_ROOTexefileshellrunas2]<br>[-HKEY_CLASSES_ROOTDirectoryshellrunas]<br>&lt;/pre&gt;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win-right-menu-get-admin.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win-right-menu-get-admin.html/" class="post-title-link" itemprop="url">win10/win8/win7右键获取管理员权限</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:34:32" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>某些文件目录需要获得管理员权限才能删除或者是更改，因此需要获得管理员权限。但是刚装的系统中，右键中是没有”获取管理员权限”的菜单项的，因此需要手动添加\</p>
-<p>新版：<a target="_blank" rel="noopener" href="http://leiyanhui.com/win-right-menu-get-admin2/">windows下右键获取管理员权限</a></p>
-<pre><code>Windows Registry Editor Version 5.00     
-[HKEY_CLASSES_ROOT*shellrunas]     
-@=&quot;★获取管理员权限&quot;     
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOT*shellrunascommand]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-[HKEY_CLASSES_ROOTexefileshellrunas2]     
-@=&quot;★获取管理员权限&quot;     
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOTexefileshellrunas2command]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; &amp; icacls &quot;%1&quot; /grant administrators:F&quot;     
-[HKEY_CLASSES_ROOTDirectoryshellrunas]     
-@=&quot;★获取管理员权限&quot;     
-&quot;NoWorkingDirectory&quot;=&quot;&quot;     
-[HKEY_CLASSES_ROOTDirectoryshellrunascommand]     
-@=&quot;cmd.exe /c takeown /f &quot;%1&quot; /r /d y &amp; icacls &quot;%1&quot; /grant administrators:F /t&quot;     
-&quot;IsolatedCommand&quot;=&quot;cmd.exe /c takeown /f &quot;%1&quot; /r /d y &amp; icacls &quot;%1&quot; /grant administrators:F /t&quot;  </code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -916,7 +976,7 @@ ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BO
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

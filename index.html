@@ -146,6 +146,302 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/03/macos/esp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/03/macos/esp/" class="post-title-link" itemprop="url">MacOs 开发esp3266完整配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-03 10:21:08 / 修改时间：13:04:31" itemprop="dateCreated datePublished" datetime="2020-11-03T10:21:08+08:00">2020-11-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>下载CH34x的驱动</p>
+<p>下载烧写工具</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/marcelstoer/nodemcu-pyflasher/releases">https://github.com/marcelstoer/nodemcu-pyflasher/releases</a></p>
+<p>下载 ESPlorer</p>
+<p><a target="_blank" rel="noopener" href="https://esp8266.ru/esplorer/#download">https://esp8266.ru/esplorer/#download</a></p>
+<p>固件 下载</p>
+<p>MicroPython<br><a target="_blank" rel="noopener" href="http://micropython.org/download/all/">http://micropython.org/download/all/</a></p>
+<p><a target="_blank" rel="noopener" href="http://micropython.org/resources/firmware/esp8266-ota-20200902-v1.13.bin">http://micropython.org/resources/firmware/esp8266-ota-20200902-v1.13.bin</a></p>
+<p>驱动安装后 查看<br> ls /dev/tty.*<br>/dev/tty.AirPods-WirelessiAP        /dev/tty.usbserial-FD120<br>/dev/tty.Bluetooth-Incoming-Port    /dev/tty.wchusbserialfd120<br>我这里是<br>Serial port /dev/cu.wchusbserialfd120</p>
+<p>Python的固件 在pyflasher写入的时候选 115200  Dual I/O (DIO)</p>
+<p>在 ESPlorer查看的时候也是选择 115200 打开后显示乱码 稍后显示  就好了<br>MicroPython v1.13 on 2020-09-02; ESP module with ESP8266<br>Type “help()” for more information.</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/11/84cb120f27c6bb9d.png"></p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/11/0c3765cfc7d76da1.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/09/28/phpghost/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/28/phpghost/index/" class="post-title-link" itemprop="url">Php ghost 反向代理缓存网站</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-28 09:48:40" itemprop="dateCreated datePublished" datetime="2020-09-28T09:48:40+08:00">2020-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-30 13:26:59" itemprop="dateModified" datetime="2020-09-30T13:26:59+08:00">2020-09-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>几年前就萌生了使用最广泛使用的php虚拟主机反向代理一些网站内容，并缓存到本地的想法，但是一直没有付诸行动。</p>
+<p>关于运行环境的设想<br>1、兼容php5.2 - php7  优先使用php5.2开发。 以便适配廉价虚拟主机<br>2、缓存大小可以限制，以避免超出容量</p>
+<p>关于缓存方案的设想<br>因为廉价虚拟主机 多数自带的mysql数据库很小，很多10-20M的，还有mysql的备份迁移多有不便，不太符合这里的需求。所以不打算才用mysql的方式缓存数据库。<br>设想过直接使用sqlite 作为索引 并做缓存使用。但是考虑到sqlite的高并发写入 经常出现文件锁死。所以暂时搁置这个方案。</p>
+<p>折中方案<br>缓存保存方案<br>    sqlite 读写分离 + 临时文件缓存 + 定时任务导入缓存到sqlite<br>缓存大小限制方案<br>    1、sqlite限制 可以限制sqlite文件，文件过大不再保存数据，限制为0的话 不使用sqlite数据库。<br>    2、临时缓存文件 总大小超过限制后 也不再保存数据。限制为0的话，不进行临时缓存。<br>    3、临时缓存文件 文件数量 超过限制后 也不在保存，以免导致服务器io堵塞。为0 不限制文件数量。<br>    sqlite和临时缓存总大小 都为0的情况下，不缓存 直接反代。<br>缓存更新方案<br>    1、强制更新 访问地址中带正确的 lyh_key参数，即强制访问远程数据 并保存到sqlite 忽略容量限制和文件类型限制<br>    2、自动更新 缓存时间过期后，删除数据库缓存，并请求最新远程文件到临时缓存<br>跳过文件方案<br>    1、url中带指定字符的文件 只反代不保存缓存。例如  .zip .exe .jpg等 多个字符用 | 隔开<br>    2、本地缓存已经有的<br>定时任务导入缓存文件方案<br>    因为sqlite的高并发读取性能很好，但是高并发写入 容易导致文件锁死 ，所以这里采取 日常更新只保存到文件 并不会更新到数据库。定时任务触发后，批量读取本地文件 并导入到sqlite 然后清空临时缓存。<br>    默认采取 前台输出script 调用php文件的方式，也可以另行使用Python 或其他方式加入到计划任务处理。<br>字符串替换方案<br>   为方便管理 数据库和文件中 保存原始代码，不进行替换。前台输出的时候 进行替换。</p>
+<p>加密方案</p>
+<p>/_data 目录中保存sqlite文件<br>    _blank_cache_list.db 空白缓存文件数据库<br>    _site_id_cache_domain_com.db 对应的站点缓存数据<br>CREATE TABLE file (<br>    md5  CHAR (32)         PRIMARY KEY,<br>    file BLOB (2147483647),<br>    time TEXT<br>);</p>
+<p>/_cache_temp 未录入缓存的数据<br>    /site_id 对应站点id<br>        _url(md5).file  对应的文件内容<br>        _url(md5).txt   url地址记录</p>
+<p>定时任务<br> 获取/_cache_temp/site_id/下所有txt文件 并读取里面的url和file内容 导入到_site_id_cache_domain_com.db<br>前台 script 触发</p>
+<p>文件查询  先查询  sqlite数据库 没有的话 读取cache文件，依旧没有的话读取远程文件 并写入到cache</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/30/macos/mbp2011installwin10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/30/macos/mbp2011installwin10/" class="post-title-link" itemprop="url">macbook 2011 光驱安装win10方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-30 12:27:01" itemprop="dateCreated datePublished" datetime="2020-08-30T12:27:01+08:00">2020-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-31 15:28:11" itemprop="dateModified" datetime="2020-08-31T15:28:11+08:00">2020-08-31</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在MacBook Pro (13-inch, Early 2011)  | macos 10.15下测试通过<br>镜像选择 win10 2004<br>cn_windows_10_consumer_editions_version_2004_updated_aug_2020_x64_dvd_0db4f0fa.iso</p>
+<p>准备u盘一个  8G以上的</p>
+<p>在磁盘管理工具 里面 点抹掉 把U盘格式化为主引导记录 单一的fat分区</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/08/9595cc69eff026c1.png"></p>
+<p>打开启动转换助理，只勾选  从apple下载全新的windows支持<br>如果提示没有足够的磁盘空间，那就是没办法装了，需要增加一个硬盘  或者清理一下磁盘空间，如果有额外的磁盘这里 点好<br><img src="https://ftp.bmp.ovh/imgs/2020/08/e13588438f7465ac.png"><br>下一步 选择u盘 等待下载驱动  如果有驱动的话 忽略这步。<br>驱动下载完成后，U盘多出两个文件夹 bootcamp 和 $WinPEDriver$<br><img src="https://ftp.bmp.ovh/imgs/2020/08/1344506653e4fe4e.png"></p>
+<p>调整分区<br>打开磁盘工具，我这里是另外一个光驱位ssd上安装win10的<br>抹掉，选择 GUID分区<br><img src="https://ftp.bmp.ovh/imgs/2020/08/ec46786f467b81f6.png"></p>
+<p>点分区,添加一个分区，命名为 bootcamp 分给他35g 格式就选 macos扩展日志</p>
+<p>顺便新建一个分区 data 用于交换数据 ，我这里大小选择的15G 格式ExFat</p>
+<p>最终的分区结构</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/08/abac0450d8560ea9.png"></p>
+<p>把刚刚u盘里面的 两个文件夹 bootcamp 和 $WinPEDriver$ 复制到这exfat分区 </p>
+<p>准备制作u盘启动盘 </p>
+<p>我这里选用了  </p>
+<p>微PE工具箱V2.1  64位</p>
+<p> <a target="_blank" rel="noopener" href="http://www.wepe.com.cn/download.html">http://www.wepe.com.cn/download.html</a>  在pd win7下制作成启动u盘</p>
+<p><img src="https://ftp.bmp.ovh/imgs/2020/08/e0fdfd5ba3635e9d.png"></p>
+<p>重新启动</p>
+<p>winpe下安装系统到</p>
+<p>打开终端 输入<br>diskutil list<br>查看磁盘情况<br>找到一个<br>/dev/disk3 (external, physical):<br>   #:                       TYPE NAME                    SIZE       IDENTIFIER<br>   0:     FDisk_partition_scheme                        *31.1 GB    disk3<br>   1:                 DOS_FAT_32 UNTITLED                31.1 GB    disk3s1</p>
+<p>就是我的32G的u盘了，记住 /dev/disk3<br>取消挂载<br>diskutil umountDisk  /dev/disk3<br>写入</p>
+<p>cd ~/Downloads<br>sudo dd bs=10m if=cn_windows_10_consumer_editions_version_2004_updated_aug_2020_x64_dvd_0db4f0fa.iso  of=/dev/rdisk3 </p>
+<p>这里把disk3改为rdisk3 能加快一些烧写速度<br>/dev/rdisk是raw模式存取，接近kernel原生系統效率 所以会比直接用/dev/disk快很多<br>bs建议10m左右 一次性写入10M数据。 记得m小写</p>
+<p>输入密码等待 usb2.0 烧一个5G镜像 需要4-6分钟的，耐心等待<br>弹出<br>diskutil eject /dev/disk3<br>重新拔插一下看看，没问题的话</p>
+<p>按option 选择efi启动 ，安装win10，安装位置选择刚刚新建的bootcamp分区</p>
+<p>安装完win10后，按照提示安装 data分区 里面的bootcamp以及驱动</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/27/html5/safaripasswd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/27/html5/safaripasswd/" class="post-title-link" itemprop="url">禁止Safari记住和补全密码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-27 20:52:49 / 修改时间：20:58:29" itemprop="dateCreated datePublished" datetime="2020-08-27T20:52:49+08:00">2020-08-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ios13系统下测试。已经记住密码的情况下，如果网页内某些元素输入的时候会提示 是否登录xxxx.com?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;number&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;this.placeholder=&#x27;&#x27;&quot;</span> <span class="attr">name</span>=<span class="string">&quot;number_bin&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样是可以的，经过初步测试<br>单独加 autocomplete=”off” 无效<br>input 以及form 的name id等属性里面 以及</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lable</span>&gt;</span><span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以出现 login user 等字符<br>很鬼畜的是 placeholder 也可以有这类字符，中文字符用户名 密码 登录之类的字符也不可以出现</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/25/hexo/next_jsdelivr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -593,367 +889,10 @@ https://github.com/fatedier/frp/releases</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wp-code-highlight.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wp-code-highlight.html/" class="post-title-link" itemprop="url">wordpress代码高亮插件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:27:28" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>WP Code Highlight 好用，并且在编辑器提供一个按钮</p>
-<p>后台可以设置几种颜色风格</p>
-<p>效果颜色</p>
-<pre><code>&lt;?php
-echo &quot;hello world&quot;;
-?&gt;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wordpress%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8.html/" class="post-title-link" itemprop="url">wordpress自定义模型插件的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Advanced Custom Fields Plugin for WordPress<br>免费版版本功能很强大，收费版本可能提供一些成品的模型<br>启用插件后，后台菜单多出字段项目</p>
-<p>在模板的functions.php增加一行</p>
-<pre><code>/引用自定义模型*/
-require_once(&#39;functions.ini.blood.php&#39;);</code></pre>
-<p>functions.ini.模型.php 代码</p>
-<pre><code>&lt;?php
-
-
-/*
-name: 多模型的表单名字.
-singular_name: 单模型的表单名字.
-add_new:添加模型的时候显示的文字.
-add_new_item: 创建新文章的时候头部的显示部分.
-edit: 编辑文章的时候显示的文字.
-edit_item: 编辑新文章的时候头部的显示部分.
-new_item: 在后台常用菜单管理头部显示的文字.
-view: 就是在列表处用来查看文章的文字.
-view_item: 编辑文章的时候在上面显示的文字.
-search_items: 在列表上面的搜索按钮显示的文字.
-not_found: 后台列表没有数据的时候默认显示的文字.
-not_found_in_trash:在垃圾文章中没有文章的时候显示的文字.
-parent: 在模型中多父级标签显示文字
-
-*/
-
-add_action( &#39;init&#39;, &#39;create_my_post_types&#39; );
-
-function create_my_post_types() (花括号)
-    register_post_type( &#39;blood&#39;, 
-        array(
-            &#39;labels&#39; =&gt; array(
-                &#39;name&#39; =&gt; __( &#39;血统档案&#39; ),
-                &#39;singular_name&#39; =&gt; __( &#39;血统档案&#39; ),
-                &#39;add_new&#39; =&gt; __( &#39;录入档案&#39; ),
-                &#39;add_new_item&#39; =&gt; __( &#39;录入新的血统档案&#39; ),
-                &#39;edit&#39; =&gt; __( &#39;修改&#39; ),
-                &#39;edit_item&#39; =&gt; __( &#39;编辑 血统档案&#39; ),
-                &#39;new_item&#39; =&gt; __( &#39;添加 血统档案&#39; ),
-                &#39;view&#39; =&gt; __( &#39;查看 血统档案&#39; ),
-                &#39;view_item&#39; =&gt; __( &#39;查看 血统档案&#39; ),
-                &#39;search_items&#39; =&gt; __( &#39;搜索&#39; ),
-                &#39;not_found&#39; =&gt; __( &#39;没找到匹配的血统档案&#39; ),
-                &#39;not_found_in_trash&#39; =&gt; __( &#39;垃圾文章中没找到血统档案相应的文章&#39; ),
-                &#39;parent&#39; =&gt; __( &#39;血统档案 的父级名&#39; ),
-                &#39;description&#39; =&gt; __( &#39;这是一个正在完善中的血统档案模型&#39; ),
-                &#39;hierarchical&#39; =&gt; true,
-                            &#39;exclude_from_search&#39; =&gt; true,
-
-
-            ),
-
-            &#39;public&#39; =&gt; true,
-            &#39;exclude_from_search&#39; =&gt; true,
-            &#39;hierarchical&#39; =&gt; true,
-
-
-            /*
-            支持
-支持参数允许你定义当编辑或创建新文章时在屏幕上显示的元区块及其它字段的类型。默认是标题和编辑器。有几种可用的选项：
-
-标题（title）：创建文章标题的文本输入字段。
-编辑器（editor）：用于写入的内容输入框。
-评论（comments）：可以打开或关闭评论。
-引用（trackbacks）：可以打开或关闭引用和广播。
-修正（revisions）：允许修正你的文章。
-作者（author）：显示选择框以改变文章作者。
-摘录（excerpt）：用于写入自定义摘录的文本区域。
-缩略图（thumbnail）：缩略图（3.0中的特色图片）上传框。
-自定义字段（custom-fields）：自定义字段输入区域。
-分页属性（page-attributes）：用于分页的属性框。这对于层级文章模型是重要的，由此你可以选择父级文章。
-
-            &#39;supports&#39; =&gt; array( &#39;title&#39;, &#39;editor&#39;, &#39;comments&#39;, &#39;custom-fields&#39;, &#39;thumbnail&#39; ),
-        &#39;rewrite&#39; =&gt; array( &#39;slug&#39; =&gt; &#39;blood&#39;, &#39;with_front&#39; =&gt; true ),
-*/            
-            &#39;supports&#39; =&gt; array(  &#39;title&#39;,&#39;thumbnail&#39; ),
-
-
-        )
-    );
-(花括号)
-
-
-
-function searchAll( $query ) (花括号) 
-if ( $query-&gt;is_search ) (花括号) $query-&gt;set( &#39;post_type&#39;, array( &#39;post&#39;,&#39;blood&#39; )); (花括号) 
-return $query; 
-(花括号) 
-add_filter( &#39;the_search_query&#39;, &#39;searchAll&#39; );
-?&gt;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpressadminmenushowuserip.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wordpressadminmenushowuserip.html/" class="post-title-link" itemprop="url">wordpress后台菜单显示访客IP的办法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>开发过程中为了方便<br>本地环境和服务器环境一致，使用了SwitchHosts来切换管理hosts文件。为了方便调试的是区分开，在后台菜单增加ip显示，这样本地访问显示127.0.01</p>
-<p>新建一个插件代码如下</p>
-<pre><code>&lt;?php
-/*
-Plugin Name: 修改后台菜单显示
-Description: 可以删除后台菜单，可以添加自定义显示内容
-Author: leiyanhui
-*/
-function diy_admin_menu()
-(花括号)
-   // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position ); 
-   $menu_title=&#39;您的IP：&#39;.$_SERVER[&quot;REMOTE_ADDR&quot;];
-    add_menu_page(&#39;自定义菜单标题&#39;,$menu_title, &#39;administrator&#39;, &#39;#url&#39;,&#39;&#39;,&#39;&#39;, 1);    
-(花括号)
-add_action(&#39;admin_menu&#39;, &#39;diy_admin_menu&#39;);
-?&gt;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-no-edit-functions-php.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wordpress-no-edit-functions-php.html/" class="post-title-link" itemprop="url">wordpresswordpress避免改动functions.php的插件自定义模型插件的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:28:39" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如何防止主题升级后functions.php被覆盖。</p>
-<p>一下代码保存到htdocswp-contentplugins自定义一个目录文件名.php<br>后台启动插件，在模板目录下新建一个文件functions.inc.php。自定义代码写到这里就好</p>
-<pre><code>&lt;?php
-/*
-Plugin Name: 调用模板目录的functions.inc.php文件
-Description: 一直调用themes的functions.inc.php文件
-Author: leiyanhui
-*/
-//代码也可以直接写到这里，不用写到模板目录
-
-@include( get_stylesheet_directory().&#39;/functions.inc.php&#39;);
-
-
-?&gt;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1019,7 +958,7 @@ Author: leiyanhui
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

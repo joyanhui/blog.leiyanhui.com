@@ -146,6 +146,277 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/typecho-url.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/typecho-url.html/" class="post-title-link" itemprop="url">typecho对sqlite的支持、灵活的目录结构和简洁的设计让人爱不释手</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>typecho支持sqlite<br>这个很大程度上决定了在轻量应用的时她成为我的首选。例如本站..例如一个简单的产品展示内容展示站。</p>
+<p>目录结构：打开config.inc.php后发现，所有的文件夹名可以修改！<br>我可以把后台改为 leiyanhui.com/hou-tai/<br>var 改为 phpfile<br>usr里面是保存模板插件和sqlite数据的，我可以改为Resource</p>
+<p>甚至，我可以复用index.phpgai&#39;diaoconfig.inc.php。</p>
+<p>更甚至</p>
+<pre><code>if($_SERVER[&quot;HTTP_HOST&quot;]==&quot;A域名.com&quot; || $_SERVER[&quot;HTTP_HOST&quot;]==&quot;www.A域名.com&quot;)(花括号)</code></pre>
+<p>$db = new Typecho_Db(&#39;Mysql&#39;, &#39;A_&#39;);<br>(花括号)<br>else if($_SERVER[&quot;HTTP_HOST&quot;]==&quot;B域名.com&quot; ||<br>$_SERVER[&quot;HTTP_HOST&quot;]==&quot;<a target="_blank" rel="noopener" href="http://www.b域名.com/&quot;)(%E8%8A%B1%E6%8B%AC%E5%8F%B7)/">www.B域名.com\&quot;)(花括号)\</a><br>$db = new Typecho_Db(&#39;Mysql&#39;, &#39;B_&#39;);<br>(花括号)<br>$db-&gt;addServer(array (<br>&#39;host&#39; =&gt; &#39;localhost&#39;,<br>&#39;user&#39; =&gt; &#39;数据库用户名&#39;,<br>&#39;password&#39; =&gt; &#39;数据库密码&#39;,<br>&#39;charset&#39; =&gt; &#39;utf8&#39;,<br>&#39;port&#39; =&gt; &#39;3306&#39;,<br>&#39;database&#39; =&gt; &#39;数据库名&#39;,<br>), Typecho_Db::READ | Typecho_Db::WRITE);<br>Typecho_Db::set($db);</p>
+<p>同样如果sqlite数据库也很简单了</p>
+<hr>
+<p>不过后台编辑器真的是简陋，官网的几个编辑器插件多少还有一点问题，直接拿来就用还是勉强</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/site-to-typecho.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/site-to-typecho.html/" class="post-title-link" itemprop="url">typecho全站加密插件/全站内容加密/文章加密/单页加密/首页加密</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:38:23" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2020年重新迁移到 hexo<br>wp的强大。。还有通用性。<br>确实带来很多方便，但是臃肿带来的困扰，还是让我决定舍弃之..<br>一个小小的随手记网站都可以卡成一坨屎，实在是震惊。</p>
+<hr>
+<p>本以为wp站群到typecho迁移会又一些麻烦，没想到一切很顺利。<br>用了typecho的官网插件 顺利把文字迁移过来。url有一些冲突不过勉强还可以用<br>未影响搜索引擎收录。</p>
+<p>不过丢失了所有的浏览次数的记录，全部归0了 ...</p>
+<p>顺便付费买了一个模板 ，看上去还可以</p>
+<p>typecho 是国人写的一个轻量级博客应用</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/right-menu-notpad2.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/right-menu-notpad2.html/" class="post-title-link" itemprop="url">右键菜单新增notpad2/Notepad++打开，带图标的，以及删除菜单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:39:07" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Windows Registry Editor Version 5.00<br>    [HKEY_CLASSES_ROOT<em>shellnotepad2]<br>    @=”用&amp;notepad2打开”<br>    “Icon”=”D:\GreenSoft\Office-Design\notepad2\notepad2.exe”<br>    [HKEY_CLASSES_ROOT</em>shellnotepad2Command]<br>    @=”D:\GreenSoft\Office-Design\notepad2\notepad2.exe “%1””</p>
+<p>&lt;!--more--&gt;</p>
+<pre><code>Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT*shellNotePad++]
+@=&quot;用&amp;Notepad++打开&quot;
+&quot;Icon&quot;=&quot;D:\GreenSoft\Office-Design\NotePad++\NotePad++.exe&quot;
+[HKEY_CLASSES_ROOT*shellNotePad++Command]
+@=&quot;D:\GreenSoft\Office-Design\NotePad++\NotePad++.exe &quot;%1&quot;&quot;</code></pre>
+<p>删除</p>
+<pre><code>Windows Registry Editor Version 5.00
+[-HKEY_CLASSES_ROOT*shellNotePad2]
+
+Windows Registry Editor Version 5.00
+[-HKEY_CLASSES_ROOT*shellNotePad++]</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/reset-centos-vps.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/reset-centos-vps.html/" class="post-title-link" itemprop="url">预设vps环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:39:23" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有一些vps的模板 竟然带一堆桌面文件。。清理</p>
+<pre><code> getconf LONG_BIT</code></pre>
+<p>确定centos</p>
+<pre><code>yum -y remove Deployment_Guide-en-US cups-libs cups bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools ypbind  telnet rsh rcp</code></pre>
+<p>删除不常用的软件</p>
+<pre><code>vi /etc/inittab</code></pre>
+<p>把id:5:initdefault:改成 id:3:initdefault:</p>
+<p>禁止桌面相关软件启动</p>
+<pre><code>reboot</code></pre>
+<p>重启</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-sqlite.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -583,373 +854,10 @@ https://coding.net/u/scaffrey/p/hosts/git
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onekeybackupmysqlandhtdocs.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/onekeybackupmysqlandhtdocs.html/" class="post-title-link" itemprop="url">批处理和rar一键热备mysql和htdocs</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:42:20" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>重新写了一个一键热备份mysql和htdocs并用rar.exe固实压缩，程序比较简单不需要管理员权限，可以和计划任务配合使用。不解释，看代码和注释。<br>如果有兴趣可以自行添加定期删除一个月之前的文件<br><br>``</p>
-<p>@ECHO OFF&amp;PUSHD %~DP0 &amp;TITLE 一键备份Mysql和指定目录<br>mode con cols=100 lines=20<br>color 2F<br>echo.<br>echo.==========================================================</p>
-<ol>
-<li>MYSQL和文件备份批处理</li>
-<li>需要修改本批处理的连接信息和目录信息<br>echo.==========================================================</li>
-</ol>
-<p>echo.<br>echo.<br>::=================================<br>:: 修改一下配置参数<br>::=================================<br>:: 设置备份目录<br>set backupdir=%cd%bakupfile<br>::set backupdir=%cd%<br>:: 设置临时文件名称<br>set /a date=%date:~0,4%%date:~5,2%%date:~8,2%<br>set /a time=%time:~0,2%%time:~3,2%%time:~6,2%<br>set fileTempName=%date%-%time%</p>
-<p>:: MYSQL的BIN目录<br>set mysqldump=D:phpStudyMySQLbin<br>:: rar目录<br>set rardir=D:GreenSoftSystemToolsWinRAR<br>:: 用户名<br>set username=root<br>:: 密码<br>set password=root<br>:: 数据库<br>set database=wordpress_xl<br>:: 需要备份的目录<br>set backfiles=D:YuFangWebSitewordpress.xl.comhtdocs<br>::=================================<br>:: 配置修改结束<br>::=================================</p>
-<p>echo.<br>echo.MYSQLDUMP路径：%mysqldump%mysqldump.exe<br>echo.<br>echo.备份文件：%backfiles%<br>echo.<br>echo.数据库：%database%<br>echo.<br>echo.备份路径：%backupdir%<br>echo.</p>
-<p>echo.<br>echo.正在执行备份操作...<br>%mysqldump%mysqldump -u%username% -p%password% %database% &gt;<br>%backupdir%%database%-%fileTempName%.sql<br>echo.<br>echo.<br>:: 压缩sql文件<br>%rardir%rar.exe a -r -s -ep1 -m5<br>%backupdir%%fileTempName%-mysql-%database%.rar<br>%backupdir%%database%-%fileTempName%.sql</p>
-<p>:: 删除临时sql文件<br>del /f /q %backupdir%%database%-%fileTempName%.sql</p>
-<p>:: 压缩需要备份的文件夹<br>%rardir%rar.exe a -r -s -ep1 -m5 -ms<br>%backupdir%%fileTempName%-htdocs.rar %backfiles%</p>
-<p>echo 【按任意键退出】<br>:: 计划任务模式请删除最后一行<br>pause&gt;nul exit\</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onekeyback-lnmp.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/onekeyback-lnmp.html/" class="post-title-link" itemprop="url">基于国人lnmp一键安装包的一键备份</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>简单修改了一下，可以一键备份mysql和wwwroot所有数据  以及nginx和php的配置<br>并且删除7天之前的备份。当然也和原版一样支持 ftp，支持计划任务</p>
-<p>原版可以参考lnmp目录里面的 tools/backup.sh<br><br>先安装依赖包，计划任务和lftp<br>编辑计划任务</p>
-<pre><code>yum install vixie-cron crontabs lftp
-chkconfig crond on
-service crond start  
-crontab -e</code></pre>
-<p>添加一行</p>
-<pre><code>0 3   * /home/wwwroot/backup.sh</code></pre>
-<p>注意北京时间和vps时差</p>
-<p>下面内容存到 /home/wwwroot/backup.sh<br>然后</p>
-<pre><code>chmod 555 /home/wwwroot/backup.sh</code></pre>
-<p>如果放到/home/wwwroot/目录，一定注意/home/wwwroot/backup.sh的文件权限<br>和所有者。</p>
-<pre><code>#!/bin/bash
-
-#Funciont: Backup website and mysql database
-#Author: licess
-#Website: https://lnmp.org
-#Edit by:leiyanhui.com
-
-#IMPORTANT!!!Please Setting the following Values!
-
-Backup_Home=&quot;/home/backup/&quot;
-MySQL_Dump=&quot;/usr/local/mysql/bin/mysqldump&quot;
-######~Set Directory you want to backup~######
-Backup_Dir=(&quot;/home/wwwroot&quot; &quot;/usr/local/nginx/conf&quot; &quot;/usr/local/php/etc&quot;)
-
-######~Set MySQL Database you want to backup~######
-Backup_Database=(&quot;--all-databases&quot;)
-
-######~Set MySQL UserName and password~######
-MYSQL_UserName=&#39;root&#39;
-MYSQL_PassWord=&#39;&#39;
-
-######~Enable Ftp Backup~######
-Enable_FTP=0
-# 0: enable; 1: disable
-######~Set FTP Information~######
-FTP_Host=&#39;ftp.leiyanhui.com&#39;
-FTP_Username=&#39;ftpusername&#39;
-FTP_Password=&#39;yourftppassword&#39;
-FTP_Dir=&quot;/myfolder/back-for-vps&quot;
-
-#Values Setting END!
-
-TodayWWWBackup=www-*-$(date +&quot;%Y%m%d&quot;).tar.gz
-TodayDBBackup=db-*-$(date +&quot;%Y%m%d&quot;).sql
-
-OldWWWBackup=www-*-$(date -d -7day +&quot;%Y%m%d&quot;).tar.gz
-OldDBBackup=db-*-$(date -d -7day +&quot;%Y%m%d&quot;).sql
-
-Backup_Dir()
-(花括号)
-    Backup_Path=$1
-    Dir_Name=echo $(花括号)Backup_Path##*/(花括号)
-    Pre_Dir=echo $(花括号)Backup_Path(花括号)|sed &#39;s/&#39;$(花括号)Dir_Name(花括号)&#39;//g&#39;
-    tar zcf $(花括号)Backup_Home(花括号)www-$(花括号)Dir_Name(花括号)-$(date +&quot;%Y%m%d&quot;).tar.gz -C $(花括号)Pre_Dir(花括号) $(花括号)Dir_Name(花括号)
-(花括号)
-Backup_Sql()
-(花括号)
-    $(花括号)MySQL_Dump(花括号) -u$MYSQL_UserName -p$MYSQL_PassWord $1 &gt; $(花括号)Backup_Home(花括号)db-$1-$(date +&quot;%Y%m%d&quot;).sql
-(花括号)
-
-if [ ! -f $(花括号)MySQL_Dump(花括号) ]; then  
-    echo &quot;mysqldump command not found.please check your setting.&quot;
-    exit 1
-fi
-
-if [ ! -d $(花括号)Backup_Home(花括号) ]; then  
-    mkdir -p $(花括号)Backup_Home(花括号)
-fi
-
-if [ $(花括号)Enable_FTP(花括号) = 0 ]; then
-    type lftp &gt;/dev/null 2&gt;&amp;1 || (花括号) echo &gt;&amp;2 &quot;lftp command not found. Install: centos:yum install lftp,debian/ubuntu:apt-get install lftp.&quot;; (花括号)
-fi
-
-echo &quot;Backup website and conf files...&quot;
-for dd in $(花括号)Backup_Dir[@](花括号);do
-    Backup_Dir $(花括号)dd(花括号)
-done
-
-echo &quot;Backup Databases...&quot;
-for db in $(花括号)Backup_Database[@](花括号);do
-    Backup_Sql $(花括号)db(花括号)
-done
-
-echo &quot;Delete old backup files...&quot;
-rm -f $(花括号)Backup_Home(花括号)$(花括号)OldWWWBackup(花括号)
-rm -f $(花括号)Backup_Home(花括号)$(花括号)OldDBBackup(花括号)
-
-if [ $(花括号)Enable_FTP(花括号) = 0 ]; then
-    echo &quot;Uploading backup files to ftp...&quot;
-    cd $(花括号)Backup_Home(花括号)
-    lftp $(花括号)FTP_Host(花括号) -u $(花括号)FTP_Username(花括号),$(花括号)FTP_Password(花括号) &lt;&lt; EOF
-cd $(花括号)FTP_Dir(花括号)
-mrm $(花括号)OldWWWBackup(花括号)
-mrm $(花括号)OldDBBackup(花括号)
-mput $(花括号)TodayWWWBackup(花括号)
-mput $(花括号)TodayDBBackup(花括号)
-bye
-EOF
-
-echo &quot;complete.&quot;
-fi</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/nodejstaobao.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/nodejstaobao.html/" class="post-title-link" itemprop="url">node.js更换和删除淘宝源</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:44:10" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="index.html">node.js更换和删除淘宝源</a></p>
-<p>设置淘宝源<br>npm config set registry <a target="_blank" rel="noopener" href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org/</a><br>切换为官方<br>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org</a><br>查询当前源<br>npm get registry</p>
-<p>清理缓存 npm cache clean -f</p>
-<p>附上elelctron相关的淘宝镜像地址：<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/electron/">https://npm.taobao.org/mirrors/electron/</a></p>
-<p>npm config set disturl <a target="_blank" rel="noopener" href="https://npm.taobao.org/dist">https://npm.taobao.org/dist</a></p>
-<p>cnpm config set disturl <a target="_blank" rel="noopener" href="https://npm.taobao.org/dist">https://npm.taobao.org/dist</a></p>
-<p>npm config set<br>ELECTRON_MIRROR=<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/electron/">https://npm.taobao.org/mirrors/electron/</a><br>cnpm config set<br>ELECTRON_MIRROR=<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/electron/">https://npm.taobao.org/mirrors/electron/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/nodejsrequest.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/nodejsrequest.html/" class="post-title-link" itemprop="url">nodejs使用request模块方便判断服务器是否正常</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>先安装<br>npm install request --save</p>
-<h1 id="服务器上放一个1bit的文件"><a href="#服务器上放一个1bit的文件" class="headerlink" title="服务器上放一个1bit的文件"></a>服务器上放一个1bit的文件</h1><p>request(serv2+serv_file1bit, function (error, response, body) (花括号)</p>
-<pre><code>    if (!error &amp;&amp; response.statusCode == 200) (花括号)
-      win.loadURL(serv2+webappver); //打开服务器2
-    (花括号)else(花括号)
-      win.loadFile(&quot;index.html&quot;); //打开错误提示页
-    (花括号)
-  (花括号));</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1015,7 +923,7 @@ fi</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
