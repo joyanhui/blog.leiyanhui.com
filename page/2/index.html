@@ -146,6 +146,300 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/installmysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/23/macos/installmysql/" class="post-title-link" itemprop="url">MacOs catlina安装mysql</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-23 12:29:09 / 修改时间：12:54:46" itemprop="dateCreated datePublished" datetime="2020-08-23T12:29:09+08:00">2020-08-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>mac下mysql装到docker真的没意思，装虚拟机也是无聊。<br>&lt; !–more–&gt;<br>官网看了下最新版本是<br>mysql-8.0.21-macos10.15-x86_64.dmg</p>
+<p>用不到，找到5.7把<br>官网地址<br><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/file/?id=496479">https://dev.mysql.com/downloads/file/?id=496479</a></p>
+<p>直连地址 ，迅雷<br><a target="_blank" rel="noopener" href="https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.31-macos10.14-x86_64.dmg">https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.31-macos10.14-x86_64.dmg</a></p>
+<p>安装完成 输入mac用户密码<br>提示 里面有密码 记住免得麻烦</p>
+<p>2020-08-23T04:37:45.309952Z 1 [Note] A temporary password is generated for root@localhost: ruessO/d)2GT</p>
+<p>If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.<br>系统偏好设置 找到mysql </p>
+<p>启动<br>macos shell输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br><span class="line">mysql -uroot -p #回车后输入密码</span><br></pre></td></tr></table></figure>
+<p>5.7.6开始要用这个命令了，我们是5.7.31所以也一样</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="keyword">USER</span>() <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>允许其他设备连接，因为我们是局域网内所以不用担心</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> host = <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+
+<p>完毕</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/23/macos/VMwareFusionFree/" class="post-title-link" itemprop="url">Macos下使用VMwareFusion12配置centos/lubuntu+宝塔</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-23 10:29:44" itemprop="dateCreated datePublished" datetime="2020-08-23T10:29:44+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-24 13:03:40" itemprop="dateModified" datetime="2020-08-24T13:03:40+08:00">2020-08-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>PD据说是mac下最好的win虚拟机软件<br>但是Linux是真的蛋疼，性格不清楚，但真的无法稳定使用，经常莫名其妙就打不开了。关闭重启也没反应。<br>为什么一定要虚拟机装lnmp甚至宝塔呢。 而不是用mac自带的php或者docker呢<br>因为mac自带的php实在没法用，而且处理起来太麻烦，虚拟机装宝塔而不是docker主要还是为了方便docker的文件映射还有各种权限问题折腾起来也太麻烦了。<br>而且那些说虚拟机占用硬盘太大的，怕是没去看docker到底占用的多少，下载一个80m的镜像解压就几百M安装完宝塔和依赖库 也2G起步了。<br>废话少说，开始<br>&lt; !–more–&gt;<br>先去下载 <a target="_blank" rel="noopener" href="https://vmwarefusion.github.io/">https://vmwarefusion.github.io</a><br>貌似是技术预览版？反正总比PD靠谱<br>实际下载地址是，贴迅雷<br><a target="_blank" rel="noopener" href="https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg">https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg</a><br>下载centos8.2.2004<br><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso">http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso</a></p>
+<p>还真是预览版 <img src="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2"></p>
+<p>无所谓了 先把PD的centos7删了，只留下俄大神win7</p>
+<p>按照提示安装VM。自带一个序列号？好吧继续下一步</p>
+<p>去掉快捷安装，引导固件 传统吧 efi还多一个分区麻烦</p>
+<p>最后一部分看一下 修改网络 桥接 自动检测 或者wifi</p>
+<p>硬盘10G吧 蓝牙 摄像头 麦克风 打印机什么用不到的移除  ok 启动</p>
+<p>提示打开了调试模式？ 先不管 安装先</p>
+<p>鼠标键盘 释放快捷键是 control+command了 </p>
+<p>centos从7 开始 就默认是图形化的界面了，虽然方便直观了但是启动安装器真的慢了很多</p>
+<p>英文美国键盘后<br><img src="https://icon.qiantucdn.com/20200823/459aa3b7f17821f01b9cb305825300f42"></p>
+<p>硬盘没配置，点一下<br><img src="https://icon.qiantucdn.com/20200823/a7366a15cd7c48ee90cd9aa2a1880e042"></p>
+<p>时区改下点上海附近<br>网络连接打开<br>SoftWare默认是Server 因为后面要装宝塔玩耍，所以这里改成mini算了<br>改完时区窗口错位了，还真是预览版。。。这。。。<br><img src="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12"></p>
+<p>记得是时区设置后面是网络 网络后面是 应该是加密安全什么的，然后就是退出和安装了。<br>用tab键 和Shit+tab键 然后enter瞎按<br>终于开始了<br><img src="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912"><br>新建一个用户 as上管理员<br>这次密码可以输入哈，密码输入1 提示密码太简单了。按两次Done确认就用这个</p>
+<p>等待中</p>
+<p>完成了，看不到重启按钮。。。继续tab大法</p>
+<p>重启进入 安装ssh，提示已经安装了<br>sudo yum install net-tools<br>ifconfig 看一下ip和mac地址 记住网卡名字也 ens33<br>路由器里面修改静态分批ip 到10.0.0.88<br><img src="https://icon.qiantucdn.com/20200823/3ddf669851e2a4ec12e04477606ff0612"></p>
+<p>重启一下centos网卡<br>nmcli d connect ens33 #ens33是上面ifconfig 看到的网卡名<br>ifconfig 看下新ip生效没<br>安装vmtools？<br>’‘’<br>后来 发现Fusion12+centos 没办法装VMware tools 菜单栏灰色<br>后来换了lubuntu  没啥问题了 lubuntu安装比较简单 优化部分可以参考<br><a href="/2020/08/23/momo7w/momo7w_install_ubuntu20.04/">macos安装mysql</a><br>’‘’</p>
+<p>没问题 先关闭虚拟主机 找一下前面提示的调试模式 打开虚拟机配置的 高级面板 找到故障排除 改成无</p>
+<p>还有分辨率也太高了。 改成拉伸</p>
+<p>配置成VM打开自动启动</p>
+<p>mac shell输入</p>
+<p>ssh <a href="mailto:&#121;&#97;&#110;&#104;&#x75;&#105;&#x40;&#49;&#48;&#46;&#x30;&#46;&#x30;&#x2e;&#x38;&#x38;">&#121;&#97;&#110;&#104;&#x75;&#105;&#x40;&#49;&#48;&#46;&#x30;&#46;&#x30;&#x2e;&#x38;&#x38;</a> 登录</p>
+<p>安装宝塔<br>’‘’<br>sudo passwd root #要先启动用root 不然宝塔不给装<br>su -<br> yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="http://download.bt.cn/install/install_6.0.sh">http://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh<br>‘’‘<br>进入宝塔面板装nginx mysql php mysql就不装了 用mac自己的就行<br>不知道为啥一定要编译安装，我明明选了极速 安装完后 内存改到256M cpu单核 就本地测试用 nginx+php  256M足够了mysql用 mac本机的<br><a href="/2020/08/23/macos/installmysql/">macos安装mysql</a></p>
+<p>慢慢跑吧，再去装一个俄大神精简的win7体验下和pd的差距 如果好用就抛弃pd<br>事实证明还不错 感觉不到差距 就是融合Unity模式 没办法从mac直接点出来win的开始菜单，有点不习惯 打开任务栏 替代一下了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/momo7w/momo7w_install_ubuntu20.04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/" class="post-title-link" itemprop="url">百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-22 11:16:28" itemprop="dateCreated datePublished" datetime="2020-08-22T11:16:28+08:00">2020-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-23 12:59:58" itemprop="dateModified" datetime="2020-08-23T12:59:58+08:00">2020-08-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>再次感谢 momo7w吧Q群里面的大神 尤其阿雪！<br>群号:NDc3MzI4MTgy（base64）<br>准备 hub  otg u盘键鼠</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/" class="post-title-link" itemprop="url">在小米路由器上搭建ftp并允许公网访问</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:27:05" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>米路由器搭建ftp的好处，windows下mac下都能流程访问（小米的mac客户端速度很渣的）。然后还可以内网穿透后，作为备份空间使用。<br>首先要开启ssh，具体看官网说明\</p>
+<pre><code>#下载mipsle 版本
+https://github.com/fatedier/frp/releases</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wp-code-highlight.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -624,289 +918,6 @@ Author: leiyanhui
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/" class="post-title-link" itemprop="url">wordpress媒体文件分类和添加标签</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>wordpress 媒体文件分类和标签</p>
-<pre><code>function lei_add_categories_tags_to_attachments() (花括号)
-   register_taxonomy_for_object_type( &#39;category&#39;, &#39;attachment&#39; );
-   register_taxonomy_for_object_type( &#39;post_tag&#39;, &#39;attachment&#39; );
-(花括号)
-add_action( &#39;init&#39; , &#39;lei_add_categories_tags_to_attachments&#39; );</code></pre>
-<p>但是在文字中插入的时候，还是不能按照分类检索，所以好像没啥卵用，只适合有特殊需求的人了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/window-airplay.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/window-airplay.html/" class="post-title-link" itemprop="url">Win10LTSB长期支持版本安装应用商店</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>LTSB版本默认没装edge也就忍了。但是没有应用商店，我还要玩一个小游戏。。。换系统肯定麻烦了。凑合一下，完美搞定。记录一下操作</p>
-<p>1、下载一个win10的镜像，只要64位的就可以了中文的就可以了，我下载了一个多版本。要用install.wim。</p>
-<p>2、C:\Program Files\WindowsApps <br>这个隐藏的文件夹，修改一下所有人权限为当前管理员用户。确定读写完全控制什么的</p>
-<p>3、用7zip或者其他工具打开install.wim把里面任意个分卷的\Program<br>Files\WindowsApps中的所有内容解压到C:\Program Files\WindowsApps</p>
-<p>解压完成后 把WindowsApps的所有者再改为 NT Service\TrustedInstaller<br>直接输入，搜不到这个用户的。然后修改后<br>不要点击最后一个确定，返回权限设置对话框后，先不要点确定（否则回到重新给权限），而是点击”添加”-选择主体，查找位置仍为本机，输入”All<br>Application Packages”。<br>确定然后保留默认的权限勾选。返回权限设置对话框，勾上”使用可从次对象的权限项目替换子对象的权限项目”，点确定。</p>
-<p>4、管理员权限打开Windows Powershell，运行</p>
-<p>::: (花括号)#code_Wq0(花括号)<br>Add-AppXPackage -Register &#39;C:\Program<br>Files\WindowsApps\*\AppXManifest.xml&#39; -DisableDevelopmentMode<br>:::</p>
-<p>运行后出现一堆错误，因为依赖包的问题，不用管。中间如果停止了<br>就点一下回车。然后运行一遍后 看看开始菜单有没有添加应用商店。<br>没有的话就再运行几次，第一次好像什么的也没装上，第二次装了几个应用但是没有商店，第三次就出来商店了，其实还可以再运行几次，一直到不出错所有的应用都安装。多运行几次<br>出来多装一个默认应用没什么坏处。</p>
-<p>5、卸载掉没什么的用的应用 比如天气 纸牌之类的。</p>
-<p>试试应用商店。</p>
-<p>记得使用应用商店 要打开Windows update服务</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win7lite.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win7lite.html/" class="post-title-link" itemprop="url">一个比较小巧的Win7. 可以正常使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:33:44" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>效果不好！ 已经更换俄大神版</p>
-<p>esd压缩包，看上去很小，解压后竟然有8G多（本打算做到vhd文件，做备用系统替代winpe的，太大了，而且好像不支持vhd启动，放弃了），可以用wim方法安装。</p>
-<pre><code>dism /apply-image /imagefile:D:YanHui下载W7_885_x64.esd /index:1 /applydir:x:\
-
-作者：http://twm000.blog.163.com/
-功能&amp;特点：
-母盘基于 Windows 7 SP1 Ultimate 旗舰版 32位/64位进行精简优化封装；
-只为纯净精简封装，未额外附加常用三方软件及常用软件运行库；
-默认集成 IE9 浏览器，支持升级至 IE11 最新版本；
-已集成系统安全更新补丁至 2015 年终，理论支持后续安全更新补丁安装；
-保留原版自带 .NET Framework 3.5.1 向下兼容，并支持升级安装更高版本；
-部署过程支持全盘搜索“万能驱动助理”调用“[Win7.x86、Win7.x64]WanDrv6.exe”主程序；
-哈希&amp;校验：
-文件名称：W7_678_x86.esd
-文件大小：678 MB (711961148 字节)
-修改时间：2015年12月25日
-MD5：CD154C42D2CBF69536525C945F662700
-SHA1：4E4BD4766D284EBC980C38216FA9301EEE5BBBBA
-
-文件名称：W7_885_x64.esd
-文件大小：885 MB (928125386 字节)
-修改时间：2016年01月03日
-MD5：6FF9034EE00245ACD5DCCF9E566E4221
-SHA1：A6F618028241B4519462AAEA369601B29E8EE32F
-
-下载の地址：
-ed2k://|file|W7_678_x86.esd|711961148|559234466DBD11AC6FF2B8D4BBFD7D36|h=LHBNF6YIPY42DGNDD5SIDE5VNMRHND4D|/
-ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BOR3HYA4BO4SSOZUQT7UQEA2HVZ|/</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win10-win8-1-win8-install-net3-5.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/win10-win8-1-win8-install-net3-5.html/" class="post-title-link" itemprop="url">win10/win8.1/win8快速安装net3.5</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>装载iso 或者U盘&lt;!--more--&gt;</p>
-<p>win+x,管理员命令行</p>
-<pre><code> dism.exe /online /enable-feature /featurename:netfx3 /Source:X:sourcessxs</code></pre>
-<p><img src="http://leiyanhui.com/_Resource/uploads/FormWordpress/2017/02/net3.5ing-300x128.jpg">(花括号).alignnone<br>.size-medium .wp-image-88 width=”300” height=”128”(花括号)<br>如果提示 操作完成，但未启用 NetFx3 功能。<br>需要进入控制面板，打开或者关闭windows功能，勾选net3.5 可能会自动重启电脑</p>
-<p>也可以在线搜索离线安装包<br>like：<br><a target="_blank" rel="noopener" href="http://www.onlinedown.net/soft/391920.htm">http://www.onlinedown.net/soft/391920.htm</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -976,7 +987,7 @@ ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BO
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

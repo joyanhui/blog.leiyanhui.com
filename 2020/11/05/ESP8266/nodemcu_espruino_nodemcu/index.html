@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.leiyanhui.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="首先给espruino（JavaScript）正名一下，很多人一看到JavaScript的字样 就觉得效率低。其实你搞错的概念。micropython（Python）espruino（JavaScript） nodemcu（lua）他们并非真正的对应的语言。就是类似 你能说 nodejs和浏览器的JavaScript 是一回事吗？如果你拿浏览器的JavaScript和Python比，那就是真的傻杠">
+<meta property="og:type" content="article">
+<meta property="og:title" content="micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比">
+<meta property="og:url" content="http://blog.leiyanhui.com/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/index.html">
+<meta property="og:site_name" content="小类随手记">
+<meta property="og:description" content="首先给espruino（JavaScript）正名一下，很多人一看到JavaScript的字样 就觉得效率低。其实你搞错的概念。micropython（Python）espruino（JavaScript） nodemcu（lua）他们并非真正的对应的语言。就是类似 你能说 nodejs和浏览器的JavaScript 是一回事吗？如果你拿浏览器的JavaScript和Python比，那就是真的傻杠">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-05T08:26:34.093Z">
+<meta property="article:modified_time" content="2020-11-05T09:23:13.738Z">
+<meta property="article:author" content="joyanhui@qq.com">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比 | 小类随手记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小类随手记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Just so so ...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 16:26:34 / 修改时间：17:23:13" itemprop="dateCreated datePublished" datetime="2020-11-05T16:26:34+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>首先给espruino（JavaScript）正名一下，很多人一看到JavaScript的字样 就觉得效率低。其实你搞错的概念。<br>micropython（Python）espruino（JavaScript） nodemcu（lua）他们并非真正的对应的语言。<br>就是类似 你能说 nodejs和浏览器的JavaScript 是一回事吗？<br>如果你拿浏览器的JavaScript和Python比，那就是真的傻杠精了。<br>JavaScript 目前除浏览器上用，还有后端服务器用nodejs（在很多场景下 执行效率远超Python 是他的十几二十倍，所以这时候JavaScript不等于慢） ，还有electron也很成熟，已经有很多大厂软件在用很多年了。另外 v8引擎好多年前已经支持浏览器上的JavaScript编译成二进制了。这些都不说太多了。你只要搞清楚 espruino 并非你印象里面的浏览器脚本语言 那么低效就好了。</p>
+<p>micropython（Python）也好espruino（JavaScript）或者 nodemcu（lua）也好 都是脚本 ，都需要解析，都是对应的标准语言的阉割版或者升级精简针对版本  或者 高仿版  但是都不是一回事。<br>你可理解为，只是为了让不同喜好的人用各自习惯的语法 去做同样的事情。也可以理解为 固件内置了分别对应高仿语言的一个翻译器，翻译指定的语法的文本文件，每次都翻译一次然后执行，都是低效的，并没有实质上的区别，效率理论上都是一样的（当然个别固件可能某些方面的运算优化的略好，但是再好 也没有C编译的二进制好）。</p>
+<p>他们和C/C++在性能方面 都完全没有可比性，如果在大量数据处理上可以直接说 都不是一个量级的  但是差距也不是那么大 尤其是物联网客户端本身没有太多太大数据要处理，大部分场景的响应时间 都可以接受1-100毫秒的差距的情况下。</p>
+<p>为什么 性能的差距并不会影响实际场景的情况下 还有很多大神说 这三个都是玩具，只适合开发 不适合生产呢。首先一点  就是C能做的事情很多，三个脚本语言还是收到一些限制 虽然不多 但是也会有。另外一点，三个脚本 在esp8266 还有stm32上 发展的时间都不太长，C毕竟从80年代 或者更久？都在搞单片机了。最后两点 最重要 也是最多的情况： 大神的经验、自尊心。大神不见得比你厉害多少，大神之所以是大神，前辈之所以是前辈，是是因为熟悉度 是因为效率 是因为接触的更多  是因为积累，简单概括 就是经验，一个写了数年几十年C代码的人，他自然手到擒来甚至自己还有个人代码库个人函数库，无论是开发速度还是bug调试 他用C不见得比你用Python慢多少。其实也就是可笑的自尊心，首先部分大神 对Python lua JavaScript可能压根不会或者只是入门或者勉强会点 或者最好也是略微熟悉用其中某个语言做过几个小项目，他在这方面谈不上丰富的经验积累，他也不可能花费大量的时间 去学习 或者熟悉他，一个简单的应用场景 代码容易出现失误，还要翻看手册查询资料，他C写的很快 编译出来的程序效率贼高，他凭啥支持脚本语言？ 这类大神你让他用脚本效率更差，更痛苦，还有几行代码有时候可以实现C洋洋洒洒一大堆的功能 脸上也挂不住不是。毕竟玩汇编的也看不上C C连C++都看不上 java更看不上，你说脚本怎么能入他们眼。<br>说多了 也是开玩笑  ，言归正传</p>
+<p>micropython（ Python） espruino（JavaScript）  nodemcu（lua）三种固件和开发环境，我大致对比了一下 只是在初步的感觉上，都差不多。<br>首先 都不怎么适合正经的生产环境，不过也都适合 产品快速上线，尤其是对C不感冒的情况下。<br>另外有一些小的差距，因为是初步的了解可能不太准确。<br>首先是代码语法的感官上。 我接触java和JavaScript比较多也比较早，所以更喜欢espruino多一些。lua说不清的感觉，Python那种对齐方式在mpy上一贯保留下来了，还好。毕竟年级大了，很多敲代码的动作几乎成了肌肉记忆 （ 比如 我按下if 就会习惯性按（ 以及{ 因为vsc会自动补一个完整的if(){}  ） 所以我喜欢epsruino多一些。<br>其次是入门IDE工具上。nodemcu 有国产的IDE（C#）写的，这个真的 是新手入门专用，蛋疼。另外 ESPlorer（俄作者java写的）nodemcu和micropython都支持，也是比较方便 ，也很适合初步使用 功能也挺多的。然后espruino有一个webide 虽然基于chrome的浏览器插件，有一些按钮ui和英文的坑，不过也挺适合新手使用。 基本熟悉后，其实都是回归到Visual Studio Code 这方面 观感差不多。<br>中文资料和初学入门方面  真的nodemcu相对多一些 micropython也可以，espruino就比较惨，目前只看到csdn上小鱼有点电大神有一些系统教程，另外四处有一些零散的几篇文章，真的是很少很少。<br>其他一些支持上：<br>据说espruino不支持ucp 其他两个支持<br>espruino对JSON的原生支持，其他需要库或者另外引入，想一下json的全称。<br>nodemcu支持smartconfig（出厂固件多数不支持，需要重新编译） 其他两个不支持（可以在编译固件的时候用C写一个也不难 ）这个没太大问题<br>另外引用的 别人的” MicroPython 和Espruino与原生SDK C语言开发相比， 不支持SmartConfig和sniffer，不支持IR  “</p>
+<p>主观上对nodemcu的一些反感：官方工具 尤其是国产安信可 对非win的支持太少，另外据说不是完全开源（这个不太清楚哈）。另外lua语言太小众了，除非之前已经刚刚好有基础，不然如熟悉lua的精力 不如去重温一下C和看看原生SDK。另外一点搞不懂安信可，既然是公司 那么官方工具上一堆署名个人的工具感觉不那么正规，ide的丑和简陋也有点让我排斥。不过既然做了这种简易的ide 甚至走淘宝线路 都针对几乎0基础的初学者了，为什么就不能多做一些ide的优化 一键开发环境（虚拟机 docker）的工作 也花不了太多时间吧。 另外就是 <a target="_blank" rel="noopener" href="https://nodemcu-build.com/">https://nodemcu-build.com</a> 这个网站，我一直没搞明白 为什么一直提示 模块太多，询问很多人都是同样情况 而且连续多天都是。然后stats页面 堂堂知名固件  每天只生成几十个 ？ 要么是确实有bug 要么是用的人真的是很少很少。另外就是既然是右键发过来的是url链接 为什么不能把一些常见的定制的固件或者所有可公开的直接提供下载呢？</p>
+<p>因为目前的项目 想尽快出小批量产品，而且对实时性要求并非那么高，所以 我首先排除了C，然后纠结了几天smartconfig后决定排除nodemcu，剩下就是micropython和espruino了，因为对Python远远谈不上熟练，而JavaScript入门几十年还经常在web开发使用，所以我更加倾向于选择espruino  以后如果真的发展到团队开发，一个JavaScript程序员也好招聘的多 哈哈。 后续如果有大坑 再换吧</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/" rel="prev" title="在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境">
+      <i class="fa fa-chevron-left"></i> 在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">joyanhui@qq.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joyanhui@qq.com</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

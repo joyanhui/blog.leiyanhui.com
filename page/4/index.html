@@ -146,6 +146,291 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/vps-move.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/vps-move.html/" class="post-title-link" itemprop="url">自用vps迁移</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:36:15" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>vps越来越慢，只好换了一家。记录一下迁移</p>
+<p>1、<a target="_blank" rel="noopener" href="http://leiyanhui.com/reset-centos-vps/">检查和设置vps环境<br>清理无用软件</a></p>
+<pre><code>yum install screen 
+screen -S lnmp</code></pre>
+<p>2、搭建 四四日\</p>
+<pre><code>https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh
+chacha20的安装会出错，主要是一个lib的插件，手动安装，然后再用脚本覆盖安装一次就可以 了</code></pre>
+<p>mv 1803898290.txt ssr.sh</p>
+<pre><code>chmod +x ssr.sh &amp;&amp; bash ssr.sh
+
+#因为这库是基于C语言的，所以我们先去安装GCC
+yum -y groupinstall &quot;Development Tools&quot;
+#下载最新稳定版本
+wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
+#解压
+tar xf LATEST.tar.gz &amp;&amp; cd libsodium-stable
+#编译
+./configure &amp;&amp; make -j4 &amp;&amp; make install
+echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf
+ldconfig</code></pre>
+<p>wget -N --no-check-certificate<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh</a> &amp;&amp;<br>chmod +x ss-go.sh &amp;&amp; bash ss-go.sh</p>
+<p>wget --no-check-certificate -O shadowsocks-all.sh<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</a><br>chmod +x shadowsocks-all.sh<br>./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</p>
+<p>3、 BBR 加速部署</p>
+<p>yum -y install wget<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/_Resource/uploads/2019/02/2746226282.txt">bbr.sh.txt</a><br>mv 2746226282.txt bbr.sh</p>
+<pre><code>    wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
+    chmod +x bbr.sh
+./bbr.sh</code></pre>
+<p>4、安装LNP</p>
+<pre><code>wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; LNMP_Auto=&quot;y&quot; DBSelect=&quot;0&quot; PHPSelect=&quot;5&quot; SelectMalloc=&quot;1&quot; ./install.sh lnmp</code></pre>
+<p>5、迁移文件<br>6、覆盖nginx php配置文件、设置 /home/wwwroot/ 子目录权限<br>/usr/local/nginx/conf<br>/usr/local/php/etc/</p>
+<pre><code>chattr -i /home/wwwroot/*/.user.ini
+tar -xzvf www-wwwroot-***.tar.gz
+chown www:www -R  /home/wwwroot/*
+chattr +i /home/wwwroot/*/.user.ini
+chmod +x backup.sh</code></pre>
+<p>6、添加自动备份计划任务和定时重启<br>yum install lftp</p>
+<p>crontab -e</p>
+<pre><code>0 3 * * * /home/wwwroot/backup.sh
+59 23 * * * /sbin/reboot</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/ubuntu-to-go.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/ubuntu-to-go.html/" class="post-title-link" itemprop="url">ubuntu to go</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:36:37" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>chrome + qq + vsc好像基本就够用平时玩的了。<br>所以试试看看吧</p>
+<p>在wtg硬盘上最后分了30G出来，u盘iso启动，直接就在装上了。适用流畅，暂时还没有在其他电脑测试。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/ubuntu-clash.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/ubuntu-clash.html/" class="post-title-link" itemprop="url">ubuntu下安装某c工具用来v上网</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:45:07" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1、创建一个目录</p>
+<p>cd ~<br>下载 <a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">https://github.com/Dreamacro/clash/releases</a><br>解压<br>右键点击 clash-linux，选择属性，权限处勾选允许以程序执行<br>重命名为 clash<br>2、下载某配置文件<br>wget -O config.yml<br><a target="_blank" rel="noopener" href="https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info">https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info</a><br>移动到<br>/.config/clash$</p>
+<p>3、运行<br>~/clash</p>
+<p>4、配置 直接打开 <a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a> 即可查看gui配置</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/typecho_AllsitePasswd_Plugin.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/typecho_AllsitePasswd_Plugin.html/" class="post-title-link" itemprop="url">typecho全站加密插件/全站内容加密/文章加密/单页加密/首页加密</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:37:48" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>适合日记站或者内部通知站，输入密码后方可查看网站内容，兼容v1.1<br>(17.10.30)</p>
+<p>wp下有very-simple-password可以用，typecho下一直没找到合适的，只好自己动手。<br>;第一次写typecho的插件，花了几个小时看文档。功能如图</p>
+<p>只有一个文件 Plugin.php<br>上传到/usr/plugins/AllsitePasswd/目录，然后在后台启用即可</p>
+<p>密码提示语言 提示图片均可以修改，也可以<br>在main_fun函数内编辑前台显示样式。</p>
+<p>值得注意的是<br>1、默认密码：123456，请修改强壮一些<br>2、因为入口是index.php，后台操作可能会被拦截，建议前台登陆后再进行后台操作<br>3、如忘记密码，建议直接删除/usr/plugins/AllsitePasswd/目录<br>后进入后台删除插件，然后重新安装即可</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://u2397981.ctfile.com/fs/2397981-314921190">https://u2397981.ctfile.com/fs/2397981-314921190</a></p>
+<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/1307219110.jpg" alt="houtai.jpg" title="houtai.jpg"><br><img src="http://leiyanhui.com/_Resource/uploads/2018/10/4080791910.jpg" alt="qiantai1.jpg" title="qiantai1.jpg"></p>
+<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/1642301463.jpg" alt="qiantai2.jpg" title="qiantai2.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/typecho-url.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -560,300 +845,6 @@ msg(&#39;登陆成功&#39;,&#39;OK&#39;,&#39;&lt;p&gt;登陆成功&lt;/p&gt;&lt;
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/php-pdo-sqlite-class.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/php-pdo-sqlite-class.html/" class="post-title-link" itemprop="url">一个php操作sqlite的类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:03:01" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>已经删除，重写了一个 以后有时间放出来</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onpage-html-css-404.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/onpage-html-css-404.html/" class="post-title-link" itemprop="url">单文件纯html css写的一个404/502页面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>&lt;meta charset=utf-8 /&gt;<br>&lt;title&gt;index&lt;/title&gt;<br>&lt;style&gt;<br>@charset &quot;utf-8&quot;;<br>.button (花括号)display: inline-block;zoom: 1; *display:<br>inline;vertical-align: baseline;margin: 0 2px;outline: none;cursor:<br>pointer;text-align: center;text-decoration: none;font: 14px/100% Arial,<br>Helvetica, sans-serif;padding:0.25em 0.6em 0.3em;text-shadow: 0 1px 1px<br>rgba(0,0,0,.3);-webkit-border-radius: .5em; -moz-border-radius:<br>.5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px<br>rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0<br>1px 2px rgba(0,0,0,.2);<br>(花括号)<br>.red (花括号)color: #faddde;border: solid 1px #980c10;background:<br>#d81b21;background: -webkit-gradient(linear, left top, left bottom,<br>from(#ed1c24), to(#A51715));background: -moz-linear-gradient(top,<br>#ed1c24, #A51715);filter:<br>progid:DXImageTransform.Microsoft.gradient(startColorstr=&#39;#ed1c24&#39;,<br>endColorstr=&#39;#aa1317&#39;); font-size:14px!important;<br>color:#fff!important;(花括号)<br>.red:hover (花括号) background: #b61318; background: -webkit-gradient(linear,<br>left top, left bottom, from(#c9151b), to(#a11115)); background:<br>-moz-linear-gradient(top, #c9151b, #a11115); filter:<br>progid:DXImageTransform.Microsoft.gradient(startColorstr=&#39;#c9151b&#39;,<br>endColorstr=&#39;#a11115&#39;); color:#fff;(花括号)<br>.red:active (花括号)color: #de898c;background: -webkit-gradient(linear, left<br>top, left bottom, from(#aa1317), to(#ed1c24));background:<br>-moz-linear-gradient(top, #aa1317, #ed1c24);filter:<br>progid:DXImageTransform.Microsoft.gradient(startColorstr=&#39;#aa1317&#39;,<br>endColorstr=&#39;#ed1c24&#39;);(花括号)<br>.keTitle(花括号) height: 60px; line-height: 60px; font-size: 28px; font-family:<br>&#39;微软雅黑&#39;; color: #444; text-align: center; background:<br>url(../images/bodyBg1.gif) repeat-x left bottom; font-weight: normal;<br>position: fixed; width: 100%; left: 0; top: 0; z-index: 999; padding:<br>0px 0px 8px; opacity:0.8; (花括号)<br>.keBottom(花括号) color: #444; height: 60px; text-align: center; background:<br>url(../images/bodyBg2.gif) repeat-x left top; position: fixed; width:<br>100%; left: 0; bottom: 0; z-index: 999; font: 18px/60px &quot;微软雅黑&quot;;<br>padding: 3px 0px 5px;opacity:0.8; (花括号)<br>.keBottom a,.keBottom a:hover(花括号)color:#444;(花括号)<br>body (花括号)<br>background-color: #ECECEC;<br>font-family: &#39;Open Sans&#39;, sans-serif;<br>font-size: 14px;<br>color: #3c3c3c;<br>(花括号)</p>
-<p>.demo p:first-child (花括号)<br>text-align: center;<br>font-family: cursive;<br>font-size: 150px;<br>font-weight: bold;<br>line-height: 100px;<br>letter-spacing: 5px;<br>color: #fff;<br>(花括号)</p>
-<p>.demo p:first-child span (花括号)<br>cursor: pointer;<br>text-shadow: 0px 0px 2px #686868,</p>
-<pre><code>0px 1px 1px #ddd,
-0px 2px 1px #d6d6d6,
-0px 3px 1px #ccc,
-0px 4px 1px #c5c5c5,
-0px 5px 1px #c1c1c1,
-0px 6px 1px #bbb,
-0px 7px 1px #777,
-0px 8px 3px rgba(100, 100, 100, 0.4),
-0px 9px 5px rgba(100, 100, 100, 0.1),
-0px 10px 7px rgba(100, 100, 100, 0.15),
-0px 11px 9px rgba(100, 100, 100, 0.2),
-0px 12px 11px rgba(100, 100, 100, 0.25),
-0px 13px 15px rgba(100, 100, 100, 0.3);</code></pre>
-<p>-webkit-transition: all .1s linear;<br>transition: all .1s linear;<br>(花括号)</p>
-<p>.demo p:first-child span:hover (花括号)<br>text-shadow: 0px 0px 2px #686868,</p>
-<pre><code>0px 1px 1px #fff,
-0px 2px 1px #fff,
-0px 3px 1px #fff,
-0px 4px 1px #fff,
-0px 5px 1px #fff,
-0px 6px 1px #fff,
-0px 7px 1px #777,
-0px 8px 3px #fff,
-0px 9px 5px #fff,
-0px 10px 7px #fff,
-0px 11px 9px #fff,
-0px 12px 11px #fff,
-0px 13px 15px #fff;</code></pre>
-<p>-webkit-transition: all .1s linear;<br>transition: all .1s linear;<br>(花括号)</p>
-<p>.demo p:not(:first-child) (花括号)<br>text-align: center;<br>color: #666;<br>font-family: cursive;<br>font-size: 20px;<br>text-shadow: 0 1px 0 #fff;<br>letter-spacing: 1px;<br>line-height: 2em;<br>margin-top: -50px;<br>(花括号)</p>
-<p>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1 class=&quot;keTitle&quot;&gt;访问的站点不存在&lt;/h1&gt;<br>&lt;!--效果html开始--&gt;<br>&lt;div class=&quot;demo&quot;&gt;</p>
-<pre><code>&lt;p align=&quot;center&quot;&gt;&lt;span&gt;4&lt;/span&gt;&lt;span&gt;0&lt;/span&gt;&lt;span&gt;4&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;该页面不存在(´･ω･`)&lt;/p&gt;</code></pre>
-<p>&lt;/div&gt;<br>&lt;!--效果html结束--&gt;<br>&lt;div class=&quot;keBottom&quot;&gt; 基于Vultr，by<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/">leiyanhui.com</a>(花括号).keUrl(花括号)<br>&lt;/div&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/online-update-hosts.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/online-update-hosts.html/" class="post-title-link" itemprop="url">在线hosts文件,Mac和win下通用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Mac下要修改/etc/hosts权限</p>
-<pre><code>下载地址 https://github.com/oldj/SwitchHosts
-
-点击桌面上方的“前往”-&gt;“前往文件夹”（或者快捷键 Shift+Command+G）  输入 /private 按回车，进入 etc 文件夹下面，修改名为 hosts 文件的权限， everyone（或者当前登录用户） 的“读与写”，修改完成之后，你就可以直接在 hosts 文件上点右键，通过“文本编辑”打开并编辑该文件了。或者用SwitchHosts修改</code></pre>
-<p>添加自定义hosts配置，或者用在线hosts列表<br><img src="http://leiyanhui.com/_Resource/uploads/FormWordpress/2017/02/SwitchHosts-.png">(花括号).alignnone<br>.size-full .wp-image-117 width=”1187” height=”755”(花括号)<br>也可以不下载自己修改hosts文件</p>
-<p>网友提供的一个经常更新的hosts列表</p>
-<pre><code>https://github.com/racaljk/hosts
-在线hosts：https://raw.githubusercontent.com/racaljk/hosts/master/hosts
-
-https://coding.net/u/scaffrey/p/hosts/git
-在线hosts：https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts</code></pre>
-<p>另外一个经常更新的hosts不过博主把文件放到了百度网盘(已经关闭删除不再更新)，不能直接在SwitchHosts调用远程hosts</p>
-<pre><code>http://htcui点com/4938.html</code></pre>
-<p>更新后，https可以访问大多数网站。 现在已经不行了，还是科学 靠谱</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/onekeybakfile.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/onekeybakfile.html/" class="post-title-link" itemprop="url">随手写了一个批处理程序，一键备份指定目录文件</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:41:58" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>代码很简单，不解释，依赖winrar的rar.exe文件。win10测试通过。\</p>
-<p><code>@ECHO OFF&amp;PUSHD %~DP0 &amp;TITLE 一键备份mode con cols=70 lines=20color 2FRd &quot;%WinDir%system32test_permissions&quot; &gt;NUL 2&gt;NULMd &quot;%WinDir%System32test_permissions&quot; 2&gt;NUL||(Echo 请使用右键管理员身份运行！&amp;&amp;PAUSE &gt;NUL&amp;&amp;EXIT)Rd &quot;%WinDir%System32test_permissions&quot; 2&gt;NUL</code></p>
-<p>set /a date=%date:~0,4%%date:~5,2%%date:~8,2%</p>
-<p>set /a time=%time:~0,2%%time:~3,2%%time:~6,2%</p>
-<p>net stop mysqla</p>
-<p>rar a -r -s -ep1 -m1 mysql-%date%-%time%.rar<br>D:phpStudyMySQLdatawordpress_xl</p>
-<p>rar a -r -s -ep1 -m1 htdocs-%date%-%time%.rar<br>D:YuFangWebSitewordpress.xl.comhtdocs</p>
-<p>net start mysqla</p>
-<p>echo 【按任意键退出】</p>
-<p>pause&gt;nul exit</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -923,7 +914,7 @@ https://coding.net/u/scaffrey/p/hosts/git
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.leiyanhui.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这个坑是真的多如牛毛。。。本文基于macos 当然win更方便 在某esp8266群里 遇到有人说 js效率怎么怎么低 比Python库少多少之类的指责。对方可能是一个学生，就辩了几句。首先此JavaScript 非浏览器的JavaScript。micropython也非Python。具体可以看我写的 micropython（ Python） espruino（JavaScript）  nodem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境">
+<meta property="og:url" content="http://blog.leiyanhui.com/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="小类随手记">
+<meta property="og:description" content="这个坑是真的多如牛毛。。。本文基于macos 当然win更方便 在某esp8266群里 遇到有人说 js效率怎么怎么低 比Python库少多少之类的指责。对方可能是一个学生，就辩了几句。首先此JavaScript 非浏览器的JavaScript。micropython也非Python。具体可以看我写的 micropython（ Python） espruino（JavaScript）  nodem">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-05T04:39:24.053Z">
+<meta property="article:modified_time" content="2020-11-05T08:27:30.111Z">
+<meta property="article:author" content="joyanhui@qq.com">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境 | 小类随手记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小类随手记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Just so so ...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 12:39:24 / 修改时间：16:27:30" itemprop="dateCreated datePublished" datetime="2020-11-05T12:39:24+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这个坑是真的多如牛毛。。。<br>本文基于macos 当然win更方便</p>
+<p>在某esp8266群里 遇到有人说 js效率怎么怎么低 比Python库少多少之类的指责。对方可能是一个学生，就辩了几句。<br>首先此JavaScript 非浏览器的JavaScript。micropython也非Python。具体可以看我写的 micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比</p>
+<p>第一部 下载固件<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Download">http://www.espruino.com/Download</a><br>因为我的是512k的 所以直接下载<br><a target="_blank" rel="noopener" href="https://www.espruino.com/binaries/espruino_2v08_esp8266_combined_512.bin">https://www.espruino.com/binaries/espruino_2v08_esp8266_combined_512.bin</a><br>其他的自己选择，还有分开烧录的方法<br>bin文件    1024KB( 512KB+ 512KB) 8Mbit    2048KB( 512KB+ 512KB) 16Mbit    4096KB( 512KB+ 512KB) 32Mbit<br>boot_v1.6.bin    0x0    0x0    0x0<br>espruino_esp8266_user1.bin    0x1000    0x1000    0x1000<br>esp_init_data_default.bin    0xFC000    0x1FC000    0x3FC000<br>blank.bin    0xFE000    0x1FE000    0x3FE000<br>官网说明<br><a target="_blank" rel="noopener" href="http://www.espruino.com/ESP8266_Flashing">http://www.espruino.com/ESP8266_Flashing</a><br>烧录工具 随意，官网是用的esptool.py  我是用的nodemuc-pyFlasher 结果出错<br>然后因为没装esptool 所以换了win下的 flash_download_tools 在 乐鑫官网 有下载<br><a target="_blank" rel="noopener" href="https://www.espressif.com/zh-hans/support/download/other-tools">https://www.espressif.com/zh-hans/support/download/other-tools</a><br>单一文件<br>直接烧录到 0x0 就好了<br>CrystalFreq选择26M  SPI SPEED 选40MHz SPI MODE选择QIO  flash size选择对应的，我这个512的选4M 其他不勾选，先擦除一次 或者烧写一个空白的文件，然后点Start开始 等待完成。</p>
+<p>烧录后，用串口工具 打开，选择 115200，因为在win下烧写的，所以顺手用sscom串口调试工具，这里发现又一个神坑。就是sscom5.13.1 打开串口后  开发板显示的是乱码，需要先随便选一个倍率，然后再选115200才可以</p>
+<p>可以看到  就好了<br>’‘’</p>
+<hr>
+<p>|  <strong>|___ _</strong> <strong>_ _ <em>|</em>|___ _</strong><br>|  <strong>|_ -| . |  _| | | |   | . |<br>|__</strong>|<strong><em>|  <em>|</em>| |</em></strong>|<em>|</em>|<em>|__</em>|<br>         |_| espruino.com<br> 2v08 (c) 2019 G.Williams<br>Espruino is Open Source. Our work is supported<br>only by sales of official boards and donations:<br><a target="_blank" rel="noopener" href="http://espruino.com/Donate">http://espruino.com/Donate</a><br>Flash map 512KB:256/256, manuf 0x20 chip 0x4016<br>WARNING: <strong>* Your flash chip does not match your flash map *</strong></p>
+<blockquote>
+</blockquote>
+<p>’‘’<br>这里有一行警告信息，暂时不知道有什么影响，部分串口工具前面会显示乱码 不用管它。后面能显示版本号就ok了。</p>
+<p>然后安装官方推荐的 webide  不得说挺好用的 ，就是全英文 有点。。。<br>安装方法 首先电脑上有chrome 然后有梯子可以访问 chrome 商店。<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Web+IDE">http://www.espruino.com/Web+IDE</a>  这里有说明<br>用Chrome打开商店地址<br><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/espruino-web-ide/bleoifhkdalbjfbobjackfdifdneehpo">https://chrome.google.com/webstore/detail/espruino-web-ide/bleoifhkdalbjfbobjackfdifdneehpo</a><br>安装 不多说了<br>以后打开Chrome 地址栏输入 chrome://apps/  就可以找到了。当然 macos下 保留到程序坞就好了</p>
+<p>在连接之前，我们先确保com口是连接到macos的 而不是虚拟机里面。<br>然后最最重要的一点，点击右上角的齿轮按钮（设置），然后点击左右的 COMMUNICATIONS  找到 BaudRate 改成115200<br>这个我很服，因为英文不好，尤其是大写的英文字母更容易迷糊，更想不到官网出的ide不能自动识别倍率。所以一度懵逼了很久。<br>设置好后 回到webide主界面，点右上角 电源插头的按钮，选择对应接口。重启一次开发板。ok了</p>
+<p>这里有 webide的几个说明<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Quick+Start+Code">http://www.espruino.com/Quick+Start+Code</a></p>
+<p>测试一下.这里又一个坑，我一度以为 是右侧代码 点中间的上箭头 然后就可以运行的，后来不是那么回事。。。。</p>
+<p>还是点左侧 那个带叉号的 左箭头（我以为是退出 关闭或者什么的，结果是切换视图） 看到光标闪烁了。输入<br>process.memory();<br>回车<br>’‘’</p>
+<blockquote>
+<p>process.memory();<br>={ free: 1671, usage: 29, total: 1700, history: 7,<br>  gc: 0, gctime: 1.56, blocksize: 16 }</p>
+</blockquote>
+<p>’‘’<br>再试试<br>var wifi = require(“Wifi”);<br>wifi.connect(“wifi名字”, {password: “wifi密码”});<br>然后神坑又出现了，不支持中文，先试试连接手机热点<br>wifi.connect(“Lei”, {password: “11111111”},function(err){if(err)console.log(err);else console.log(“connected!”);})<br>提示=undefined<br>过一会又提示no_ap_found的话就是wifi名字不对<br>提示connected! 就连接成狗了，大概需要1-15秒。<br>然后查看一下<br>wifi.getStatus()<br>wifi.getIP()<br>返回json格式的数据 很舒服哦<br>其他还有</p>
+<p>wifi.save()  好像要保存 和lua以及mpy不一样，不保存重启就嗝屁<br>重启后 获取ip的话使用<br>require(“Wifi”).getIP();</p>
+<p>webide 还有一个坑 就是 有时候 无法输入，要等一会儿，一直到底部提示 SENT才可以</p>
+<p>espruino有一个digitalPulse 函数，是操作gpio的，比如</p>
+<p>digitalPulse(D2,0,10000)<br>他会拉低gpio2 然后维持10秒，然后再拉高。不管之前是什么状态。<br>暂时不知道是否影响后面的程序制定，但同一个口的话 只能顺序操作<br>我们使用 digitalWrite试试点亮一下 ESP8266 12F的核心板载led<br>GPIO02 对应的nodemcu的D4<br>这里要用D2 对应的GPIO02 而不是D4<br>官方写法<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Reference#l__global_digitalWrite">http://www.espruino.com/Reference#l__global_digitalWrite</a><br>function digitalWrite(pin, value)<br>参数<br>pin - The pin to use</p>
+<p>value - Whether to pulse high (true) or low (false)</p>
+<p>digitalWrite(D2, true);<br> digitalWrite(D2, false);<br>或者<br>digitalWrite(D2, 1);<br>digitalWrite(D2, 0);</p>
+<p>现在简单写一个 拉低GPIO0 第一次打开LED 第二次关闭LED的代码试试，也就是要用 digitalRead(pin)了<br>还有按键的响应<br> setWatch(function, pin, options)</p>
+<p>经典的js代码<br>function toggle() {<br>    if(digitalRead(D2)==1){<br>        digitalWrite(D2,0);<br>        print(“open led”);<br>    }<br>    else{<br>        digitalWrite(D2,1);<br>        print(“close led”);<br>    }<br>}<br>setWatch(toggle,D0,{repeat:true,edge:’rising’,debounce:100}); //100ms防抖</p>
+<p>//不防抖 setWatch(toggle,D0,{repeat:true,edge:’rising’});<br>但是发现  digitalWrite 后  digitalRead依旧是1<br>而且中间我如果再次 digitalRead(D2) 的话，D2 会改成高电平 也就是说 digitalRead(D2)会读取初始状态并且重置到初始状态<br>因为刚刚开始鼓捣也没有去研究更多，所以临时解决办法 就是另外引入一个变量了<br>以后再研究<br>var temp = 1;<br>function toggle() {<br>    if(temp ==1){<br>        digitalWrite(D2,0);<br>        print(“open led”);<br>        temp = 0;<br>    }<br>    else{<br>        digitalWrite(D2,1);<br>        print(“close led”);<br>        temp = 1;<br>    }<br>}<br>setWatch(toggle,D0,{repeat:true,edge:’rising’,debounce:100}); //100ms防抖</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/05/ESP8266/nodemcu%E7%82%B9%E4%BA%AEESP8266ES-12F%E8%87%AA%E5%B8%A6%E7%9A%84%E8%93%9D%E8%89%B2led/" rel="prev" title="点亮ESP8266ES-12F自带的蓝色led">
+      <i class="fa fa-chevron-left"></i> 点亮ESP8266ES-12F自带的蓝色led
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/" rel="next" title="micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比">
+      micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">joyanhui@qq.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joyanhui@qq.com</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

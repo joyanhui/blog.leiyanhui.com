@@ -146,6 +146,252 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/" class="post-title-link" itemprop="url">epp/EclipsePHP Studio导入dw项目和解决中文乱码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:54:55" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>新建一个项目，项目名称和原来的程序的文件夹名字一样，就可以看到原来的项目里面的所有文件了。</p>
+<p>中文乱码，解决方法</p>
+<p>右键项目：属性》资源》文本文件编码&gt;utf-8</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/dell-venue-11-pro.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/dell-venue-11-pro.html/" class="post-title-link" itemprop="url">Dell venue 11 pro 7130 超频 v11p温度墙功耗墙</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:55:15" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>古董机器了。。。一直用，最近卡的比较离谱</p>
+<p>网上大概搜索了一下，原来是dell和intel给板子加了一个温度墙和功耗墙。根据网上资料多次尝试\</p>
+<p>准备：usb-hub  鼠标键盘  U盘一个<br>软件：最新版本bois。为了安全期间用更新了A15的bois<br><code>https://www.dell.com/support/home/cn/zh/cndhs1/Drivers/DriversDetails?driverId=DVM7Y</code><br>DiskGenius<br>bootx64.efi<br>Intel(R) Extreme Tuning Utility</p>
+<p>首先当然是刷bois到A15，据说A18也可以，未经测试<br>1、插入U盘删除所有分区，然后转换为GUID分区格式，创建esp分区100M就好了，去掉创建MSR。默认会多创建一个分区<br>2、在多创建的分区里面建立文件夹efi/boot 把bootx64.efi复制进来<br>3、重启电脑，点F12，进入bois setup<br>4、选择 boot sequence 再点击右边的add boot<br>option，点FileName后面的浏览（三个点），找到刚刚的bootx64.efi 点ok<br>5、在Boot Option Name里面随便输入几个字母，例如 USB boot For<br>efi，保存重启<br>6、再点F12选择 USB boot For efi 启动<br>7、顺利话进入efi的命令了。依次输入<br><code> setup_var 0xD0E 0x00 setup_var 0x54 0x00 setup_var 0xD04 0x00 setup_var 0xD0D 0x00 setup_var 0x39 0x00 setup_var 0x23 0x07 setup_var 0x3A 0x10</code><br>大致意思是 设置 地址 值。<br>setup_var 0x23 0x07 的意思是93度，同样84度就是 setup_var 0x23 0x10<br>默认温度是68 + 0x10【十进制16】 = 84<br>默认温度是68 + 0x16【十进制22】 = 90<br>默认温度是68 + 0x1b【十进制27】 = 95<br>cpu不能长时间运行在85以上的，所建议设置84度setup_var 0x23 0x10</p>
+<p>然后重启电脑，安装Intel(R) Extreme Tuning Utility在Intel(R) Extreme<br>Tuning<br>Utility的左下角有一个温度的显示的勾号，鼠标移上去如果显示0-68就是没搞定，检查一下bois版本还有那一堆字符有没有输入错误。如果输错了，就再搞一边哦<br>然后 Intel(R) Extreme Tuning Utility里面的all<br>Control里面看看cpu功率位置默认6瓦<br>是不是也可一选择更多了。不过建议10瓦以内哦。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/css-html-print.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/css-html-print.html/" class="post-title-link" itemprop="url">css html 在打印效果中的布局</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:55:30" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>根据网上的资料，得知在网页打印中 屏幕的dpi不是传说中的72dpi 而是96dpi\</p>
+<p>我们得知A4纸张的尺寸是210×297mm，按1英寸=25.41mm换算，即8.264×11.688英寸<br>所以，A4纸96dpi下的分辨率是794×1123。<br>也有一种说法是width:794px;height:1090px; 可能考虑到了页眉页脚</p>
+<p>在票据打印机的时候，我使用no-webkit布局。页边距0.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/chrome-disktop-app.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/chrome-disktop-app.html/" class="post-title-link" itemprop="url">新版Chrome创建桌面网页应用的方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:56:12" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原来的创建应用程序快捷方式 和 创建任务栏图标都不能用。\</p>
+<p>方法 直接在桌面新建快捷方式</p>
+<p><code>D:GreenSoftBrowserChromeChrome.exe %U --app=https://wx.qq.com/</code><br>兼容MyChome绿色版管理器，<code>D:GreenSoftBrowserMyChromeMyChrome.exe %U --app=https://wx.qq.com/</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/chrome-add-crx.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -553,282 +799,6 @@ add_filter( 'enter_title_here', 'change_default_title' );
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centosfirewall/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/centosfirewall/" class="post-title-link" itemprop="url">centos7默认防火墙firewall配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:54:08 / 修改时间：10:57:11" itemprop="dateCreated datePublished" datetime="2020-08-22T00:54:08+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>centos7不再使用iptable  默认改用firewall 更简单了一点<br>临时<br>firewall-cmd –zone=public –add-port=22/tcp </p>
-<p>永久/重启后有效<br>firewall-cmd –zone=public –add-port=22/tcp –permanent<br>firewall-cmd –zone=public –add-port=443/tcp –permanent<br>firewall-cmd –zone=public –add-port=9980/tcp –permanent<br>firewall-cmd –zone=public –add-port=9981/tcp –permanent<br>firewall-cmd –zone=public –add-port=3306/tcp –permanent</p>
-<p>删除</p>
-<p>firewall-cmd –zone=public –remove-port=39000-40000/tcp –permanent<br>firewall-cmd –zone=public –remove-port=3322/tcp –permanent<br>firewall-cmd –zone=public –remove-port=8888/tcp –permanent<br>firewall-cmd –zone=public –remove-port=20/tcp –permanent<br>firewall-cmd –zone=public –remove-port=21/tcp –permanent<br>firewall-cmd –zone=public –remove-port=80/tcp –permanent</p>
-<p>firewall-cmd –list-ports #端口列表<br>systemctl start firewalld.service  #启动firewall<br>firewall-cmd –reload #重启firewall<br>systemctl stop firewalld.service #停止firewall<br>systemctl disable firewalld.service #禁止firewall开机启动<br>systemctl enable firewalld.service #开机启动</p>
-<p>firewall-cmd –state #查看默认防火墙状态（关闭后显示notrunning，开启后显示running）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/CentOS7-7-Minimal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/CentOS7-7-Minimal/" class="post-title-link" itemprop="url">cento7最小化安装记录 附带宝塔安装</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:52:39 / 修改时间：10:57:52" itemprop="dateCreated datePublished" datetime="2020-08-22T00:52:39+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>选择minimal镜像 ，选择目前最普及的centos7，不选8<br><a target="_blank" rel="noopener" href="http://mirrors.huaweicloud.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso">http://mirrors.huaweicloud.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a><br>下载后安装，记录过程<br>在pd中安装的默认使用64g硬盘2核心1.5G内存，未修改<br>启动后，选择安装有提示网络错误，设置允许网络、确定网络正常使用整个虚拟硬盘。设置root密码。<br>大概10分钟左右，重启登录完成，测试ping正常。占用空间1.69G左右。</p>
-<p>安装宝塔，参考bt.cn</p>
-<p><a target="_blank" rel="noopener" href="http://10.x.x.x/">http://10.x.x.x</a>:8888 访问宝塔</p>
-<p>收工</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centos-ftpserver/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/centos-ftpserver/" class="post-title-link" itemprop="url">centos下安装ftpserver</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:52:07 / 修改时间：10:58:23" itemprop="dateCreated datePublished" datetime="2020-08-22T00:52:07+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>还是装个ftp&lt;!–more–&gt;</p>
-<pre>
-yum -y install vsftpd
-chkconfig vsftpd on
-</pre>
-
-<p>vi /etc/vsftpd/vsftpd.conf</p>
-<h1 id="chroot-list-enable-YES"><a href="#chroot-list-enable-YES" class="headerlink" title="chroot_list_enable=YES"></a>chroot_list_enable=YES</h1><h1 id="default-follows"><a href="#default-follows" class="headerlink" title="(default follows)"></a>(default follows)</h1><h1 id="chroot-list-file-etc-vsftpd-chroot-list"><a href="#chroot-list-file-etc-vsftpd-chroot-list" class="headerlink" title="chroot_list_file=/etc/vsftpd.chroot_list"></a>chroot_list_file=/etc/vsftpd.chroot_list</h1><p>改为<br>chroot_list_enable=YES</p>
-<h1 id="default-follows-1"><a href="#default-follows-1" class="headerlink" title="(default follows)"></a>(default follows)</h1><p>chroot_list_file=/etc/vsftpd/chroot_list</p>
-<p>useradd -d /home/wwwroot/ftpuser -g ftp -s /sbin/nologin ftpuser</p>
-<p>passwd ftpuser</p>
-<p>vi /etc/vsftpd/chroot_list</p>
-<p>service vsftpd restart</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/centos-add-harddisk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/centos-add-harddisk/" class="post-title-link" itemprop="url">centos挂载硬盘</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 00:51:03 / 修改时间：10:58:59" itemprop="dateCreated datePublished" datetime="2020-08-22T00:51:03+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1 查看硬盘</p>
-<pre>
-fdisk -l
-</pre>
-
-<p>/dev/sda  就是需要挂载的硬盘了</p>
-<pre>
-fdisk /dev/sda
-</pre>
-
-<p>依次输入  n p 1 p w 创建一个分区<br>fdisk -l 再次查看，看到sda1<br> <pre><br>mkfs.ext4 /dev/sda1 #格式化<br></pre></p>
-<p>挂载</p>
-<pre>
-mkdir /data
-mount /dev/sda1 /data
-</pre>
-
-<p>开机启动挂载</p>
-<pre>
-echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
-</pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -898,7 +868,7 @@ echo "/dev/sda1  /data  ext4    defaults        0 0" &gt;&gt; /etc/fstab
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

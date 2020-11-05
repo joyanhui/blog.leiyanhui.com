@@ -146,6 +146,287 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/05/ESP8266/nodemcu_espruino_nodemcu/" class="post-title-link" itemprop="url">micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 16:26:34 / 修改时间：17:23:13" itemprop="dateCreated datePublished" datetime="2020-11-05T16:26:34+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先给espruino（JavaScript）正名一下，很多人一看到JavaScript的字样 就觉得效率低。其实你搞错的概念。<br>micropython（Python）espruino（JavaScript） nodemcu（lua）他们并非真正的对应的语言。<br>就是类似 你能说 nodejs和浏览器的JavaScript 是一回事吗？<br>如果你拿浏览器的JavaScript和Python比，那就是真的傻杠精了。<br>JavaScript 目前除浏览器上用，还有后端服务器用nodejs（在很多场景下 执行效率远超Python 是他的十几二十倍，所以这时候JavaScript不等于慢） ，还有electron也很成熟，已经有很多大厂软件在用很多年了。另外 v8引擎好多年前已经支持浏览器上的JavaScript编译成二进制了。这些都不说太多了。你只要搞清楚 espruino 并非你印象里面的浏览器脚本语言 那么低效就好了。</p>
+<p>micropython（Python）也好espruino（JavaScript）或者 nodemcu（lua）也好 都是脚本 ，都需要解析，都是对应的标准语言的阉割版或者升级精简针对版本  或者 高仿版  但是都不是一回事。<br>你可理解为，只是为了让不同喜好的人用各自习惯的语法 去做同样的事情。也可以理解为 固件内置了分别对应高仿语言的一个翻译器，翻译指定的语法的文本文件，每次都翻译一次然后执行，都是低效的，并没有实质上的区别，效率理论上都是一样的（当然个别固件可能某些方面的运算优化的略好，但是再好 也没有C编译的二进制好）。</p>
+<p>他们和C/C++在性能方面 都完全没有可比性，如果在大量数据处理上可以直接说 都不是一个量级的  但是差距也不是那么大 尤其是物联网客户端本身没有太多太大数据要处理，大部分场景的响应时间 都可以接受1-100毫秒的差距的情况下。</p>
+<p>为什么 性能的差距并不会影响实际场景的情况下 还有很多大神说 这三个都是玩具，只适合开发 不适合生产呢。首先一点  就是C能做的事情很多，三个脚本语言还是收到一些限制 虽然不多 但是也会有。另外一点，三个脚本 在esp8266 还有stm32上 发展的时间都不太长，C毕竟从80年代 或者更久？都在搞单片机了。最后两点 最重要 也是最多的情况： 大神的经验、自尊心。大神不见得比你厉害多少，大神之所以是大神，前辈之所以是前辈，是是因为熟悉度 是因为效率 是因为接触的更多  是因为积累，简单概括 就是经验，一个写了数年几十年C代码的人，他自然手到擒来甚至自己还有个人代码库个人函数库，无论是开发速度还是bug调试 他用C不见得比你用Python慢多少。其实也就是可笑的自尊心，首先部分大神 对Python lua JavaScript可能压根不会或者只是入门或者勉强会点 或者最好也是略微熟悉用其中某个语言做过几个小项目，他在这方面谈不上丰富的经验积累，他也不可能花费大量的时间 去学习 或者熟悉他，一个简单的应用场景 代码容易出现失误，还要翻看手册查询资料，他C写的很快 编译出来的程序效率贼高，他凭啥支持脚本语言？ 这类大神你让他用脚本效率更差，更痛苦，还有几行代码有时候可以实现C洋洋洒洒一大堆的功能 脸上也挂不住不是。毕竟玩汇编的也看不上C C连C++都看不上 java更看不上，你说脚本怎么能入他们眼。<br>说多了 也是开玩笑  ，言归正传</p>
+<p>micropython（ Python） espruino（JavaScript）  nodemcu（lua）三种固件和开发环境，我大致对比了一下 只是在初步的感觉上，都差不多。<br>首先 都不怎么适合正经的生产环境，不过也都适合 产品快速上线，尤其是对C不感冒的情况下。<br>另外有一些小的差距，因为是初步的了解可能不太准确。<br>首先是代码语法的感官上。 我接触java和JavaScript比较多也比较早，所以更喜欢espruino多一些。lua说不清的感觉，Python那种对齐方式在mpy上一贯保留下来了，还好。毕竟年级大了，很多敲代码的动作几乎成了肌肉记忆 （ 比如 我按下if 就会习惯性按（ 以及{ 因为vsc会自动补一个完整的if(){}  ） 所以我喜欢epsruino多一些。<br>其次是入门IDE工具上。nodemcu 有国产的IDE（C#）写的，这个真的 是新手入门专用，蛋疼。另外 ESPlorer（俄作者java写的）nodemcu和micropython都支持，也是比较方便 ，也很适合初步使用 功能也挺多的。然后espruino有一个webide 虽然基于chrome的浏览器插件，有一些按钮ui和英文的坑，不过也挺适合新手使用。 基本熟悉后，其实都是回归到Visual Studio Code 这方面 观感差不多。<br>中文资料和初学入门方面  真的nodemcu相对多一些 micropython也可以，espruino就比较惨，目前只看到csdn上小鱼有点电大神有一些系统教程，另外四处有一些零散的几篇文章，真的是很少很少。<br>其他一些支持上：<br>据说espruino不支持ucp 其他两个支持<br>espruino对JSON的原生支持，其他需要库或者另外引入，想一下json的全称。<br>nodemcu支持smartconfig（出厂固件多数不支持，需要重新编译） 其他两个不支持（可以在编译固件的时候用C写一个也不难 ）这个没太大问题<br>另外引用的 别人的” MicroPython 和Espruino与原生SDK C语言开发相比， 不支持SmartConfig和sniffer，不支持IR  “</p>
+<p>主观上对nodemcu的一些反感：官方工具 尤其是国产安信可 对非win的支持太少，另外据说不是完全开源（这个不太清楚哈）。另外lua语言太小众了，除非之前已经刚刚好有基础，不然如熟悉lua的精力 不如去重温一下C和看看原生SDK。另外一点搞不懂安信可，既然是公司 那么官方工具上一堆署名个人的工具感觉不那么正规，ide的丑和简陋也有点让我排斥。不过既然做了这种简易的ide 甚至走淘宝线路 都针对几乎0基础的初学者了，为什么就不能多做一些ide的优化 一键开发环境（虚拟机 docker）的工作 也花不了太多时间吧。 另外就是 <a target="_blank" rel="noopener" href="https://nodemcu-build.com/">https://nodemcu-build.com</a> 这个网站，我一直没搞明白 为什么一直提示 模块太多，询问很多人都是同样情况 而且连续多天都是。然后stats页面 堂堂知名固件  每天只生成几十个 ？ 要么是确实有bug 要么是用的人真的是很少很少。另外就是既然是右键发过来的是url链接 为什么不能把一些常见的定制的固件或者所有可公开的直接提供下载呢？</p>
+<p>因为目前的项目 想尽快出小批量产品，而且对实时性要求并非那么高，所以 我首先排除了C，然后纠结了几天smartconfig后决定排除nodemcu，剩下就是micropython和espruino了，因为对Python远远谈不上熟练，而JavaScript入门几十年还经常在web开发使用，所以我更加倾向于选择espruino  以后如果真的发展到团队开发，一个JavaScript程序员也好招聘的多 哈哈。 后续如果有大坑 再换吧</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/05/ESP8266/Espruino%E5%9B%BA%E4%BB%B6javascript%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">在Esp8266上使用JavaScript语法开发 以及 webide集成开发环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 12:39:24 / 修改时间：16:27:30" itemprop="dateCreated datePublished" datetime="2020-11-05T12:39:24+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这个坑是真的多如牛毛。。。<br>本文基于macos 当然win更方便</p>
+<p>在某esp8266群里 遇到有人说 js效率怎么怎么低 比Python库少多少之类的指责。对方可能是一个学生，就辩了几句。<br>首先此JavaScript 非浏览器的JavaScript。micropython也非Python。具体可以看我写的 micropython（ Python） espruino（JavaScript）  nodemcu（lua） 之间的初步对比</p>
+<p>第一部 下载固件<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Download">http://www.espruino.com/Download</a><br>因为我的是512k的 所以直接下载<br><a target="_blank" rel="noopener" href="https://www.espruino.com/binaries/espruino_2v08_esp8266_combined_512.bin">https://www.espruino.com/binaries/espruino_2v08_esp8266_combined_512.bin</a><br>其他的自己选择，还有分开烧录的方法<br>bin文件    1024KB( 512KB+ 512KB) 8Mbit    2048KB( 512KB+ 512KB) 16Mbit    4096KB( 512KB+ 512KB) 32Mbit<br>boot_v1.6.bin    0x0    0x0    0x0<br>espruino_esp8266_user1.bin    0x1000    0x1000    0x1000<br>esp_init_data_default.bin    0xFC000    0x1FC000    0x3FC000<br>blank.bin    0xFE000    0x1FE000    0x3FE000<br>官网说明<br><a target="_blank" rel="noopener" href="http://www.espruino.com/ESP8266_Flashing">http://www.espruino.com/ESP8266_Flashing</a><br>烧录工具 随意，官网是用的esptool.py  我是用的nodemuc-pyFlasher 结果出错<br>然后因为没装esptool 所以换了win下的 flash_download_tools 在 乐鑫官网 有下载<br><a target="_blank" rel="noopener" href="https://www.espressif.com/zh-hans/support/download/other-tools">https://www.espressif.com/zh-hans/support/download/other-tools</a><br>单一文件<br>直接烧录到 0x0 就好了<br>CrystalFreq选择26M  SPI SPEED 选40MHz SPI MODE选择QIO  flash size选择对应的，我这个512的选4M 其他不勾选，先擦除一次 或者烧写一个空白的文件，然后点Start开始 等待完成。</p>
+<p>烧录后，用串口工具 打开，选择 115200，因为在win下烧写的，所以顺手用sscom串口调试工具，这里发现又一个神坑。就是sscom5.13.1 打开串口后  开发板显示的是乱码，需要先随便选一个倍率，然后再选115200才可以</p>
+<p>可以看到  就好了<br>’‘’</p>
+<hr>
+<p>|  <strong>|___ _</strong> <strong>_ _ <em>|</em>|___ _</strong><br>|  <strong>|_ -| . |  _| | | |   | . |<br>|__</strong>|<strong><em>|  <em>|</em>| |</em></strong>|<em>|</em>|<em>|__</em>|<br>         |_| espruino.com<br> 2v08 (c) 2019 G.Williams<br>Espruino is Open Source. Our work is supported<br>only by sales of official boards and donations:<br><a target="_blank" rel="noopener" href="http://espruino.com/Donate">http://espruino.com/Donate</a><br>Flash map 512KB:256/256, manuf 0x20 chip 0x4016<br>WARNING: <strong>* Your flash chip does not match your flash map *</strong></p>
+<blockquote>
+</blockquote>
+<p>’‘’<br>这里有一行警告信息，暂时不知道有什么影响，部分串口工具前面会显示乱码 不用管它。后面能显示版本号就ok了。</p>
+<p>然后安装官方推荐的 webide  不得说挺好用的 ，就是全英文 有点。。。<br>安装方法 首先电脑上有chrome 然后有梯子可以访问 chrome 商店。<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Web+IDE">http://www.espruino.com/Web+IDE</a>  这里有说明<br>用Chrome打开商店地址<br><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/espruino-web-ide/bleoifhkdalbjfbobjackfdifdneehpo">https://chrome.google.com/webstore/detail/espruino-web-ide/bleoifhkdalbjfbobjackfdifdneehpo</a><br>安装 不多说了<br>以后打开Chrome 地址栏输入 chrome://apps/  就可以找到了。当然 macos下 保留到程序坞就好了</p>
+<p>在连接之前，我们先确保com口是连接到macos的 而不是虚拟机里面。<br>然后最最重要的一点，点击右上角的齿轮按钮（设置），然后点击左右的 COMMUNICATIONS  找到 BaudRate 改成115200<br>这个我很服，因为英文不好，尤其是大写的英文字母更容易迷糊，更想不到官网出的ide不能自动识别倍率。所以一度懵逼了很久。<br>设置好后 回到webide主界面，点右上角 电源插头的按钮，选择对应接口。重启一次开发板。ok了</p>
+<p>这里有 webide的几个说明<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Quick+Start+Code">http://www.espruino.com/Quick+Start+Code</a></p>
+<p>测试一下.这里又一个坑，我一度以为 是右侧代码 点中间的上箭头 然后就可以运行的，后来不是那么回事。。。。</p>
+<p>还是点左侧 那个带叉号的 左箭头（我以为是退出 关闭或者什么的，结果是切换视图） 看到光标闪烁了。输入<br>process.memory();<br>回车<br>’‘’</p>
+<blockquote>
+<p>process.memory();<br>={ free: 1671, usage: 29, total: 1700, history: 7,<br>  gc: 0, gctime: 1.56, blocksize: 16 }</p>
+</blockquote>
+<p>’‘’<br>再试试<br>var wifi = require(“Wifi”);<br>wifi.connect(“wifi名字”, {password: “wifi密码”});<br>然后神坑又出现了，不支持中文，先试试连接手机热点<br>wifi.connect(“Lei”, {password: “11111111”},function(err){if(err)console.log(err);else console.log(“connected!”);})<br>提示=undefined<br>过一会又提示no_ap_found的话就是wifi名字不对<br>提示connected! 就连接成狗了，大概需要1-15秒。<br>然后查看一下<br>wifi.getStatus()<br>wifi.getIP()<br>返回json格式的数据 很舒服哦<br>其他还有</p>
+<p>wifi.save()  好像要保存 和lua以及mpy不一样，不保存重启就嗝屁<br>重启后 获取ip的话使用<br>require(“Wifi”).getIP();</p>
+<p>webide 还有一个坑 就是 有时候 无法输入，要等一会儿，一直到底部提示 SENT才可以</p>
+<p>espruino有一个digitalPulse 函数，是操作gpio的，比如</p>
+<p>digitalPulse(D2,0,10000)<br>他会拉低gpio2 然后维持10秒，然后再拉高。不管之前是什么状态。<br>暂时不知道是否影响后面的程序制定，但同一个口的话 只能顺序操作<br>我们使用 digitalWrite试试点亮一下 ESP8266 12F的核心板载led<br>GPIO02 对应的nodemcu的D4<br>这里要用D2 对应的GPIO02 而不是D4<br>官方写法<br><a target="_blank" rel="noopener" href="http://www.espruino.com/Reference#l__global_digitalWrite">http://www.espruino.com/Reference#l__global_digitalWrite</a><br>function digitalWrite(pin, value)<br>参数<br>pin - The pin to use</p>
+<p>value - Whether to pulse high (true) or low (false)</p>
+<p>digitalWrite(D2, true);<br> digitalWrite(D2, false);<br>或者<br>digitalWrite(D2, 1);<br>digitalWrite(D2, 0);</p>
+<p>现在简单写一个 拉低GPIO0 第一次打开LED 第二次关闭LED的代码试试，也就是要用 digitalRead(pin)了<br>还有按键的响应<br> setWatch(function, pin, options)</p>
+<p>经典的js代码<br>function toggle() {<br>    if(digitalRead(D2)==1){<br>        digitalWrite(D2,0);<br>        print(“open led”);<br>    }<br>    else{<br>        digitalWrite(D2,1);<br>        print(“close led”);<br>    }<br>}<br>setWatch(toggle,D0,{repeat:true,edge:’rising’,debounce:100}); //100ms防抖</p>
+<p>//不防抖 setWatch(toggle,D0,{repeat:true,edge:’rising’});<br>但是发现  digitalWrite 后  digitalRead依旧是1<br>而且中间我如果再次 digitalRead(D2) 的话，D2 会改成高电平 也就是说 digitalRead(D2)会读取初始状态并且重置到初始状态<br>因为刚刚开始鼓捣也没有去研究更多，所以临时解决办法 就是另外引入一个变量了<br>以后再研究<br>var temp = 1;<br>function toggle() {<br>    if(temp ==1){<br>        digitalWrite(D2,0);<br>        print(“open led”);<br>        temp = 0;<br>    }<br>    else{<br>        digitalWrite(D2,1);<br>        print(“close led”);<br>        temp = 1;<br>    }<br>}<br>setWatch(toggle,D0,{repeat:true,edge:’rising’,debounce:100}); //100ms防抖</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/nodemcu%E7%82%B9%E4%BA%AEESP8266ES-12F%E8%87%AA%E5%B8%A6%E7%9A%84%E8%93%9D%E8%89%B2led/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/05/ESP8266/nodemcu%E7%82%B9%E4%BA%AEESP8266ES-12F%E8%87%AA%E5%B8%A6%E7%9A%84%E8%93%9D%E8%89%B2led/" class="post-title-link" itemprop="url">点亮ESP8266ES-12F自带的蓝色led</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 09:33:00 / 修改时间：10:46:04" itemprop="dateCreated datePublished" datetime="2020-11-05T09:33:00+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>网上搜索资料 是对应的GPIO2 =》D4</p>
+<p>这里先选择lua</p>
+<p>直接点亮<br>IO_LED_AP = 4<br>gpio.mode(IO_LED_AP, gpio.OUTPUT)<br>gpio.write(IO_LED_AP, gpio.LOW)</p>
+<p>通过Flash按键点亮<br>IO_LED_AP = 4 –核心板自带蓝色灯 说是GIOP4 对应的D4<br>IO_BTN_CFG = 3  –开发板自带的Flash按键 用于烧写固件 这里用来 测试<br>gpio.mode(IO_LED_AP, gpio.OUTPUT) –输出模式<br>gpio.mode(IO_BTN_CFG, gpio.INT) –中断模式<br>function onBtnEvent()<br>    gpio.write(IO_LED_AP, gpio.LOW) –拉低led<br>    print(‘up~’)<br>end<br>gpio.trig(IO_BTN_CFG, ‘up’, onBtnEvent) -检测按键</p>
+<p>略微复杂一点 按一下打开 再按一下关闭。加一个全局 变量</p>
+<p>IO_LED_AP = 4 –核心板自带蓝色灯 说是GIOP4 对应的D4<br>IO_BTN_CFG = 3  –开发板自带的Flash按键 用于烧写固件 这里用来 测试<br>gpio.mode(IO_LED_AP, gpio.OUTPUT)<br>gpio.mode(IO_BTN_CFG, gpio.INT)<br>Int_LED=0 –增加一个变量<br>function onBtnEvent()<br>    if(Int_LED==0)<br>    then<br>        gpio.write(IO_LED_AP, 0) –换一种写法 更简单一些<br>        Int_LED=1<br>        print(‘open led ~’)<br>    else<br>        gpio.write(IO_LED_AP, 1)<br>        Int_LED=0<br>        print(‘close led ~’)<br>    end</p>
+<p>end<br>gpio.trig(IO_BTN_CFG, ‘up’, onBtnEvent)</p>
+<p>直接用GPIO状态来切换 开关状态 gpio.read(编号)<br>IO_LED_AP = 4 –核心板自带蓝色灯 说是GIOP4 对应的D4<br>IO_BTN_CFG = 3  –开发板自带的Flash按键 用于烧写固件 这里用来 测试<br>gpio.mode(IO_LED_AP, gpio.OUTPUT)<br>gpio.mode(IO_BTN_CFG, gpio.INT)<br>function onBtnEvent()<br>    if(gpio.read(IO_LED_AP)&gt;0)<br>    then<br>        gpio.write(IO_LED_AP, 0)<br>        print(‘open led ~’)<br>    else<br>        gpio.write(IO_LED_AP, 1)<br>        print(‘close led ~’)<br>    end<br>end<br>gpio.trig(IO_BTN_CFG, ‘up’, onBtnEvent)</p>
+<p>更复杂的不写了。。。对lua和Python都不够熟悉 没想清楚后面是用lua 还是 micropython 。<br>Espruino 基于js的倒是挺好，但是 我手上的开发板 不兼容官方的固件，而且和mpy一样不支持 smartconfig的样子</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/05/ESP8266/macos%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/05/ESP8266/macos%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">MacOs下配置ESP8266 nodemcu lua开发环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-05 09:31:58 / 修改时间：10:13:44" itemprop="dateCreated datePublished" datetime="2020-11-05T09:31:58+08:00">2020-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>之前有一个粗略的记录，重新整理</p>
+<p>1、固件<br>在线生成固件 <a target="_blank" rel="noopener" href="https://nodemcu-build.com/">https://nodemcu-build.com</a><br>我在线生成一直提示 模块太多，尚不知原因 以后再研究。<br>目前暂时用的nodemcu_float_0.9.6-dev_20150704.bin<br>micropython的固件<br><a target="_blank" rel="noopener" href="http://micropython.org/download/all/">http://micropython.org/download/all/</a><br>2、驱动程序<br>macos可以自动识别一部分串口芯片 另外CH340的驱动也可以单独安装，其他串口芯片驱动网上搜索一下，部分芯片不支持catalina有点蛋疼<br>驱动安装后 查看<br> ls /dev/tty.*<br>/dev/tty.AirPods-WirelessiAP        /dev/tty.usbserial-FD120<br>/dev/tty.Bluetooth-Incoming-Port    /dev/tty.wchusbserialfd120<br>我这里是<br>Serial port /dev/cu.wchusbserialfd120<br>3、烧录工具<br>安信可的工具挺好的，但是只支持win。我选择nodemuc-pyFlasher不用另外折腾Python了。<br><a target="_blank" rel="noopener" href="https://github.com/marcelstoer/nodemcu-pyflasher/releases">https://github.com/marcelstoer/nodemcu-pyflasher/releases</a><br>选择串口 固件 115200  DIO yes,wipe all data 就能自动烧录了 很简单。</p>
+<p>4、开发和调试工具<br>Win下可以用安信可的工具，挺好用的。还有SSCOM putty等。<br>mac下 串口调试和上传工具 我直接选 ESPlorer 万能的vsc了。vsc只做为编辑器使用，自动添加lua文件支持扩展就ok了。<br>ESPlorer <a target="_blank" rel="noopener" href="https://esp8266.ru/esplorer/">https://esp8266.ru/esplorer/</a><br>解压后直接运行 ESPlorer.jar  至少需要javase7 以上版本java环境 这个不多少</p>
+<p>关于ESPlorer 的速度选择，nodemcu应该选择9600  micropython选115200 不然会乱码</p>
+<p>所有工具我存放到百度网盘一份，或许会删除 如果不能下载 也不要联系我</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/11/03/macos/esp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -171,7 +452,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-03 10:21:08 / 修改时间：13:04:31" itemprop="dateCreated datePublished" datetime="2020-11-03T10:21:08+08:00">2020-11-03</time>
+              <time title="创建时间：2020-11-03 10:21:08 / 修改时间：21:58:34" itemprop="dateCreated datePublished" datetime="2020-11-03T10:21:08+08:00">2020-11-03</time>
             </span>
 
           
@@ -193,6 +474,7 @@
 <p>固件 下载</p>
 <p>MicroPython<br><a target="_blank" rel="noopener" href="http://micropython.org/download/all/">http://micropython.org/download/all/</a></p>
 <p><a target="_blank" rel="noopener" href="http://micropython.org/resources/firmware/esp8266-ota-20200902-v1.13.bin">http://micropython.org/resources/firmware/esp8266-ota-20200902-v1.13.bin</a></p>
+<p>Nodemcu 也就是 lua方法<br>在线生成固件 <a target="_blank" rel="noopener" href="https://nodemcu-build.com/">https://nodemcu-build.com</a></p>
 <p>驱动安装后 查看<br> ls /dev/tty.*<br>/dev/tty.AirPods-WirelessiAP        /dev/tty.usbserial-FD120<br>/dev/tty.Bluetooth-Incoming-Port    /dev/tty.wchusbserialfd120<br>我这里是<br>Serial port /dev/cu.wchusbserialfd120</p>
 <p>Python的固件 在pyflasher写入的时候选 115200  Dual I/O (DIO)</p>
 <p>在 ESPlorer查看的时候也是选择 115200 打开后显示乱码 稍后显示  就好了<br>MicroPython v1.13 on 2020-09-02; ESP module with ESP8266<br>Type “help()” for more information.</p>
@@ -595,300 +877,6 @@ http://hub-mirror.c.163.com
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/installmysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/macos/installmysql/" class="post-title-link" itemprop="url">MacOs catlina安装mysql</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-23 12:29:09 / 修改时间：12:54:46" itemprop="dateCreated datePublished" datetime="2020-08-23T12:29:09+08:00">2020-08-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>mac下mysql装到docker真的没意思，装虚拟机也是无聊。<br>&lt; !–more–&gt;<br>官网看了下最新版本是<br>mysql-8.0.21-macos10.15-x86_64.dmg</p>
-<p>用不到，找到5.7把<br>官网地址<br><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/file/?id=496479">https://dev.mysql.com/downloads/file/?id=496479</a></p>
-<p>直连地址 ，迅雷<br><a target="_blank" rel="noopener" href="https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.31-macos10.14-x86_64.dmg">https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.31-macos10.14-x86_64.dmg</a></p>
-<p>安装完成 输入mac用户密码<br>提示 里面有密码 记住免得麻烦</p>
-<p>2020-08-23T04:37:45.309952Z 1 [Note] A temporary password is generated for root@localhost: ruessO/d)2GT</p>
-<p>If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.<br>系统偏好设置 找到mysql </p>
-<p>启动<br>macos shell输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br><span class="line">mysql -uroot -p #回车后输入密码</span><br></pre></td></tr></table></figure>
-<p>5.7.6开始要用这个命令了，我们是5.7.31所以也一样</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="keyword">USER</span>() <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p>允许其他设备连接，因为我们是局域网内所以不用担心</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> host = <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
-
-<p>完毕</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/23/macos/VMwareFusionFree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/macos/VMwareFusionFree/" class="post-title-link" itemprop="url">Macos下使用VMwareFusion12配置centos/lubuntu+宝塔</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-23 10:29:44" itemprop="dateCreated datePublished" datetime="2020-08-23T10:29:44+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-24 13:03:40" itemprop="dateModified" datetime="2020-08-24T13:03:40+08:00">2020-08-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>PD据说是mac下最好的win虚拟机软件<br>但是Linux是真的蛋疼，性格不清楚，但真的无法稳定使用，经常莫名其妙就打不开了。关闭重启也没反应。<br>为什么一定要虚拟机装lnmp甚至宝塔呢。 而不是用mac自带的php或者docker呢<br>因为mac自带的php实在没法用，而且处理起来太麻烦，虚拟机装宝塔而不是docker主要还是为了方便docker的文件映射还有各种权限问题折腾起来也太麻烦了。<br>而且那些说虚拟机占用硬盘太大的，怕是没去看docker到底占用的多少，下载一个80m的镜像解压就几百M安装完宝塔和依赖库 也2G起步了。<br>废话少说，开始<br>&lt; !–more–&gt;<br>先去下载 <a target="_blank" rel="noopener" href="https://vmwarefusion.github.io/">https://vmwarefusion.github.io</a><br>貌似是技术预览版？反正总比PD靠谱<br>实际下载地址是，贴迅雷<br><a target="_blank" rel="noopener" href="https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg">https://download3.vmware.com/software/fusion/file/VMware-Fusion-e.x.p-16530630.dmg</a><br>下载centos8.2.2004<br><a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso">http://mirrors.aliyun.com/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso</a></p>
-<p>还真是预览版 <img src="https://icon.qiantucdn.com/20200823/50d3f861ddd9222c2bb84e1ee41abb2a2"></p>
-<p>无所谓了 先把PD的centos7删了，只留下俄大神win7</p>
-<p>按照提示安装VM。自带一个序列号？好吧继续下一步</p>
-<p>去掉快捷安装，引导固件 传统吧 efi还多一个分区麻烦</p>
-<p>最后一部分看一下 修改网络 桥接 自动检测 或者wifi</p>
-<p>硬盘10G吧 蓝牙 摄像头 麦克风 打印机什么用不到的移除  ok 启动</p>
-<p>提示打开了调试模式？ 先不管 安装先</p>
-<p>鼠标键盘 释放快捷键是 control+command了 </p>
-<p>centos从7 开始 就默认是图形化的界面了，虽然方便直观了但是启动安装器真的慢了很多</p>
-<p>英文美国键盘后<br><img src="https://icon.qiantucdn.com/20200823/459aa3b7f17821f01b9cb305825300f42"></p>
-<p>硬盘没配置，点一下<br><img src="https://icon.qiantucdn.com/20200823/a7366a15cd7c48ee90cd9aa2a1880e042"></p>
-<p>时区改下点上海附近<br>网络连接打开<br>SoftWare默认是Server 因为后面要装宝塔玩耍，所以这里改成mini算了<br>改完时区窗口错位了，还真是预览版。。。这。。。<br><img src="https://icon.qiantucdn.com/20200823/0bd4cc46f3fe1658d89cd06e732515f12"></p>
-<p>记得是时区设置后面是网络 网络后面是 应该是加密安全什么的，然后就是退出和安装了。<br>用tab键 和Shit+tab键 然后enter瞎按<br>终于开始了<br><img src="https://icon.qiantucdn.com/20200823/6aed7deda411bbf6e926321d70be84912"><br>新建一个用户 as上管理员<br>这次密码可以输入哈，密码输入1 提示密码太简单了。按两次Done确认就用这个</p>
-<p>等待中</p>
-<p>完成了，看不到重启按钮。。。继续tab大法</p>
-<p>重启进入 安装ssh，提示已经安装了<br>sudo yum install net-tools<br>ifconfig 看一下ip和mac地址 记住网卡名字也 ens33<br>路由器里面修改静态分批ip 到10.0.0.88<br><img src="https://icon.qiantucdn.com/20200823/3ddf669851e2a4ec12e04477606ff0612"></p>
-<p>重启一下centos网卡<br>nmcli d connect ens33 #ens33是上面ifconfig 看到的网卡名<br>ifconfig 看下新ip生效没<br>安装vmtools？<br>’‘’<br>后来 发现Fusion12+centos 没办法装VMware tools 菜单栏灰色<br>后来换了lubuntu  没啥问题了 lubuntu安装比较简单 优化部分可以参考<br><a href="/2020/08/23/momo7w/momo7w_install_ubuntu20.04/">macos安装mysql</a><br>’‘’</p>
-<p>没问题 先关闭虚拟主机 找一下前面提示的调试模式 打开虚拟机配置的 高级面板 找到故障排除 改成无</p>
-<p>还有分辨率也太高了。 改成拉伸</p>
-<p>配置成VM打开自动启动</p>
-<p>mac shell输入</p>
-<p>ssh <a href="mailto:&#121;&#97;&#110;&#104;&#x75;&#105;&#x40;&#49;&#48;&#46;&#x30;&#46;&#x30;&#x2e;&#x38;&#x38;">&#121;&#97;&#110;&#104;&#x75;&#105;&#x40;&#49;&#48;&#46;&#x30;&#46;&#x30;&#x2e;&#x38;&#x38;</a> 登录</p>
-<p>安装宝塔<br>’‘’<br>sudo passwd root #要先启动用root 不然宝塔不给装<br>su -<br> yum install -y wget &amp;&amp; wget -O install.sh <a target="_blank" rel="noopener" href="http://download.bt.cn/install/install_6.0.sh">http://download.bt.cn/install/install_6.0.sh</a> &amp;&amp; sh install.sh<br>‘’‘<br>进入宝塔面板装nginx mysql php mysql就不装了 用mac自己的就行<br>不知道为啥一定要编译安装，我明明选了极速 安装完后 内存改到256M cpu单核 就本地测试用 nginx+php  256M足够了mysql用 mac本机的<br><a href="/2020/08/23/macos/installmysql/">macos安装mysql</a></p>
-<p>慢慢跑吧，再去装一个俄大神精简的win7体验下和pd的差距 如果好用就抛弃pd<br>事实证明还不错 感觉不到差距 就是融合Unity模式 没办法从mac直接点出来win的开始菜单，有点不习惯 打开任务栏 替代一下了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/momo7w/momo7w_install_ubuntu20.04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/" class="post-title-link" itemprop="url">百元平板安装Ubuntu避坑记（momo7w 安装lubuntu20.04 LTS）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-22 11:16:28" itemprop="dateCreated datePublished" datetime="2020-08-22T11:16:28+08:00">2020-08-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-23 12:59:58" itemprop="dateModified" datetime="2020-08-23T12:59:58+08:00">2020-08-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>再次感谢 momo7w吧Q群里面的大神 尤其阿雪！<br>群号:NDc3MzI4MTgy（base64）<br>准备 hub  otg u盘键鼠</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/22/momo7w/momo7w_install_ubuntu20.04/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/xiaomi-ruler-ftp-frp.html/" class="post-title-link" itemprop="url">在小米路由器上搭建ftp并允许公网访问</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:27:05" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>米路由器搭建ftp的好处，windows下mac下都能流程访问（小米的mac客户端速度很渣的）。然后还可以内网穿透后，作为备份空间使用。<br>首先要开启ssh，具体看官网说明\</p>
-<pre><code>#下载mipsle 版本
-https://github.com/fatedier/frp/releases</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -958,7 +946,7 @@ https://github.com/fatedier/frp/releases</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

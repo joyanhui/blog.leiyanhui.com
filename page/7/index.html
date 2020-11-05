@@ -146,6 +146,279 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/mac-lamp.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/mac-lamp.html/" class="post-title-link" itemprop="url">macos下LAMP、LNMP php环境搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:51:27" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当然是首选图形界面的，想过宝塔 但是要用docker<br>有点折腾了。轻量开发而已。。懒得搞。于是决定用自带的apache和php，也放弃了nginx。<br>省的折腾，反正就是一个轻量开发环境。apache和nginx对我来说无差</p>
+<p>最后我还是换了虚拟机装了宝塔，Docker宝塔很不方便，占用硬盘也不小。暂时用的pd，回头有时间换Vmware</p>
+<p>1、准备和安装<br>1.1、查看apache和php版本</p>
+<p>我的是 Apache/2.4.33 (Unix) PHP/7.1.16 macos10.13.6</p>
+<p>1.2、安装mysql<br>，有好多版本没有macos版，本来打算安装5.5的懒得找，随便找了一个5.7<br><a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.9-osx10.10-x86_64.dmg">https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.9-osx10.10-x86_64.dmg</a><br>安装完成会提示 默认密码<br>2020-03-10T06:30:11.847539Z 1 [Note] A temporary password is generated<br>for root@localhost: )W_w1:=j&gt;trV<br>安装后系统》偏好设置，启动<br>cd /usr/local/mysql/bin/<br>./mysql -uroot -p<br>修改密码<br>set password for root@localhost = password(&#39;123&#39;);<br>其他版本从 <a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a> 下载<br>2、修改apache支持php<br>sudo code /etc/apache2/httpd.conf<br>如果找不到code可以用vi、edit或者在vscode中shift + command + p<br>输入shell选择安装code到shell<br>找到 #LoadModule php7_module libexec/apache2/libphp7.so<br>去掉注释<br>3、修改apache默认路径<br>找到<br>DocumentRoot &quot;/Library/WebServer/Documents&quot;<br>&lt;Directory &quot;/Library/WebServer/Documents&quot;&gt;<br>修改为 /Users/yanhui/www/htdocs 保存<br>sudo mkdir -p /Users/yanhui/www/htdocs<br>sudo chown -R _www:_www /Users/yanhui/www/htdocs<br>sudo chmod -R 777 /Users/yanhui/www/htdocs<br>创建一个文件<br>echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt;&gt; /Users/yanhui/www/htdocs/index.php<br>下载phpmyadmin<br>4、启动和测试<br>开启Apache：sudo apachectl start<br>关闭Apache：sudo apachectl stop<br>重启Apache：sudo apachectl restart</p>
+<p>======</p>
+<h1 id="后来升级到macos10-15-3-apache和php版本顺更为Apache-2-4-41-Unix-PHP-7-3-11"><a href="#后来升级到macos10-15-3-apache和php版本顺更为Apache-2-4-41-Unix-PHP-7-3-11" class="headerlink" title="后来升级到macos10.15.3 apache和php版本顺更为Apache/2.4.41 (Unix) PHP/7.3.11"></a>后来升级到macos10.15.3 apache和php版本顺更为Apache/2.4.41 (Unix) PHP/7.3.11</h1><p>php的一些配置</p>
+<p>复制 /etc/php.ini.defaut  为 /etc/php.ini<br>修改上次和post文件大小<br>upload_max_filesize = 200M<br>post_max_size = 200M<br>打开常用扩展 sqlite3等等</p>
+<p>安装 Homebrew 用官网推荐方法 <a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn">https://brew.sh/index_zh-cn</a></p>
+<p>/bin/bash -c &quot;$(curl -fsSL<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Homebrew/install/master/install.sh">https://raw.githubusercontent.com/Homebrew/install/master/install.sh</a>)&quot;<br>如果无法执行，可能需要挂梯子<br>然后安装 wget phpzip等需要的</p>
+<p>brew install wget<br>sudo ln -s<br>/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/<br>/usr<br>brew install autoconf<br>brew install libzip</p>
+<p>wget <a target="_blank" rel="noopener" href="http://pecl.php.net/get/zip">http://pecl.php.net/get/zip</a><br>tar -zvxf zip<br>cd zip-1.15.1<br>phpize<br>./configure<br>make &amp;&amp; make install<br>sudo nano /etc/php.ini</p>
+<h1 id="ext-zip"><a href="#ext-zip" class="headerlink" title="ext... zip"></a>ext... zip</h1><p>sudo apachectl restart</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/mac-apache-php-mysql.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/mac-apache-php-mysql.html/" class="post-title-link" itemprop="url">mac下快速搭建apache php mysql环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:52:11" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1、下载XAMPP</p>
+<pre><code>https://www.apachefriends.org/zh_cn/download.html
+还有一个5.5的版本也不错
+https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/5.5.37/</code></pre>
+<p>2、安装过程种 会需要输入管理员密码</p>
+<p>3、运行应用程序/xampp/manager-osx</p>
+<p>可以管理服务，和修改配置<br>htdocs目录：<br>/Applications/XAMPP/xamppfiles/htdocs<br>httpd.conf my.cnf、php.ini<br>/Applications/XAMPP/xamppfiles/etc</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/mac-dreamweaver-cc-2017-zhcn.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/mac-dreamweaver-cc-2017-zhcn.html/" class="post-title-link" itemprop="url">Mac安装 Dreamweaver cc 2017</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:51:49" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.打开dmg镜像，双击”Install”进行安装，登陆Adobe<br>ID（没有注册一个）完成安装；</p>
+<p>2.解压缩”Adobe Zii cc2017.zip”，双击”Adobe Zii.app”，点击”PATCH OR<br>DRAG”后提示”COMPLETED”完成破解；（如果之前安装了其他旧版本的Adobe软件，这里建议拖拽”AI<br>CC 2017.app”到破解补丁中的”PATCH OR DRAG”上，否则会导致旧版本崩溃！）</p>
+<p>汉化</p>
+<p>1.解压缩汉化包得到”zh_CN”文件夹，复制此文件夹；<br>2.打开应用程序—Adobe Dreamweaver CC<br>2017文件夹，覆盖其中的”zh_CN”文件夹；<br>3。如果以前运行过，需要删除几个文件，新安装不需要此步骤</p>
+<p>删除 /Users/用户名/Library/Application Support/Adobe/Dreamweaver CC<br>2017/zh_CN中的Configuration文件夹；（需要开启隐藏，macOS可以同时按shift+cmd+.来显示隐藏）</p>
+<p>下载地址：（存档，不公开）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/linux-autobackup-from-ftpserver.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/linux-autobackup-from-ftpserver.html/" class="post-title-link" itemprop="url">linux下自动同步备份ftp空间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>可以在路由器或者vps中运行，实现自动备份网站ftp文件。<br>直接使用wget&lt;!--more--&gt;</p>
+<pre><code>mkdir /home/wwwroot/from_aliyun_web
+cd /home/wwwroot/from_aliyun_web
+#删除10天之前的备份
+find /home/wwwroot/from_aliyun_web -mtime +10 -name &quot;bak-from*&quot; -exec rm -rf (花括号)(花括号) ;
+rm -rm ./*.sql
+#下载
+wget -nH -m --ftp-user=  --ftp-password= ftp://.ftp.aliapp.com/htdocs/ 
+#打包
+tar -zcvf bak-from-aliyun-web-$(date +%Y%m%d-%H%M).tar.gz htdocs/
+#mysqldump 没装的话，需要yum install mysql
+mysqldump -P 3306 -h rm.mysql.rds.aliyuncs.com -u[root] -p[passwd] [table]&gt;/home/wwwroot/from_aliyun_web/mysql-.sql
+#打包
+tar -zcvf bak-aliyun-mysql-.sql-$(date +%Y%m%d-%H%M).tar.gz mysql-.sql</code></pre>
+<p>chmod +x /root/auto/ftp_get.sh<br>crontab -e<br>01 02 * /root/auto/ftp_get.sh</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/light-bbs.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -584,252 +857,6 @@ goto MENU</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/epp-eclipsephp-studio-dw-utf-8.html/" class="post-title-link" itemprop="url">epp/EclipsePHP Studio导入dw项目和解决中文乱码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:54:55" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>新建一个项目，项目名称和原来的程序的文件夹名字一样，就可以看到原来的项目里面的所有文件了。</p>
-<p>中文乱码，解决方法</p>
-<p>右键项目：属性》资源》文本文件编码&gt;utf-8</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/dell-venue-11-pro.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/dell-venue-11-pro.html/" class="post-title-link" itemprop="url">Dell venue 11 pro 7130 超频 v11p温度墙功耗墙</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:55:15" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>古董机器了。。。一直用，最近卡的比较离谱</p>
-<p>网上大概搜索了一下，原来是dell和intel给板子加了一个温度墙和功耗墙。根据网上资料多次尝试\</p>
-<p>准备：usb-hub  鼠标键盘  U盘一个<br>软件：最新版本bois。为了安全期间用更新了A15的bois<br><code>https://www.dell.com/support/home/cn/zh/cndhs1/Drivers/DriversDetails?driverId=DVM7Y</code><br>DiskGenius<br>bootx64.efi<br>Intel(R) Extreme Tuning Utility</p>
-<p>首先当然是刷bois到A15，据说A18也可以，未经测试<br>1、插入U盘删除所有分区，然后转换为GUID分区格式，创建esp分区100M就好了，去掉创建MSR。默认会多创建一个分区<br>2、在多创建的分区里面建立文件夹efi/boot 把bootx64.efi复制进来<br>3、重启电脑，点F12，进入bois setup<br>4、选择 boot sequence 再点击右边的add boot<br>option，点FileName后面的浏览（三个点），找到刚刚的bootx64.efi 点ok<br>5、在Boot Option Name里面随便输入几个字母，例如 USB boot For<br>efi，保存重启<br>6、再点F12选择 USB boot For efi 启动<br>7、顺利话进入efi的命令了。依次输入<br><code> setup_var 0xD0E 0x00 setup_var 0x54 0x00 setup_var 0xD04 0x00 setup_var 0xD0D 0x00 setup_var 0x39 0x00 setup_var 0x23 0x07 setup_var 0x3A 0x10</code><br>大致意思是 设置 地址 值。<br>setup_var 0x23 0x07 的意思是93度，同样84度就是 setup_var 0x23 0x10<br>默认温度是68 + 0x10【十进制16】 = 84<br>默认温度是68 + 0x16【十进制22】 = 90<br>默认温度是68 + 0x1b【十进制27】 = 95<br>cpu不能长时间运行在85以上的，所建议设置84度setup_var 0x23 0x10</p>
-<p>然后重启电脑，安装Intel(R) Extreme Tuning Utility在Intel(R) Extreme<br>Tuning<br>Utility的左下角有一个温度的显示的勾号，鼠标移上去如果显示0-68就是没搞定，检查一下bois版本还有那一堆字符有没有输入错误。如果输错了，就再搞一边哦<br>然后 Intel(R) Extreme Tuning Utility里面的all<br>Control里面看看cpu功率位置默认6瓦<br>是不是也可一选择更多了。不过建议10瓦以内哦。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/css-html-print.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/css-html-print.html/" class="post-title-link" itemprop="url">css html 在打印效果中的布局</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:55:30" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>根据网上的资料，得知在网页打印中 屏幕的dpi不是传说中的72dpi 而是96dpi\</p>
-<p>我们得知A4纸张的尺寸是210×297mm，按1英寸=25.41mm换算，即8.264×11.688英寸<br>所以，A4纸96dpi下的分辨率是794×1123。<br>也有一种说法是width:794px;height:1090px; 可能考虑到了页眉页脚</p>
-<p>在票据打印机的时候，我使用no-webkit布局。页边距0.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/chrome-disktop-app.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/chrome-disktop-app.html/" class="post-title-link" itemprop="url">新版Chrome创建桌面网页应用的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:56:12" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>原来的创建应用程序快捷方式 和 创建任务栏图标都不能用。\</p>
-<p>方法 直接在桌面新建快捷方式</p>
-<p><code>D:GreenSoftBrowserChromeChrome.exe %U --app=https://wx.qq.com/</code><br>兼容MyChome绿色版管理器，<code>D:GreenSoftBrowserMyChromeMyChrome.exe %U --app=https://wx.qq.com/</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -899,7 +926,7 @@ goto MENU</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

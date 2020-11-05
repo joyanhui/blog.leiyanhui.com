@@ -146,6 +146,289 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/wordpress-attachments-add-categories-tags.html/" class="post-title-link" itemprop="url">wordpress媒体文件分类和添加标签</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>wordpress 媒体文件分类和标签</p>
+<pre><code>function lei_add_categories_tags_to_attachments() (花括号)
+   register_taxonomy_for_object_type( &#39;category&#39;, &#39;attachment&#39; );
+   register_taxonomy_for_object_type( &#39;post_tag&#39;, &#39;attachment&#39; );
+(花括号)
+add_action( &#39;init&#39; , &#39;lei_add_categories_tags_to_attachments&#39; );</code></pre>
+<p>但是在文字中插入的时候，还是不能按照分类检索，所以好像没啥卵用，只适合有特殊需求的人了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/window-airplay.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/window-airplay.html/" class="post-title-link" itemprop="url">Win10LTSB长期支持版本安装应用商店</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>LTSB版本默认没装edge也就忍了。但是没有应用商店，我还要玩一个小游戏。。。换系统肯定麻烦了。凑合一下，完美搞定。记录一下操作</p>
+<p>1、下载一个win10的镜像，只要64位的就可以了中文的就可以了，我下载了一个多版本。要用install.wim。</p>
+<p>2、C:\Program Files\WindowsApps <br>这个隐藏的文件夹，修改一下所有人权限为当前管理员用户。确定读写完全控制什么的</p>
+<p>3、用7zip或者其他工具打开install.wim把里面任意个分卷的\Program<br>Files\WindowsApps中的所有内容解压到C:\Program Files\WindowsApps</p>
+<p>解压完成后 把WindowsApps的所有者再改为 NT Service\TrustedInstaller<br>直接输入，搜不到这个用户的。然后修改后<br>不要点击最后一个确定，返回权限设置对话框后，先不要点确定（否则回到重新给权限），而是点击”添加”-选择主体，查找位置仍为本机，输入”All<br>Application Packages”。<br>确定然后保留默认的权限勾选。返回权限设置对话框，勾上”使用可从次对象的权限项目替换子对象的权限项目”，点确定。</p>
+<p>4、管理员权限打开Windows Powershell，运行</p>
+<p>::: (花括号)#code_Wq0(花括号)<br>Add-AppXPackage -Register &#39;C:\Program<br>Files\WindowsApps\*\AppXManifest.xml&#39; -DisableDevelopmentMode<br>:::</p>
+<p>运行后出现一堆错误，因为依赖包的问题，不用管。中间如果停止了<br>就点一下回车。然后运行一遍后 看看开始菜单有没有添加应用商店。<br>没有的话就再运行几次，第一次好像什么的也没装上，第二次装了几个应用但是没有商店，第三次就出来商店了，其实还可以再运行几次，一直到不出错所有的应用都安装。多运行几次<br>出来多装一个默认应用没什么坏处。</p>
+<p>5、卸载掉没什么的用的应用 比如天气 纸牌之类的。</p>
+<p>试试应用商店。</p>
+<p>记得使用应用商店 要打开Windows update服务</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win7lite.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/win7lite.html/" class="post-title-link" itemprop="url">一个比较小巧的Win7. 可以正常使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:33:44" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>效果不好！ 已经更换俄大神版</p>
+<p>esd压缩包，看上去很小，解压后竟然有8G多（本打算做到vhd文件，做备用系统替代winpe的，太大了，而且好像不支持vhd启动，放弃了），可以用wim方法安装。</p>
+<pre><code>dism /apply-image /imagefile:D:YanHui下载W7_885_x64.esd /index:1 /applydir:x:\
+
+作者：http://twm000.blog.163.com/
+功能&amp;特点：
+母盘基于 Windows 7 SP1 Ultimate 旗舰版 32位/64位进行精简优化封装；
+只为纯净精简封装，未额外附加常用三方软件及常用软件运行库；
+默认集成 IE9 浏览器，支持升级至 IE11 最新版本；
+已集成系统安全更新补丁至 2015 年终，理论支持后续安全更新补丁安装；
+保留原版自带 .NET Framework 3.5.1 向下兼容，并支持升级安装更高版本；
+部署过程支持全盘搜索“万能驱动助理”调用“[Win7.x86、Win7.x64]WanDrv6.exe”主程序；
+哈希&amp;校验：
+文件名称：W7_678_x86.esd
+文件大小：678 MB (711961148 字节)
+修改时间：2015年12月25日
+MD5：CD154C42D2CBF69536525C945F662700
+SHA1：4E4BD4766D284EBC980C38216FA9301EEE5BBBBA
+
+文件名称：W7_885_x64.esd
+文件大小：885 MB (928125386 字节)
+修改时间：2016年01月03日
+MD5：6FF9034EE00245ACD5DCCF9E566E4221
+SHA1：A6F618028241B4519462AAEA369601B29E8EE32F
+
+下载の地址：
+ed2k://|file|W7_678_x86.esd|711961148|559234466DBD11AC6FF2B8D4BBFD7D36|h=LHBNF6YIPY42DGNDD5SIDE5VNMRHND4D|/
+ed2k://|file|W7_885_x64.esd|928125386|1EE159BDC8245191767042917343E4DF|h=OM6V5BOR3HYA4BO4SSOZUQT7UQEA2HVZ|/</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win10-win8-1-win8-install-net3-5.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="joyanhui@qq.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小类随手记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/typecho/win10-win8-1-win8-install-net3-5.html/" class="post-title-link" itemprop="url">win10/win8.1/win8快速安装net3.5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：11:07:02" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>装载iso 或者U盘&lt;!--more--&gt;</p>
+<p>win+x,管理员命令行</p>
+<pre><code> dism.exe /online /enable-feature /featurename:netfx3 /Source:X:sourcessxs</code></pre>
+<p><img src="http://leiyanhui.com/_Resource/uploads/FormWordpress/2017/02/net3.5ing-300x128.jpg">(花括号).alignnone<br>.size-medium .wp-image-88 width=”300” height=”128”(花括号)<br>如果提示 操作完成，但未启用 NetFx3 功能。<br>需要进入控制面板，打开或者关闭windows功能，勾选net3.5 可能会自动重启电脑</p>
+<p>也可以在线搜索离线安装包<br>like：<br><a target="_blank" rel="noopener" href="http://www.onlinedown.net/soft/391920.htm">http://www.onlinedown.net/soft/391920.htm</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/win10-to-ipad.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -591,291 +874,6 @@ mysql&gt; set password for root@localhost = password(&#39;新密码&#39;);</code
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/vps-move.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/vps-move.html/" class="post-title-link" itemprop="url">自用vps迁移</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:36:15" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>vps越来越慢，只好换了一家。记录一下迁移</p>
-<p>1、<a target="_blank" rel="noopener" href="http://leiyanhui.com/reset-centos-vps/">检查和设置vps环境<br>清理无用软件</a></p>
-<pre><code>yum install screen 
-screen -S lnmp</code></pre>
-<p>2、搭建 四四日\</p>
-<pre><code>https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh
-chacha20的安装会出错，主要是一个lib的插件，手动安装，然后再用脚本覆盖安装一次就可以 了</code></pre>
-<p>mv 1803898290.txt ssr.sh</p>
-<pre><code>chmod +x ssr.sh &amp;&amp; bash ssr.sh
-
-#因为这库是基于C语言的，所以我们先去安装GCC
-yum -y groupinstall &quot;Development Tools&quot;
-#下载最新稳定版本
-wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz
-#解压
-tar xf LATEST.tar.gz &amp;&amp; cd libsodium-stable
-#编译
-./configure &amp;&amp; make -j4 &amp;&amp; make install
-echo /usr/local/lib &gt; /etc/ld.so.conf.d/usr_local_lib.conf
-ldconfig</code></pre>
-<p>wget -N --no-check-certificate<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh</a> &amp;&amp;<br>chmod +x ss-go.sh &amp;&amp; bash ss-go.sh</p>
-<p>wget --no-check-certificate -O shadowsocks-all.sh<br><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh">https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</a><br>chmod +x shadowsocks-all.sh<br>./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</p>
-<p>3、 BBR 加速部署</p>
-<p>yum -y install wget<br><a target="_blank" rel="noopener" href="http://leiyanhui.com/_Resource/uploads/2019/02/2746226282.txt">bbr.sh.txt</a><br>mv 2746226282.txt bbr.sh</p>
-<pre><code>    wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
-    chmod +x bbr.sh
-./bbr.sh</code></pre>
-<p>4、安装LNP</p>
-<pre><code>wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz &amp;&amp; tar zxf lnmp1.5.tar.gz &amp;&amp; cd lnmp1.5 &amp;&amp; LNMP_Auto=&quot;y&quot; DBSelect=&quot;0&quot; PHPSelect=&quot;5&quot; SelectMalloc=&quot;1&quot; ./install.sh lnmp</code></pre>
-<p>5、迁移文件<br>6、覆盖nginx php配置文件、设置 /home/wwwroot/ 子目录权限<br>/usr/local/nginx/conf<br>/usr/local/php/etc/</p>
-<pre><code>chattr -i /home/wwwroot/*/.user.ini
-tar -xzvf www-wwwroot-***.tar.gz
-chown www:www -R  /home/wwwroot/*
-chattr +i /home/wwwroot/*/.user.ini
-chmod +x backup.sh</code></pre>
-<p>6、添加自动备份计划任务和定时重启<br>yum install lftp</p>
-<p>crontab -e</p>
-<pre><code>0 3 * * * /home/wwwroot/backup.sh
-59 23 * * * /sbin/reboot</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/ubuntu-to-go.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/ubuntu-to-go.html/" class="post-title-link" itemprop="url">ubuntu to go</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:36:37" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>chrome + qq + vsc好像基本就够用平时玩的了。<br>所以试试看看吧</p>
-<p>在wtg硬盘上最后分了30G出来，u盘iso启动，直接就在装上了。适用流畅，暂时还没有在其他电脑测试。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/ubuntu-clash.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/ubuntu-clash.html/" class="post-title-link" itemprop="url">ubuntu下安装某c工具用来v上网</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:45:07" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1、创建一个目录</p>
-<p>cd ~<br>下载 <a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">https://github.com/Dreamacro/clash/releases</a><br>解压<br>右键点击 clash-linux，选择属性，权限处勾选允许以程序执行<br>重命名为 clash<br>2、下载某配置文件<br>wget -O config.yml<br><a target="_blank" rel="noopener" href="https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info">https://v2.xxx.site/link/xxx?clash=1&amp;log-level=info</a><br>移动到<br>/.config/clash$</p>
-<p>3、运行<br>~/clash</p>
-<p>4、配置 直接打开 <a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a> 即可查看gui配置</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.leiyanhui.com/2020/08/22/typecho/typecho_AllsitePasswd_Plugin.html/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="joyanhui@qq.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小类随手记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/22/typecho/typecho_AllsitePasswd_Plugin.html/" class="post-title-link" itemprop="url">typecho全站加密插件/全站内容加密/文章加密/单页加密/首页加密</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-22 01:49:44 / 修改时间：10:37:48" itemprop="dateCreated datePublished" datetime="2020-08-22T01:49:44+08:00">2020-08-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>适合日记站或者内部通知站，输入密码后方可查看网站内容，兼容v1.1<br>(17.10.30)</p>
-<p>wp下有very-simple-password可以用，typecho下一直没找到合适的，只好自己动手。<br>;第一次写typecho的插件，花了几个小时看文档。功能如图</p>
-<p>只有一个文件 Plugin.php<br>上传到/usr/plugins/AllsitePasswd/目录，然后在后台启用即可</p>
-<p>密码提示语言 提示图片均可以修改，也可以<br>在main_fun函数内编辑前台显示样式。</p>
-<p>值得注意的是<br>1、默认密码：123456，请修改强壮一些<br>2、因为入口是index.php，后台操作可能会被拦截，建议前台登陆后再进行后台操作<br>3、如忘记密码，建议直接删除/usr/plugins/AllsitePasswd/目录<br>后进入后台删除插件，然后重新安装即可</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://u2397981.ctfile.com/fs/2397981-314921190">https://u2397981.ctfile.com/fs/2397981-314921190</a></p>
-<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/1307219110.jpg" alt="houtai.jpg" title="houtai.jpg"><br><img src="http://leiyanhui.com/_Resource/uploads/2018/10/4080791910.jpg" alt="qiantai1.jpg" title="qiantai1.jpg"></p>
-<p><img src="http://leiyanhui.com/_Resource/uploads/2018/10/1642301463.jpg" alt="qiantai2.jpg" title="qiantai2.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -945,7 +943,7 @@ chmod +x backup.sh</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
